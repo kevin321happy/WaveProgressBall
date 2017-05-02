@@ -82,7 +82,7 @@ public class ApplicationEx extends Application {
     SDKInitializer.initialize(this);//百度初始化
     initUmeng();
     initJPush();
-    initRecord();
+//    initRecord();
     // initText();//加载字体
   }
 

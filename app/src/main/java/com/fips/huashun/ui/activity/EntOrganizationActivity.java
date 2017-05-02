@@ -54,7 +54,6 @@ public class EntOrganizationActivity extends BaseActivity {
 
 
   }
-
   public void initView() {
     mNbOrgainization.setTitle("企业圈");
     mNbOrgainization.setLeftImage(R.drawable.ico_back);
@@ -66,8 +65,6 @@ public class EntOrganizationActivity extends BaseActivity {
         }
       }
     });
-
-
   }
 
   @Override

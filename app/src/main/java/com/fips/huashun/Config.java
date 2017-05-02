@@ -16,6 +16,4 @@ public class Config {
 	public static final String TEMP_SDCARD_DIR = Environment
 			.getExternalStorageDirectory().getPath() + "/JLD/temp/";
 
-
-
 }

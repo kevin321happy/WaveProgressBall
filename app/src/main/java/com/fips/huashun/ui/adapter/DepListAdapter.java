@@ -26,6 +26,7 @@ public class DepListAdapter extends RecyclerView.Adapter {
     DepListViewHolder viewHolder = new DepListViewHolder(view);
     return viewHolder;
   }
+
   @Override
   public void onBindViewHolder(ViewHolder holder, int position) {
     DepListViewHolder viewHolder = (DepListViewHolder) holder;

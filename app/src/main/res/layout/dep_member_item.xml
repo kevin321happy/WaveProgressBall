@@ -7,6 +7,7 @@
   <LinearLayout style="@style/ent_organization_ll_memberitem">
     <CheckBox
       android:id="@+id/cb_check_dep"
+      style="@style/CustomCheckboxTheme"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:visibility="visible" />
@@ -15,6 +16,7 @@
       android:id="@+id/dep_member_icon"
       android:layout_width="@dimen/space_40"
       android:layout_height="@dimen/space_40"
+      android:layout_marginLeft="@dimen/space_15"
       android:layout_gravity="center"
       android:src="@drawable/ic_launcher"
       fresco:roundAsCircle="true" />
@@ -24,6 +26,7 @@
       android:layout_height="match_parent"
       android:layout_weight="1"
       android:layout_marginLeft="@dimen/space_10"
+      android:gravity="center_vertical"
       android:orientation="vertical">
       <TextView
         android:id="@+id/tv_dep_member_name"
@@ -36,9 +39,10 @@
         android:id="@+id/tv_dep_member_station"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_5"
         android:text="加菲猫"
-        android:textColor="@color/enterprise_act__defaulttext"
-        android:textSize="@dimen/text_size_14" />
+        android:textColor="@color/text_hui"
+        android:textSize="@dimen/text_size_12" />
     </LinearLayout>
   </LinearLayout>
 </LinearLayout>
