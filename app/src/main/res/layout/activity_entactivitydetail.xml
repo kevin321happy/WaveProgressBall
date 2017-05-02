@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  android:orientation="vertical">
+
+  <com.fips.huashun.ui.utils.NavigationBar
+    android:id="@+id/na_bar_ent_activitydetail"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></com.fips.huashun.ui.utils.NavigationBar>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <!--活动详情界面-->
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1">
+      <!--活动详情-->
+      <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--一个子布局-->
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical">
+          <!--标题-->
+          <TextView
+            android:id="@+id/ent_actcivity_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/space_15"
+            android:paddingBottom="@dimen/space_15"
+            android:paddingLeft="@dimen/space_10"
+            android:text="传统销售行业技巧培训版"
+            android:textColor="@color/enterprise_act__defaulttext"
+            android:textSize="@dimen/text_size_16" />
+          <!--分割线-->
+          <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_1"
+            android:background="@drawable/bg_line" />
+          <!--活动时间-->
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/space_15"
+            android:paddingBottom="@dimen/space_15"
+            android:paddingLeft="@dimen/space_10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:gravity="center_vertical"
+              android:src="@drawable/actcivity_time" />
+
+            <LinearLayout
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal">
+
+              <TextView
+                android:id="@+id/ent_activity_starttime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_10"
+                android:text="2016年12月1日 09：00"
+                android:textColor="@color/enterprise_act__defaulttext"
+                android:textSize="@dimen/text_size_12" />
+
+              <TextView
+                android:id="@+id/ent_activity_endtime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_2"
+                android:text="-016年12月1日 09：00"
+                android:textColor="@color/enterprise_act__defaulttext"
+                android:textSize="@dimen/text_size_12" />
+            </LinearLayout>
+
+          </LinearLayout>
+          <!--分割线-->
+          <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_1"
+            android:background="@drawable/bg_line" />
+          <!--活动地点-->
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/space_15"
+            android:paddingBottom="@dimen/space_15"
+            android:paddingLeft="@dimen/space_10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@drawable/actcivity_address" />
+
+            <TextView
+              android:id="@+id/ent_activity_address"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="@dimen/space_10"
+              android:text="武汉市融科智谷"
+              android:textColor="@color/enterprise_act__defaulttext"
+              android:textSize="@dimen/text_size_12" />
+            <!-- <ImageView
+                 android:layout_width="@dimen/space_20"
+                 android:layout_height="@dimen/space_20"
+                 android:layout_gravity="center_vertical"
+                 android:layout_marginRight="@dimen/space_5"
+                 android:src="@drawable/ic_launcher"/>-->
+          </LinearLayout>
+
+          <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_1"
+            android:background="@drawable/bg_line" />
+          <!--已报名人数-->
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/space_15"
+            android:paddingBottom="@dimen/space_15"
+            android:paddingLeft="@dimen/space_10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:src="@drawable/applyedpeoples" />
+
+            <TextView
+              android:id="@+id/ent_activity_had_applyed_counts"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="@dimen/space_10"
+              android:text="已报名人数:"
+              android:textColor="@color/enterprise_act_hui"
+              android:textSize="@dimen/text_size_12" />
+            <!--显示已报名用户头像-->
+            <LinearLayout
+              android:id="@+id/ent_activity_ll"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:paddingRight="@dimen/space_10"
+              android:gravity="right"
+              android:orientation="horizontal">
+
+              <com.fips.huashun.widgets.CircleImageView
+                android:id="@+id/iv_user_icon1"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="-8dp"
+                android:src="@drawable/ic_launcher"
+                android:visibility="gone"
+                app:border_color="@color/transparent" />
+
+              <com.fips.huashun.widgets.CircleImageView
+                android:id="@+id/iv_user_icon2"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginRight="-8dp"
+                android:src="@drawable/ic_launcher"
+                android:visibility="gone"
+                app:border_color="@color/transparent" />
+
+              <com.fips.huashun.widgets.CircleImageView
+                android:id="@+id/iv_user_icon3"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/ic_launcher"
+                android:visibility="gone"
+                app:border_color="@color/transparent" />
+              <TextView
+                android:id="@+id/apply_count"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="-8dp"
+                android:padding="@dimen/space_5"
+                android:background="@drawable/applyed_count_shape"
+                android:gravity="center"
+                android:text="3"
+                android:textColor="#fff"
+                android:visibility="gone" />
+            </LinearLayout>
+          </LinearLayout>
+
+          <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_10"
+            android:background="@color/line_hui" />
+          <!--活动功能模块入口-->
+          <com.fips.huashun.widgets.MyGridView
+            android:id="@+id/gv_ent_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:background="#F9FCF3"
+            android:cacheColorHint="#00000000"
+            android:horizontalSpacing="@dimen/space_1"
+            android:listSelector="#00000000"
+            android:numColumns="3"
+            android:verticalSpacing="@dimen/space_1"></com.fips.huashun.widgets.MyGridView>
+          <!--分割线-->
+          <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_10"
+            android:background="@color/line_hui" />
+
+          <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/space_10"
+            android:gravity="center_vertical"
+            android:text="活动详情" />
+          <!--分割线-->
+          <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_1"
+            android:background="@drawable/bg_line" />
+
+          <TextView
+            android:id="@+id/ent_tv_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/space_20" />
+
+          <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ent_iv_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_20"
+            android:padding="@dimen/space_10"
+            android:scaleType="fitXY" />
+        </LinearLayout>
+      </ScrollView>
+    </LinearLayout>
+
+    <!--底部的线性布局-->
+    <LinearLayout
+      android:id="@+id/ll_button"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/space_50"
+      android:orientation="horizontal">
+
+      <!--左边部分-->
+      <RelativeLayout
+        android:id="@+id/button_left"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <ImageView
+          android:id="@+id/button_left_iv"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="@dimen/space_10"
+          android:layout_centerVertical="true"
+          android:src="@drawable/ent_salou" />
+
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:layout_marginLeft="@dimen/space_15"
+          android:layout_alignLeft="@+id/button_left_iv"
+          android:layout_centerVertical="true"
+          android:paddingTop="@dimen/space_8"
+          android:paddingBottom="@dimen/space_7"
+          android:paddingLeft="@dimen/space_8"
+          android:orientation="vertical">
+          <TextView
+            android:id="@+id/ent_tv_leftnumbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="剩余0个名额"
+            android:textColor="#F8510A"
+            android:textSize="@dimen/text_size_12" />
+
+          <TextView
+            android:id="@+id/ent_tv_overtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2"
+            android:text="2017年1月1日 18：00截止"
+            android:textSize="@dimen/text_size_9" />
+        </LinearLayout>
+      </RelativeLayout>
+      <!--右边按钮-->
+      <Button
+        android:id="@+id/button_right"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/enterprise_text_color"
+        android:text="@string/click_to_apply"
+        android:textColor="#ffffff"
+        android:textSize="@dimen/text_size_20" />
+    </LinearLayout>
+  </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bar_main_layout"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/navigation_bar_height"
+    android:background="@color/title_color"
+    android:gravity="center_vertical" >
+
+    <ImageButton
+        android:id="@+id/img_btn_navigation_left"
+        android:layout_width="@dimen/navigation_bar_height"
+        android:layout_height="@dimen/navigation_bar_height"
+        android:layout_alignParentLeft="true"
+
+        android:background="@null"
+        android:padding="5dp" />
+
+    <TextView
+        android:id="@+id/tv_navigation_left"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/navigation_bar_height"
+        android:layout_alignParentLeft="true"
+        android:background="@null"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="#ECECFB"
+        android:textSize="@dimen/text_size_big"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_navigation_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
+        android:maxWidth="180dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_big" />
+
+    <ImageButton
+        android:id="@+id/img_btn_navigation_right"
+        android:layout_width="@dimen/navigation_bar_height"
+        android:layout_height="@dimen/navigation_bar_height"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="5dp"
+        android:background="@null"
+        android:padding="5dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_navigation_right"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/navigation_bar_height"
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:padding="10dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_basic"
+        android:visibility="gone" />
+
+</RelativeLayout>

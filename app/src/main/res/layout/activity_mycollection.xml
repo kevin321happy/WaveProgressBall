@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+    android:background="@color/white"
+              android:fitsSystemWindows="true">
+        <com.fips.huashun.ui.utils.NavigationBar
+            android:id="@+id/na_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </com.fips.huashun.ui.utils.NavigationBar>
+    <RadioGroup
+        android:id="@+id/rb"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_35"
+        android:layout_marginTop="@dimen/space_10"
+        android:layout_marginLeft="@dimen/space_10"
+        android:layout_marginRight="@dimen/space_10"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/enterprise_mycourse_backfround">
+        <RadioButton
+            android:id="@+id/rb_left_collectcourse"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="课程"
+            style="@style/mycourse_tittle_group_item_left"/>
+
+        <RadioButton
+            android:id="@+id/rb_right_collectlecturer"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="讲师"
+            style="@style/mycourse_tittle_group_item_right"
+            android:layout_height="match_parent" />
+    </RadioGroup>
+    <com.baoyz.swipemenulistview.SwipeMenuListView
+        android:id="@+id/lv_mycollection"
+        android:layout_width="fill_parent"
+        android:layout_marginTop="@dimen/space_5"
+        android:paddingLeft="@dimen/space_10"
+        android:paddingRight="@dimen/space_10"
+
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@color/white"
+        android:dividerHeight="8dp"
+        android:scrollbars="none">
+    </com.baoyz.swipemenulistview.SwipeMenuListView>
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="bg_hui">#7C7C7C</color>
+	<color name="text_bg">#616161</color>
+	<color name="text_yellow">#ffa115</color>
+	<color name="text_hui">#999999</color>
+	<color name="green_choose">#F5FFDA</color>
+	<color name="text_filter">#666666</color>
+</resources>

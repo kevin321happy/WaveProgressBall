@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/title_color"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:drawableRight="@drawable/open"
+            android:gravity="center"
+            android:text="课程"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16"
+            />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="@dimen/space_5"
+            android:layout_weight="1"
+            android:background="@drawable/shap_home_button">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawableLeft="@drawable/sousuo"
+                android:drawablePadding="@dimen/space_5"
+                android:imeOptions="actionSearch"
+                android:paddingLeft="@dimen/space_10"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_15"
+                />
+
+            <ImageView
+                android:id="@+id/iv_cancle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/space_8"
+                android:src="@drawable/guanbi"
+                android:visibility="gone"
+                />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_cancle"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="@dimen/space_10"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_15"
+            />
+    </LinearLayout>
+    <!--<ExpandableListView
+        android:id="@+id/el_listview"
+        android:layout_width="match_parent"
+        android:groupIndicator="@null"
+        android:childIndicatorLeft="0dp"
+        android:childIndicatorStart="@dimen/space_10"
+        android:visibility="gone"
+        android:layout_height="wrap_content"></ExpandableListView>-->
+
+    <TextView
+        android:id="@+id/tv_one"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginLeft="@dimen/space_10"
+        android:gravity="center_vertical"
+        android:text="搜索历史"
+        android:visibility="gone"/>
+
+    <!-- <GridView
+         android:id="@+id/gv_view1"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:layout_marginLeft="@dimen/space_10"
+         android:layout_marginRight="@dimen/space_10"
+         android:gravity="center"
+         android:horizontalSpacing="@dimen/space_8"
+         android:listSelector="@color/transparent"
+         android:numColumns="4"
+         android:verticalSpacing="@dimen/space_5"></GridView>-->
+    <me.gujun.android.taggroup.TagGroup
+        android:padding="@dimen/space_10"
+        android:id="@+id/gv_view1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_two"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginLeft="@dimen/space_10"
+        android:gravity="center_vertical"
+        android:text="热门课程"
+        android:visibility="gone"/>
+
+    <!--<GridView
+        android:id="@+id/gv_view2"
+        android:layout_width="match_parent"
+        android:numColumns="4"
+        android:layout_marginLeft="@dimen/space_10"
+        android:layout_marginRight="@dimen/space_10"
+        android:verticalSpacing="@dimen/space_5"
+        android:horizontalSpacing="@dimen/space_8"
+        android:listSelector="@color/transparent"
+        android:layout_height="wrap_content"></GridView>-->
+    <me.gujun.android.taggroup.TagGroup
+        android:id="@+id/gv_view2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_10"
+        />
+
+    <TextView
+        android:id="@+id/tv_three"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginLeft="@dimen/space_10"
+        android:gravity="center_vertical"
+        android:text="热门讲师"
+        android:visibility="gone"/>
+
+    <!--<GridView
+        android:id="@+id/gv_view3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_10"
+        android:layout_marginRight="@dimen/space_10"
+        android:gravity="center"
+        android:horizontalSpacing="@dimen/space_8"
+        android:listSelector="@color/transparent"
+        android:numColumns="4"
+        android:verticalSpacing="@dimen/space_5"></GridView>-->
+    <me.gujun.android.taggroup.TagGroup
+        android:padding="@dimen/space_10"
+        android:id="@+id/gv_view3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

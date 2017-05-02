@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true">
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.fips.huashun.ui.activity.PostStatusActivity">
+    <include layout="@layout/simple_head_layout"></include>
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="10dp"
+      android:background="@color/line_bg" />
+
+    <EditText
+      android:id="@+id/et_leave"
+      android:layout_width="fill_parent"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/space_10"
+      android:padding="@dimen/space_10"
+      android:background="@null"
+      android:gravity="top|left"
+      android:hint="发表一下你的留言吧"
+      android:minLines="5"
+      android:textColor="@color/enterprise_act__defaulttext"
+      android:textColorHint="@color/enterprise_act_qianhui"
+      android:textCursorDrawable="@null"
+      android:textSize="@dimen/text_size_15" />
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="10dp"
+      android:background="@color/line_bg" />
+
+    <com.fips.huashun.widgets.MyGridView
+      android:id="@+id/noScrollgridview"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/space_10"
+      android:layout_marginLeft="@dimen/space_10"
+      android:layout_marginRight="@dimen/space_10"
+      android:layout_gravity="left"
+      android:paddingBottom="@dimen/space_5"
+      android:cacheColorHint="#00000000"
+      android:focusableInTouchMode="false"
+      android:horizontalSpacing="@dimen/space_5"
+      android:listSelector="#00000000"
+      android:numColumns="4"
+      android:scrollbars="none"
+      android:verticalSpacing="@dimen/space_10"></com.fips.huashun.widgets.MyGridView>
+
+    <View
+      android:layout_width="match_parent"
+      android:layout_height="10dp"
+      android:background="@color/line_bg" />
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/space_10"
+      android:layout_marginLeft="10dp"
+      android:gravity="center_vertical"
+      android:orientation="horizontal">
+
+      <com.fips.huashun.widgets.ToggleButton
+        android:id="@+id/tg_allowcommon"
+        android:layout_width="40dp"
+        android:layout_height="25dp" />
+      <TextView
+        android:id="@+id/tv_allowcommon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_10"
+        android:text="禁止评论" />
+
+    </LinearLayout>
+
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/space_10"
+      android:layout_marginBottom="@dimen/space_50"
+      android:layout_marginLeft="10dp"
+      android:gravity="center_vertical"
+      android:orientation="horizontal">
+      <com.fips.huashun.widgets.ToggleButton
+        android:id="@+id/tg_isanonymity"
+        android:layout_width="40dp"
+        android:layout_height="25dp" />
+      <TextView
+        android:id="@+id/tv_anonymity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_10"
+        android:text="匿名发布"
+        android:textColor="@color/enterprise_act_hui" />
+    </LinearLayout>
+  </LinearLayout>
+</ScrollView>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  android:orientation="vertical">
+  <com.fips.huashun.ui.utils.NavigationBar
+    android:id="@+id/na_bar_enterprise_mycourse"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></com.fips.huashun.ui.utils.NavigationBar>
+  <RadioGroup
+    android:id="@+id/rb"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_35"
+    android:layout_marginTop="@dimen/space_10"
+    android:layout_marginLeft="@dimen/space_10"
+    android:layout_marginRight="@dimen/space_10"
+    android:background="@drawable/enterprise_mycourse_backfround"
+    android:gravity="center"
+    android:orientation="horizontal">
+    <RadioButton
+      android:id="@+id/rb_left_enterprise_mycourse"
+      style="@style/mycourse_tittle_group_item_left"
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:text="必修课程" />
+    <RadioButton
+      android:id="@+id/rb_right_enterprise_mycourse"
+      style="@style/mycourse_tittle_group_item_mid"
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:text="选修课程" />
+    <RadioButton
+      android:id="@+id/rb_enterprise_mycourse_finishdownload"
+      style="@style/mycourse_tittle_group_item_right"
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:text="已下载课程" />
+  </RadioGroup>
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1">
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+      android:id="@+id/lv_enterprise_mycourse"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:paddingLeft="@dimen/space_5"
+      android:paddingRight="@dimen/space_5"
+      android:background="@color/green_dan"
+      android:divider="@color/green_dan"
+      android:dividerHeight="@dimen/space_8"
+      android:listSelector="@android:color/transparent"
+      android:scrollbars="none"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+    <ExpandableListView
+      android:id="@+id/ex_listview"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/green_dan"
+      android:childDivider="@android:color/transparent"
+      android:visibility="gone">
+    </ExpandableListView>
+  </RelativeLayout>
+</LinearLayout>

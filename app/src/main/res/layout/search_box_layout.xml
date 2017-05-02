@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <!--搜索框-->
+  <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_50">
+    <com.fips.huashun.widgets.CustomEditText
+      android:id="@+id/et_search_friend"
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/space_35"
+      android:layout_margin="@dimen/space_10"
+      android:layout_gravity="center_vertical"
+      android:background="@drawable/shape_organization_bg"
+      android:drawablePadding="5dp"
+      android:drawableRight="@drawable/ic_edit_text_delbtn"
+      android:freezesText="true"
+      android:gravity="center_vertical"
+      android:imeOptions="actionSearch"
+      android:singleLine="true"
+      android:textColor="@color/white"
+      android:textColorHint="@color/white"
+      android:textSize="14sp" />
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/transparent"
+      android:gravity="center">
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/sousuo" />
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_10"
+        android:text="搜索"
+        android:textColor="@color/enterprise_act_qianhui" />
+    </LinearLayout>
+  </RelativeLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical"
+              android:background="#F7FCF5">
+    <com.fips.huashun.ui.utils.NavigationBar
+        android:id="@+id/nb_enterprise_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.fips.huashun.ui.utils.NavigationBar>
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/lv_enterprise_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_margin="@dimen/space_10"
+        android:dividerHeight="@dimen/space_3"
+        android:divider="#F7FCF5"
+        android:scrollbars="none">
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+</LinearLayout>

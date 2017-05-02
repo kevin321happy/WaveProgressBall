@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_10"
+        android:text="积分历史记录"
+        android:textSize="@dimen/text_size_14"
+        android:textColor="@color/text_hui"/>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/line_gary"
+        android:layout_marginTop="@dimen/space_5"
+        android:layout_height="1px"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/space_10">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="我的当前积分"
+            android:textColor="@color/text_hui"
+            android:textSize="@dimen/text_size_14"/>
+
+        <TextView
+            android:id="@+id/tv_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="150积分"
+            android:textColor="@color/text_hui"
+            android:textSize="@dimen/text_size_14"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/line_gary"
+        android:layout_height="1px"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/space_10">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="我的总积分"
+            android:textColor="@color/text_hui"
+            android:textSize="@dimen/text_size_14"/>
+
+        <TextView
+            android:id="@+id/tv_totalpoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="900积分"
+            android:textColor="@color/text_hui"
+            android:textSize="@dimen/text_size_14"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/line_gary"
+        android:layout_height="1px"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="@dimen/space_10">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="本周新增积分"
+            android:textColor="@color/text_hui"
+            android:textSize="@dimen/text_size_14"/>
+
+        <TextView
+            android:id="@+id/tv_weekintegral"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="900积分"
+            android:textColor="@color/text_hui"
+            android:textSize="@dimen/text_size_14"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="@color/line_gary"
+        android:layout_height="1px"/>
+</LinearLayout>

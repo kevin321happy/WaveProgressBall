@@ -1,0 +1,312 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/title_color"
+        android:gravity="center_vertical"
+        >
+        <LinearLayout
+            android:layout_width="@dimen/space_50"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_image_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/head_left"
+                />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_search"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="35dp"
+            android:layout_marginLeft="@dimen/space_5"
+            android:text="搜索课程、讲师等"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_marginRight="@dimen/space_5"
+            android:background="@drawable/shap_home_button"
+            />
+        <LinearLayout
+            android:id="@+id/ll_message"
+            android:layout_width="@dimen/space_50"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/iv_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/xinxi"
+                />
+        </LinearLayout>
+    </LinearLayout>
+    <com.handmark.pulltorefresh.library.PullToRefreshScrollView
+        android:layout_width="match_parent"
+        android:id="@+id/scroollview"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+    <cn.bingoogolapple.bgabanner.BGABanner
+        android:id="@+id/binner"
+        style="@style/BannerDefaultStyle"
+        app:banner_pointDrawable="@drawable/bga_banner_selector_point_hollow"
+        app:banner_transitionEffect="defaultEffect"></cn.bingoogolapple.bgabanner.BGABanner>
+
+
+    <com.fips.huashun.widgets.MyGridView
+        android:id="@+id/gv_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_10"
+        android:layout_marginBottom="@dimen/space_5"
+        android:background="@color/white"
+        android:numColumns="4"
+        android:verticalSpacing="@dimen/space_5"
+        android:listSelector="@android:color/transparent"
+        ></com.fips.huashun.widgets.MyGridView>
+<View
+    android:layout_width="match_parent"
+    android:background="#EEEFE7"
+    android:layout_marginTop="5dp"
+    android:layout_height="1px"/>
+
+        <LinearLayout
+            android:id="@+id/rl_one"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:layout_height="wrap_content">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+
+        android:background="#F2F2F2"
+        android:paddingLeft="@dimen/space_10"
+        android:paddingRight="@dimen/space_10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:text="推荐课程"
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/text_black"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_more1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="4dp"
+            android:layout_alignParentRight="true"
+            android:drawablePadding="5dp"
+            android:text="更多"
+            android:gravity="center_vertical"
+            android:drawableRight="@drawable/icon_more"
+            android:textColor="@color/text_bg"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+    <com.fips.huashun.widgets.NoScrollListView
+        android:id="@+id/lv_list"
+        android:layout_width="match_parent"
+        android:background="#F2F2F2"
+        android:paddingLeft="@dimen/space_10"
+        android:paddingRight="@dimen/space_10"
+        android:divider="@color/divider_color"
+        android:dividerHeight="8dp"
+        android:listSelector="@android:color/transparent"
+        android:layout_height="wrap_content"></com.fips.huashun.widgets.NoScrollListView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="#F2F2F2"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:text="老师课程"
+                android:gravity="center_vertical"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/text_black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_more2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="5dp"
+                android:text="更多"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/icon_more"
+                android:textColor="@color/text_bg"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+        <com.fips.huashun.widgets.MyGridView
+            android:id="@+id/gv_teacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10"
+            android:background="@color/white"
+            android:numColumns="2"
+            android:verticalSpacing="@dimen/space_5"
+            android:horizontalSpacing="@dimen/space_10"
+            android:listSelector="@android:color/transparent"
+            ></com.fips.huashun.widgets.MyGridView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#F2F2F2"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:text="热门课程"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/text_black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_more3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="5dp"
+                android:text="更多"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/icon_more"
+                android:textColor="@color/text_bg"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+        <com.fips.huashun.widgets.NoScrollListView
+            android:id="@+id/lv_list2"
+            android:layout_width="match_parent"
+            android:background="#F2F2F2"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10"
+            android:divider="@color/divider_color"
+            android:dividerHeight="8dp"
+            android:listSelector="@android:color/transparent"
+            android:layout_height="wrap_content"></com.fips.huashun.widgets.NoScrollListView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#F2F2F2"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:text="推荐讲师"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/text_black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_more4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="5dp"
+                android:text="更多"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/icon_more"
+                android:textColor="@color/text_bg"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+        <com.fips.huashun.widgets.NoScrollListView
+            android:id="@+id/lv_list3"
+            android:layout_width="match_parent"
+            android:background="#F2F2F2"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10"
+            android:divider="@color/divider_color"
+            android:dividerHeight="8dp"
+            android:listSelector="@android:color/transparent"
+            android:layout_height="wrap_content"></com.fips.huashun.widgets.NoScrollListView>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#F2F2F2"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:text="推荐活动"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/text_black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/tv_more5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="4dp"
+                android:layout_alignParentRight="true"
+                android:drawablePadding="5dp"
+                android:text="更多"
+                android:gravity="center_vertical"
+                android:drawableRight="@drawable/icon_more"
+                android:textColor="@color/text_bg"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+        <com.fips.huashun.widgets.NoScrollListView
+            android:id="@+id/lv_list4"
+            android:layout_width="match_parent"
+            android:background="#F2F2F2"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10"
+            android:divider="@color/divider_color"
+            android:dividerHeight="8dp"
+            android:listSelector="@android:color/transparent"
+            android:layout_height="wrap_content"></com.fips.huashun.widgets.NoScrollListView>
+        </LinearLayout>
+    </LinearLayout>
+
+    </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
+
+
+
+</LinearLayout>

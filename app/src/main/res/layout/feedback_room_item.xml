@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  xmlns:fresco="http://schemas.android.com/tools"
+  android:background="#ffffff"
+  android:orientation="vertical">
+  <!--反馈室 top-->
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/space_10"
+    android:orientation="horizontal">
+    <RelativeLayout
+      android:layout_width="@dimen/space_45"
+      android:layout_height="@dimen/space_45">
+      <com.fips.huashun.widgets.HeadTagIamge
+        android:id="@+id/feedback_iv_image"
+        android:layout_width="@dimen/space_40"
+        android:layout_height="@dimen/space_45">
+      </com.fips.huashun.widgets.HeadTagIamge>
+
+    </RelativeLayout>
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/space_10"
+      android:orientation="vertical">
+
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:gravity="center_vertical"
+          android:orientation="horizontal">
+
+          <TextView
+            android:id="@+id/feedback_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="吴伟"
+            android:textColor="@color/enterprise_act__defaulttext"
+            android:textSize="@dimen/text_size_14" />
+
+          <TextView
+            android:id="@+id/feedback_tv_department"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_20"
+            android:text="招聘部"
+            android:textColor="@color/enterprise_act_hui"
+            android:textSize="@dimen/text_size_11" />
+
+          <TextView
+            android:id="@+id/feedback_tv_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_20"
+            android:text="招聘专员"
+            android:textColor="@color/enterprise_act_hui"
+            android:textSize="@dimen/text_size_11" />
+
+        </LinearLayout>
+        <TextView
+          android:id="@+id/feedback_tv_grade"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:padding="@dimen/space_5"
+          android:background="@drawable/bg_teacher_common"
+          android:drawableLeft="@drawable/teacher_icon"
+          android:gravity="center"
+          android:text="讲师评分"
+          android:textColor="@color/enterprise_act__text"
+          android:textSize="@dimen/space_10" />
+      </LinearLayout>
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <TextView
+          android:id="@+id/feedback_tv_time"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="12-13    12:30"
+          android:textColor="@color/enterprise_act_qianhui"
+          android:textSize="@dimen/text_size_10" />
+        <TextView
+          android:id="@+id/feedback_tv_delete"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="@dimen/space_10"
+          android:padding="@dimen/space_3"
+          android:text="删除"
+          android:textColor="@color/enterprise_act__text"
+          android:textSize="@dimen/space_10"
+          android:visibility="gone" />
+      </LinearLayout>
+    </LinearLayout>
+  </LinearLayout>
+  <!--反饋文字内容-->
+  <TextView
+    android:id="@+id/feedback_tv_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/space_10"
+    android:paddingRight="@dimen/space_10"
+    android:text="測試反饋的内容......"
+    android:textColor="@color/enterprise_act__defaulttext" />
+  <!--视频的图片-->
+  <FrameLayout
+    android:id="@+id/video_image"
+    style="@style/fl_leavewall_videoimage">
+    <com.facebook.drawee.view.SimpleDraweeView
+      android:id="@+id/iv_thum_image"
+      android:src="@drawable/pk_bgnormal"
+      fresco:roundAsCircle="true"
+      fresco:roundingBorderColor="#00ff00"
+      fresco:roundingBorderWidth="2dp"
+      style="@style/sd_leavewall_imagethum" />
+    <ImageView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:src="@drawable/video_bg" />
+  </FrameLayout>
+  <!--九宫格显示图片列表-->
+  <cn.bingoogolapple.photopicker.widget.BGANinePhotoLayout
+    android:id="@+id/npl_item_moment_photos"
+    style="@style/MatchWrap"
+    android:layout_marginTop="5dp"
+    android:visibility="gone"
+    app:bga_npl_itemCornerRadius="0dp"
+    app:bga_npl_itemSpanCount="3"
+    app:bga_npl_itemWhiteSpacing="4dp"
+    app:bga_npl_itemWidth="0dp"
+    app:bga_npl_otherWhiteSpacing="64dp"
+    app:bga_npl_placeholderDrawable="@mipmap/bga_pp_ic_holder_light"
+    app:bga_npl_showAsLargeWhenOnlyOne="true" />
+  <!--显示评论列表-->
+  <ListView
+    android:id="@+id/feedback_lv_commonlist"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="gone" />
+
+  <View
+    android:id="@+id/leave_division_buttom"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginTop="@dimen/space_10"
+    android:background="@color/line_hui"
+    android:visibility="visible" />
+
+  <!--底部的点赞评论和转发-->
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:gravity="center"
+      android:orientation="horizontal">
+
+      <ImageView
+        android:id="@+id/feedback_iv_shoucang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_5"
+        android:src="@drawable/xingxing_" />
+
+      <TextView
+        android:id="@+id/feedback_tv_collect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_10"
+        android:text="0"
+        android:textColor="@color/enterprise_act_hui"
+        android:textSize="@dimen/text_size_10" />
+    </LinearLayout>
+
+    <View
+      android:layout_width="1dp"
+      android:layout_height="@dimen/space_20"
+      android:layout_marginTop="@dimen/space_5"
+      android:background="@color/line_hui" />
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:gravity="center"
+      android:orientation="horizontal">
+
+      <ImageView
+        android:id="@+id/feedback_iv_pinglun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_5"
+        android:src="@drawable/ping_lun" />
+
+      <TextView
+        android:id="@+id/feedback_tv_commentcount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_10"
+        android:text="0"
+        android:textColor="@color/enterprise_act_hui"
+        android:textSize="@dimen/text_size_10" />
+
+    </LinearLayout>
+
+    <View
+      android:layout_width="1dp"
+      android:layout_height="@dimen/space_20"
+      android:layout_marginTop="@dimen/space_5"
+      android:background="@color/line_hui" />
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:gravity="center"
+      android:orientation="horizontal">
+
+      <ImageView
+        android:id="@+id/feedback_iv_dianzan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_5"
+        android:src="@drawable/dian_zan" />
+
+      <TextView
+        android:id="@+id/feedback_tv_likecount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_10"
+        android:text="0"
+        android:textColor="@color/enterprise_act_hui"
+        android:textSize="@dimen/text_size_10" />
+
+    </LinearLayout>
+  </LinearLayout>
+</LinearLayout>

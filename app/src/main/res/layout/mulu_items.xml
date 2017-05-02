@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="@color/white"
+  android:orientation="vertical">
+
+  <LinearLayout
+    android:id="@+id/ll_isGone"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/space_10"
+    android:paddingRight="@dimen/space_10"
+    android:gravity="center_vertical">
+    <TextView
+      android:id="@+id/tv_courseName"
+      android:layout_width="0dp"
+      android:layout_height="35dp"
+      android:layout_weight="1"
+      android:gravity="center_vertical"
+      android:textSize="@dimen/text_size_14" />
+    <ImageView
+      android:id="@+id/iv_down"
+      android:layout_width="15dp"
+      android:layout_height="15dp"
+      android:src="@drawable/course_result_fan" />
+  </LinearLayout>
+
+  <LinearLayout
+    android:id="@+id/ll_out"
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    android:paddingLeft="@dimen/space_10"
+    android:gravity="center_vertical"
+    android:visibility="visible">
+
+    <ImageView
+      android:id="@+id/iv_begin"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/video_begin" />
+    <TextView
+      android:id="@+id/tv_time"
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:paddingLeft="@dimen/space_10"
+      android:gravity="center_vertical"
+      android:text=""
+      android:textColor="@color/text_bg"
+      android:textSize="@dimen/text_size_13"
+      android:visibility="invisible" />
+    <RelativeLayout
+      android:id="@+id/iv_download"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="@dimen/space_10">
+    <ImageView
+      android:id="@+id/iv_downicon"
+      android:padding="@dimen/space_3"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="invisible"
+      android:src="@drawable/can_d"
+     />
+      <TextView
+        android:id="@+id/tv_download"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        android:text="下载中"/>
+
+    </RelativeLayout>
+  </LinearLayout>
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="1px"
+    android:background="@color/line_bg" />
+</LinearLayout>

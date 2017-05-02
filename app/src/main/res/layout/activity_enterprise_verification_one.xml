@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/enterprise_apply_background"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/title_color"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_weight="1"
+            android:background="@drawable/shap_home_button">
+
+            <AutoCompleteTextView
+                android:id="@+id/tv_enterprise_name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@null"
+                android:drawableLeft="@drawable/sousuo"
+                android:drawablePadding="@dimen/space_5"
+                android:imeOptions="actionSearch"
+                android:completionThreshold="1"
+                android:paddingLeft="@dimen/space_10"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_15"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="@dimen/space_8"
+                android:src="@drawable/guanbi"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginRight="@dimen/space_10"
+            android:gravity="center_vertical"
+            android:text="取消"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_15"/>
+    </LinearLayout>
+
+    <com.fips.huashun.widgets.CircleImageView
+        android:id="@+id/iv_enterprise_head"
+        android:layout_width="@dimen/space_100"
+        android:layout_height="@dimen/space_100"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/space_40"
+        android:src="@drawable/icon_image"
+        app:border_color="@color/transparent"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginLeft="@dimen/space_20"
+        android:layout_marginRight="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_50"
+        android:background="@drawable/login_zhanghao"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_10"
+            android:text="工号"
+            android:textColor="@color/green_grass"
+            android:textSize="@dimen/text_size_16"/>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginTop="@dimen/space_10"
+            android:background="@color/green_grass_seventy"/>
+
+        <EditText
+            android:id="@+id/et_iob_number"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="@dimen/space_16"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawablePadding="@dimen/space_5"
+            android:hint="请输入工号"
+            android:textColor="@color/green_grass"
+            android:textColorHint="@color/green_grass"
+            android:textSize="@dimen/text_size_14"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginLeft="@dimen/space_20"
+        android:layout_marginRight="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/login_zhanghao"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="姓名"
+            android:textColor="@color/green_grass"
+            android:textSize="@dimen/text_size_16"/>
+        <View
+            android:layout_width="1px"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/green_grass_seventy"/>
+        <EditText
+            android:id="@+id/et_department"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="@dimen/space_16"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawablePadding="@dimen/space_5"
+            android:hint="请输入姓名"
+            android:textColor="@color/green_grass"
+            android:textColorHint="@color/green_grass"
+            android:textSize="@dimen/text_size_14"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_employee_apply"
+        android:layout_width="fill_parent"
+        android:layout_height="43dp"
+        android:layout_marginLeft="@dimen/space_20"
+        android:layout_marginRight="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/selector_login_button"
+        android:text="申请"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"/>
+</LinearLayout>

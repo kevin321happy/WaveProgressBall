@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  android:orientation="vertical">
+  <com.fips.huashun.ui.utils.NavigationBar
+    android:id="@+id/nb_systemsettings"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" />
+  <LinearLayout
+    android:id="@+id/ll_updatepwd"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_marginTop="@dimen/space_10"
+    android:paddingLeft="@dimen/space_10"
+    android:paddingRight="@dimen/space_10"
+    android:gravity="center_vertical">
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/space_40"
+      android:paddingLeft="@dimen/space_10"
+      android:gravity="center_vertical"
+      android:text="修改密码"
+      android:textColor="@color/grgray" />
+  </LinearLayout>
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="1px"
+    android:background="@color/line_gary" />
+  <LinearLayout
+    android:id="@+id/ll_cleanCash"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_40"
+    android:paddingLeft="@dimen/space_10"
+    android:paddingRight="@dimen/space_10"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <TextView
+      android:layout_width="0dp"
+      android:layout_height="@dimen/space_40"
+      android:layout_weight="1"
+      android:paddingLeft="@dimen/space_10"
+      android:gravity="center_vertical"
+      android:text="清除缓存"
+      android:textColor="@color/grgray" />
+    <TextView
+      android:id="@+id/tv_cash"
+      android:layout_width="wrap_content"
+      android:layout_height="@dimen/space_40"
+      android:gravity="center_vertical"
+      android:text="200M"
+      android:textColor="@color/grgray" />
+  </LinearLayout>
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="1px"
+    android:background="@color/line_gary" />
+  <LinearLayout
+    android:id="@+id/ll_update_app"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_40"
+    android:paddingLeft="@dimen/space_10"
+    android:paddingRight="@dimen/space_10"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:visibility="visible">
+    <TextView
+      android:layout_width="0dp"
+      android:layout_height="@dimen/space_40"
+      android:layout_weight="1"
+      android:paddingLeft="@dimen/space_10"
+      android:gravity="center_vertical"
+      android:text="检查更新"
+      android:textColor="@color/grgray" />
+    <TextView
+      android:id="@+id/tv_current_version"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="当前版本 ：1.22"/>
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="@dimen/space_40"
+      android:gravity="center_vertical"
+      android:visibility="gone"
+      android:src="@drawable/xinxiaoxi" />
+  </LinearLayout>
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="1px"
+    android:background="@color/line_gary" />
+  <LinearLayout
+    android:id="@+id/ll_aboutapp"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_40"
+    android:paddingLeft="@dimen/space_10"
+    android:paddingRight="@dimen/space_10"
+    android:gravity="center_vertical">
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/space_40"
+      android:paddingLeft="@dimen/space_10"
+      android:gravity="center_vertical"
+      android:text="关于我们"
+      android:textColor="@color/grgray" />
+  </LinearLayout>
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="1px"
+    android:background="@color/line_gary" />
+  <LinearLayout
+    android:id="@+id/ll_score"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_40"
+    android:paddingLeft="@dimen/space_10"
+    android:paddingRight="@dimen/space_10"
+    android:gravity="center_vertical">
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/space_40"
+      android:paddingLeft="@dimen/space_10"
+      android:gravity="center_vertical"
+      android:text="评分"
+      android:textColor="@color/grgray" />
+  </LinearLayout>
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="1px"
+    android:background="@color/line_gary" />
+  <LinearLayout
+    android:id="@+id/ll_feedback"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_40"
+    android:paddingLeft="@dimen/space_10"
+    android:paddingRight="@dimen/space_10"
+    android:gravity="center_vertical">
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/space_40"
+      android:paddingLeft="@dimen/space_10"
+      android:gravity="center_vertical"
+      android:text="意见反馈"
+      android:textColor="@color/grgray" />
+  </LinearLayout>
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="1px"
+    android:background="@color/line_gary" />
+  <LinearLayout
+    android:id="@+id/ll_contact_we"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_40"
+    android:paddingLeft="@dimen/space_10"
+    android:paddingRight="@dimen/space_10"
+    android:gravity="center_vertical">
+    <TextView
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/space_40"
+      android:paddingLeft="@dimen/space_10"
+      android:gravity="center_vertical"
+      android:text="联系我们"
+      android:textColor="@color/grgray" />
+  </LinearLayout>
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="1px"
+    android:background="@color/line_gary" />
+</LinearLayout>

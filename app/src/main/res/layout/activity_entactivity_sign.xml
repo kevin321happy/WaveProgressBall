@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+  android:fitsSystemWindows="true"
+    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+    <com.fips.huashun.ui.utils.NavigationBar
+        android:id="@+id/nb_enterpriseactsign"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.fips.huashun.ui.utils.NavigationBar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/baidu_map"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="@dimen/space_10">
+
+            <TextView
+                android:id="@+id/tv_signup_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="传统销售行业培训班"
+                android:textColor="@color/enterprise_act__defaulttext"
+                android:textSize="@dimen/text_size_16"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                >
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/actcivity_time"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_signup_starttime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_10"
+                    android:text="2016年12月1日 09：00"
+                    android:textColor="@color/enterprise_act__defaulttext"
+                    android:textSize="@dimen/text_size_13"/>
+                    <TextView
+                        android:id="@+id/tv_signup_endtime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/space_10"
+                        android:text="-2016年12月2日 09：00"
+                        android:textColor="@color/enterprise_act__defaulttext"
+                        android:textSize="@dimen/text_size_13"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/actcivity_address"/>
+                <TextView
+                    android:id="@+id/tv_signup_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_10"
+                    android:text="洪山区融科智谷A2栋201室"
+                    android:textColor="@color/enterprise_act__defaulttext"
+                    android:textSize="@dimen/text_size_13"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_10"
+                android:background="@color/line_entlist"
+                />
+            <com.fips.huashun.widgets.NoScrollListView
+                android:id="@+id/lv_singup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+            </com.fips.huashun.widgets.NoScrollListView>
+           <!-- <com.fips.huashun.widgets.MyListView
+                android:id="@+id/lv_singup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               >
+            </com.fips.huashun.widgets.MyListView>-->
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+</ScrollView>

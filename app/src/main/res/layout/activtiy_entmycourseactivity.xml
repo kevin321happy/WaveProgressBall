@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:card_view="http://schemas.android.com/tools"
+  style="@style/ent_mycourse_ll">
+  <include layout="@layout/head_course_serach" />
+  <LinearLayout style="@style/ent_mycourse_ll_out">
+    <android.support.v7.widget.CardView
+      style="@style/ent_mycourse_cardview"
+      app:contentPaddingLeft="@dimen/space_10"
+      card_view:cardBackgroundColor="@color/white"
+      card_view:cardCornerRadius="8dp"
+      card_view:cardElevation="3dp">
+      <!--＂?android:attr/selectableItemBackground＂-->
+      <LinearLayout style="@style/ent_mycourse_ll_itemout">
+        <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/icon_unfinish_course" />
+        <LinearLayout style="@style/ent_mycourse_ll_inner">
+          <TextView
+            style="@style/ent_mycourse_tv_state"
+            android:text="@string/un_finish" />
+          <TextView
+            android:id="@+id/tv_unpass_counts"
+            style="@style/ent_mycourse_tv_count"
+            android:text="0/1000" />
+        </LinearLayout>
+
+        <TextView
+          android:id="@+id/tv_unfinish_points"
+          android:layout_width="@dimen/space_70"
+          android:layout_height="wrap_content"
+          android:text="@string/totle_points" />
+        <ImageView
+          android:id="@+id/iv_more_unfinish"
+          style="@style/ent_mycourse_iv_more"
+          android:src="@drawable/icon_more" />
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+      style="@style/ent_mycourse_cardview"
+      app:contentPaddingLeft="@dimen/space_10"
+      card_view:cardBackgroundColor="@color/white"
+      card_view:cardCornerRadius="8dp"
+      card_view:cardElevation="3dp">
+      <LinearLayout style="@style/ent_mycourse_ll_itemout">
+        <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/icon_unpass_course" />
+        <LinearLayout style="@style/ent_mycourse_ll_inner">
+          <TextView
+            style="@style/ent_mycourse_tv_state"
+            android:text="@string/un_pass" />
+          <TextView
+            android:id="@+id/tv_unfinish_counts"
+            style="@style/ent_mycourse_tv_count"
+            android:text="0/1000" />
+        </LinearLayout>
+        <TextView
+          android:id="@+id/tv_unpass_points"
+          android:layout_width="@dimen/space_70"
+          android:layout_height="wrap_content"
+          android:text="@string/totle_points" />
+
+        <ImageView
+          android:id="@+id/iv_more_unpass"
+          style="@style/ent_mycourse_iv_more"
+          android:src="@drawable/icon_more" />
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+      style="@style/ent_mycourse_cardview"
+      app:contentPaddingLeft="@dimen/space_10"
+      card_view:cardBackgroundColor="@color/white"
+      card_view:cardCornerRadius="8dp"
+      card_view:cardElevation="3dp">
+      <LinearLayout style="@style/ent_mycourse_ll_itemout">
+        <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/icon_finish_course" />
+        <LinearLayout style="@style/ent_mycourse_ll_inner">
+          <TextView
+            style="@style/ent_mycourse_tv_state"
+            android:text="已完成" />
+          <TextView
+            android:id="@+id/tv_finish_counts"
+            style="@style/ent_mycourse_tv_count"
+            android:text="0/1000" />
+        </LinearLayout>
+        <TextView
+          android:id="@+id/tv_finish_points"
+          android:layout_width="@dimen/space_70"
+          android:layout_height="wrap_content"
+          android:text="@string/totle_points"
+          android:visibility="visible" />
+
+        <ImageView
+          android:id="@+id/iv_more_finish"
+          style="@style/ent_mycourse_iv_more"
+          android:src="@drawable/icon_more" />
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+      style="@style/ent_mycourse_cardview"
+      app:contentPaddingLeft="@dimen/space_10"
+      card_view:cardBackgroundColor="@color/white"
+      card_view:cardCornerRadius="8dp"
+      card_view:cardElevation="3dp">
+      <LinearLayout style="@style/ent_mycourse_ll_itemout">
+        <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/icon_pass_course" />
+        <LinearLayout style="@style/ent_mycourse_ll_inner">
+          <TextView
+            style="@style/ent_mycourse_tv_state"
+            android:text="@string/pass" />
+          <TextView
+            android:id="@+id/tv_pass_counts"
+            style="@style/ent_mycourse_tv_count"
+            android:text="0/1000" />
+        </LinearLayout>
+        <TextView
+          android:id="@+id/tv_pass_points"
+          android:layout_width="@dimen/space_70"
+          android:layout_height="wrap_content"
+          android:text="@string/totle_points"
+          android:visibility="invisible" />
+
+        <ImageView
+          android:id="@+id/iv_more_pass"
+          style="@style/ent_mycourse_iv_more"
+          android:src="@drawable/icon_more" />
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+      style="@style/ent_mycourse_cardview"
+      app:contentPaddingLeft="@dimen/space_10"
+      card_view:cardBackgroundColor="@color/white"
+      card_view:cardCornerRadius="8dp"
+      card_view:cardElevation="3dp">
+      <LinearLayout style="@style/ent_mycourse_ll_itemout">
+        <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/icon_allcourse" />
+        <LinearLayout style="@style/ent_mycourse_ll_inner">
+          <TextView
+            style="@style/ent_mycourse_tv_state"
+            android:text="全部" />
+          <TextView
+            android:id="@+id/tv_all_counts"
+            style="@style/ent_mycourse_tv_count"
+            android:text="0/1000" />
+        </LinearLayout>
+        <TextView
+          android:id="@+id/tv_all_points"
+          android:layout_width="@dimen/space_70"
+          android:layout_height="wrap_content"
+          android:text="@string/totle_points"
+          android:visibility="invisible" />
+
+        <ImageView
+          android:id="@+id/iv_more_all"
+          style="@style/ent_mycourse_iv_more"
+          android:src="@drawable/icon_more" />
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+
+    <android.support.v7.widget.CardView
+      style="@style/ent_mycourse_cardview"
+      app:contentPaddingLeft="@dimen/space_10"
+      card_view:cardBackgroundColor="@color/white"
+      card_view:cardCornerRadius="8dp"
+      card_view:cardElevation="3dp">
+      <LinearLayout style="@style/ent_mycourse_ll_itemout">
+        <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:src="@drawable/icon_allcourse" />
+        <LinearLayout style="@style/ent_mycourse_ll_inner">
+          <TextView
+            style="@style/ent_mycourse_tv_state"
+            android:text="已下载" />
+          <TextView
+            android:id="@+id/tv_has_download"
+            style="@style/ent_mycourse_tv_count"
+            android:text="0/1000" />
+        </LinearLayout>
+        <TextView
+          android:layout_width="@dimen/space_70"
+          android:layout_height="wrap_content"
+          android:text="@string/totle_points"
+          android:visibility="invisible" />
+        <ImageView
+          android:id="@+id/iv_more_download"
+          style="@style/ent_mycourse_iv_more"
+          android:src="@drawable/icon_more" />
+      </LinearLayout>
+    </android.support.v7.widget.CardView>
+  </LinearLayout>
+</LinearLayout>

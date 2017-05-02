@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="30dp"
+  android:paddingLeft="@dimen/text_size_15"
+  android:gravity="center_vertical"
+  android:orientation="vertical">
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <TextView
+      android:id="@+id/tv_child_name"
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:gravity="center_vertical"
+      android:text="裘马草堂简介"
+      android:textColor="@color/enterprise_act_hui"
+      android:textSize="@dimen/text_size_14" />
+
+    <ImageView
+      android:id="@+id/iv_child_delete"
+      android:layout_width="@dimen/space_20"
+      android:layout_height="@dimen/space_40"
+      android:layout_marginLeft="@dimen/space_10"
+      android:layout_marginRight="@dimen/space_10"
+      android:src="@drawable/down_delete_select" />
+    <LinearLayout
+      android:layout_width="wrap_content"
+      android:layout_height="match_parent"
+      android:gravity="center_vertical"
+      android:layout_marginRight="@dimen/space_5"
+      android:orientation="vertical">
+      <TextView
+        android:id="@+id/tv_child_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="已完成"
+        android:textColor="@color/enterprise_act__defaulttext"
+        android:textSize="@dimen/text_size_14"
+        android:visibility="visible"/>
+      <TextView
+        android:id="@+id/tv_child_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100M"
+        android:textSize="@dimen/text_size_12"
+        android:textColor="@color/enterprise_act_hui"
+        android:visibility="visible" />
+
+    </LinearLayout>
+    <Button
+      android:id="@+id/bt_child_study"
+      android:layout_width="@dimen/space_40"
+      android:layout_height="@dimen/space_25"
+      android:layout_marginLeft="@dimen/space_5"
+      android:background="@drawable/activity_tabs_shape"
+      android:text="学习"
+      android:textSize="@dimen/space_10"
+      android:visibility="gone" />
+  </LinearLayout>
+
+  <com.fips.huashun.widgets.CustomDashedLineView
+    android:id="@+id/cl_line"
+    android:layout_width="match_parent"
+    android:layout_height="5dp" />
+</LinearLayout>

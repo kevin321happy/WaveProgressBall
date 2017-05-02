@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  android:orientation="vertical">
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal">
+    <ImageView
+      android:id="@+id/iv_fanhui"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/space_15"
+      android:padding="@dimen/space_6"
+      android:background="@drawable/icon_click_selector"
+      android:gravity="center"
+      android:src="@drawable/fh"
+      android:textSize="18sp" />
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:orientation="horizontal">
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="vertical">
+
+        <TextView
+          android:id="@+id/tv_leave_wall"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center_horizontal"
+          android:text="留言墙"
+          android:textColor="@color/enterprise_act__text"
+          android:textSize="@dimen/space_17" />
+
+        <TextView
+          android:id="@+id/cursor1"
+          android:layout_width="90dp"
+          android:layout_height="2dp"
+          android:layout_gravity="center_horizontal"
+          android:background="@drawable/interactive_space_cursor"
+          android:visibility="visible" />
+      </LinearLayout>
+
+      <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="vertical">
+
+        <TextView
+          android:id="@+id/tv_feedback_room"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1.0"
+          android:layout_gravity="center_horizontal"
+          android:gravity="center"
+          android:text="反馈室"
+          android:textColor="@color/enterprise_act__defaulttext"
+          android:textSize="@dimen/space_17" />
+
+        <TextView
+          android:id="@+id/cursor2"
+          android:layout_width="90dp"
+          android:layout_height="2dp"
+          android:layout_gravity="center_horizontal"
+          android:background="@drawable/interactive_space_cursor"
+          android:visibility="invisible" />
+      </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+      android:id="@+id/iv_more"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="@dimen/space_15"
+      android:padding="@dimen/space_6"
+      android:background="@drawable/icon_click_selector"
+      android:gravity="center"
+      android:src="@drawable/more_" />
+  </LinearLayout>
+
+  <android.support.v4.view.ViewPager
+    android:id="@+id/viewpager"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:flipInterval="30"
+    android:persistentDrawingCache="animation" />
+  <LinearLayout
+    android:id="@+id/ll_button_dialog"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_centerVertical="true"
+    android:layout_gravity="bottom"
+    android:padding="@dimen/space_10"
+    android:orientation="horizontal"
+
+    android:visibility="gone">
+    <EditText
+      android:id="@+id/et_course_evaluate_dialog"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="1"
+      android:layout_margin="@dimen/space_10"
+      android:padding="@dimen/space_5"
+      android:background="@drawable/evalute_text_shape"
+      android:gravity="left|top"
+      android:hint="输入回复内容..."
+      android:minLines="1"
+      android:textColor="@color/text_black"
+      android:textSize="@dimen/text_size_13" />
+    <Button
+      android:id="@+id/bt_reply"
+      android:layout_width="30dp"
+      android:layout_height="30dp"
+      android:text="回复" />
+
+  </LinearLayout>
+</LinearLayout>

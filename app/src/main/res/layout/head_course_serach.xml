@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent"
+  android:layout_height="50dp"
+  android:paddingTop="8dp"
+  android:paddingBottom="5dp"
+  android:paddingRight="10dp"
+  android:gravity="center_vertical"
+  android:orientation="horizontal"
+  android:background="@color/enterprise_act__text">
+
+<LinearLayout
+  android:layout_width="match_parent"
+  android:layout_height="@dimen/space_35"
+  android:gravity="center_vertical"
+  android:orientation="horizontal">
+  <ImageView
+    android:paddingLeft="@dimen/space_10"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginRight="@dimen/space_10"
+    android:src="@drawable/fanhui"/>
+  <com.fips.huashun.widgets.CustomEditText
+    android:layout_marginLeft="@dimen/space_10"
+    android:layout_marginRight="@dimen/space_25"
+    android:id="@+id/et_search_course"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
+    android:background="@drawable/shap_home_button"
+    android:drawablePadding="5dp"
+    android:drawableRight="@drawable/ic_edit_text_delbtn"
+    android:freezesText="true"
+    android:gravity="center_vertical"
+    android:imeOptions="actionSearch"
+    android:singleLine="true"
+    android:textColor="@color/white"
+    android:textColorHint="@color/white"
+    android:textSize="14sp" />
+</LinearLayout>
+  <LinearLayout
+    android:id="@+id/ll_search"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/transparent"
+    android:gravity="center">
+    <ImageView
+      android:id="@+id/iv_back"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/sousuo" />
+    <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/space_10"
+      android:text="搜索"
+      android:textColor="@color/enterprise_act_qianhui" />
+  </LinearLayout>
+</RelativeLayout>

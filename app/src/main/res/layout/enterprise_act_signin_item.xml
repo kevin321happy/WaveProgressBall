@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#ffffff"
+              android:gravity="center"
+              android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_signup_title"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:paddingLeft="15dp"
+        android:paddingTop="20dp"
+        android:text="第一签"
+        android:textColor="@color/enterprise_act__defaulttext"
+        android:textSize="@dimen/text_size_15"/>
+
+    <RelativeLayout
+        android:layout_width="32dp"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/tvTopLine"
+            android:layout_width="0.5dp"
+            android:layout_height="24dp"
+            android:layout_centerHorizontal="true"
+            android:background="#999"/>
+
+        <TextView
+            android:id="@+id/tvDot"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:layout_below="@id/tvTopLine"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/time_cycle_shape"/>
+
+        <TextView
+            android:id="@+id/tv_Below_Line"
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tvDot"
+            android:layout_centerHorizontal="true"
+            android:background="#999"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="20dp"
+        android:paddingRight="10dp"
+        android:paddingTop="20dp">
+
+        <TextView
+            android:id="@+id/tv_singup_startime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2014/06/24 20:55:28"
+            android:textColor="@color/enterprise_act__defaulttext"
+            android:textSize="@dimen/text_size_12"/>
+
+        <TextView
+            android:id="@+id/tv_singup_endtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_singup_startime"
+            android:layout_marginTop="5dp"
+            android:text="请准时签到哦~"
+            android:textColor="#999"
+            android:textSize="@dimen/text_size_12"/>
+
+        <TextView
+            android:id="@+id/iv_singup"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/qiandao"
+            android:gravity="center"
+            android:text="签到"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/text_size_12"/>
+
+    </RelativeLayout>
+
+</LinearLayout>

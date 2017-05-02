@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  xmlns:sliding="http://schemas.android.com/apk/res-auto"
+  android:id="@+id/activity_ent_tesst"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context="com.fips.huashun.ui.activity.EntTesstActivity">
+
+  <com.jeremyfeinstein.slidingmenu.lib.SlidingMenu
+    android:id="@+id/SlidingMenu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    sliding:viewAbove="@layout/ent_left_menu"
+    sliding:viewBehind="@layout/ent_right_menu">
+
+  </com.jeremyfeinstein.slidingmenu.lib.SlidingMenu>
+
+</RelativeLayout>

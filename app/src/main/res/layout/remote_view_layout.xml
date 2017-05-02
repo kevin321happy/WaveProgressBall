@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
+    android:orientation="horizontal" >
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@null"
+        android:src="@mipmap/android_template" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingLeft="5dp" >
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentTop="true"
+            android:gravity="center_vertical"
+            android:text="服务名称"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <ProgressBar
+            android:id="@+id/pbProgress"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="20dip"
+            android:layout_alignLeft="@+id/tvName"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/tvName"
+            android:layout_below="@+id/tvName"
+            android:layout_marginBottom="5dp"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/progressbar_style" />
+
+        <TextView
+            android:id="@+id/tvProgress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignTop="@+id/pbProgress"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text="进度"
+            android:textSize="14sp" />
+    </RelativeLayout>
+
+</LinearLayout>

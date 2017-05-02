@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  android:background="@color/hui_qian"
+  android:orientation="vertical">
+
+  <com.fips.huashun.ui.utils.NavigationBar
+    android:id="@+id/na_bar_entact"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></com.fips.huashun.ui.utils.NavigationBar>
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_40"
+    android:layout_gravity="center_vertical"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:layout_marginTop="5dp"
+      android:orientation="horizontal">
+
+      <TextView
+        android:id="@+id/tv_act_before"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="未开始"
+        android:textColor="@color/enterprise_act__text"
+        android:textSize="@dimen/text_size_16" />
+
+      <View
+        android:layout_width="@dimen/space_1"
+        android:layout_height="@dimen/space_20"
+        android:layout_gravity="center_vertical"
+        android:background="@color/line_entlist" />
+
+      <TextView
+        android:id="@+id/tv_act_progress"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="进行中"
+        android:textColor="@color/enterprise_act__defaulttext"
+        android:textSize="@dimen/text_size_16" />
+
+      <View
+        android:layout_width="@dimen/space_1"
+        android:layout_height="@dimen/space_20"
+        android:layout_gravity="center_vertical"
+        android:background="@color/line_entlist" />
+
+      <TextView
+        android:id="@+id/tv_act_end"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="已完成"
+        android:textColor="@color/enterprise_act__defaulttext"
+        android:textSize="@dimen/text_size_16" />
+    </LinearLayout>
+
+    <RelativeLayout
+      android:id="@+id/find_ll"
+      android:layout_width="@dimen/space_200"
+      android:layout_height="2dp"
+      android:layout_alignParentBottom="true">
+      <LinearLayout
+        android:layout_width="@dimen/space_90"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="@drawable/act_tab_shape" />
+    </RelativeLayout>
+  </LinearLayout>
+
+  <android.support.v4.view.ViewPager
+    android:id="@+id/vp_act_list"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+</LinearLayout>

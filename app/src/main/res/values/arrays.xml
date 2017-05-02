@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bottom_titles">
+        <item>大厅</item>
+        <item>企业</item>
+        <item>个人</item>
+    </string-array>
+</resources>

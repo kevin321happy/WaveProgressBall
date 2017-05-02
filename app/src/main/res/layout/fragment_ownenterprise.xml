@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="#F9FCF3"
+              android:orientation="vertical">
+
+    <com.fips.huashun.ui.utils.NavigationBar
+        android:id="@+id/nb_enterprise_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.fips.huashun.ui.utils.NavigationBar>
+
+    <View
+        android:id="@+id/view_empty"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone"/>
+
+    <ScrollView
+        android:id="@+id/sv_enterprise_info"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:scrollbars="none"
+        android:visibility="visible"
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/space_150"
+
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_150"
+                    >
+
+                    <ImageView
+                        android:id="@+id/iv_imaeBG"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY"
+                        />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="#88000000"
+                        android:scaleType="fitXY"
+                        />
+
+                    <com.fips.huashun.widgets.CircleImageView
+                        android:id="@+id/iv_enterprise_head"
+                        android:layout_width="@dimen/space_80"
+                        android:layout_height="@dimen/space_80"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="@dimen/space_20"
+                        android:src="@drawable/icon_image"
+                        app:border_color="@color/transparent"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_enterprise_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|bottom"
+                        android:layout_marginBottom="@dimen/space_10"
+                        android:text=""
+                        android:textColor="@color/green_grass"
+                        android:textSize="@dimen/text_size_16"/>
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_enterprise_notice"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:background="@color/white"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/space_10"
+                android:paddingRight="@dimen/space_10">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/cottage_notice"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_5"
+                    android:paddingLeft="@dimen/space_5"
+                    android:paddingTop="@dimen/space_5"
+                    android:text="公告:"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_size_15"/>
+
+                <com.fips.huashun.widgets.AutoScrollTextView
+                    android:id="@+id/tv_enterprise_notice"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:paddingBottom="@dimen/space_5"
+                    android:paddingTop="@dimen/space_5"
+                    android:text=""
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_size_15"/>
+            </LinearLayout>
+
+            <com.fips.huashun.widgets.MyGridView
+                android:id="@+id/gv_enterprise_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_8"
+                android:background="#F9FCF3"
+                android:cacheColorHint="#00000000"
+                android:columnWidth="@dimen/space_20"
+                android:horizontalSpacing="@dimen/space_1"
+                android:listSelector="#00000000"
+                android:numColumns="3"
+                android:verticalSpacing="@dimen/space_1">
+            </com.fips.huashun.widgets.MyGridView>
+
+            <RelativeLayout
+                android:id="@+id/rl_enterprise_more_cousre"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:paddingLeft="@dimen/space_10"
+                android:paddingRight="@dimen/space_10">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:gravity="center_vertical"
+                    android:text="企业课程"
+                    android:textColor="@color/text_color"
+                    android:textSize="@dimen/text_size_16"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:drawablePadding="@dimen/space_5"
+                    android:drawableRight="@drawable/icon_more"
+                    android:gravity="center_vertical"
+                    android:text="更多"
+                    android:textColor="@color/text_hui"
+                    android:textSize="@dimen/text_size_14"/>
+            </RelativeLayout>
+
+            <com.fips.huashun.widgets.NoScrollListView
+                android:id="@+id/lv_enterprise_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/green_dan"
+                android:divider="@color/green_dan"
+                android:dividerHeight="@dimen/space_8"
+                android:paddingBottom="@dimen/space_4"
+                android:paddingLeft="@dimen/space_10"
+                android:paddingRight="@dimen/space_10"
+                android:scrollbars="none"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

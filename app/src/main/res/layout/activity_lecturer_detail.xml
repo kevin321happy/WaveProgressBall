@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical"
+              android:background="#FAFBF3">
+    <com.fips.huashun.ui.utils.NavigationBar
+        android:id="@+id/nb_lecturer_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.fips.huashun.ui.utils.NavigationBar>
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/lv_lecturer_detail_course"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingRight="@dimen/space_5"
+        android:paddingLeft="@dimen/space_5"
+        android:dividerHeight="@dimen/space_8"
+        android:divider="@color/divider_color"
+        android:background="#F2F2F2"
+        android:scrollbars="none"
+        android:visibility="gone">
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="visible"/>
+</LinearLayout>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:orientation="horizontal">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/iv_activity_recommend"
+        android:layout_width="@dimen/space_120"
+        android:layout_height="@dimen/space_150"
+        app:riv_corner_radius_top_left="@dimen/space_10"
+        app:riv_corner_radius_bottom_left="@dimen/space_10"
+        android:scaleType="fitXY"
+
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_150"
+        android:background="@drawable/cottage_item_shape_course"
+        android:paddingLeft="@dimen/space_10"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/activity_recommend_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/space_10"
+            android:layout_marginTop="@dimen/space_5"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="人力资源合规管理与用人风险..."
+            android:textColor="@color/main_text_color"
+            android:textSize="@dimen/text_size_14"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_5">
+
+            <TextView
+                android:id="@+id/tv_activity_recommend_label_one"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/course_item_shape_courselabel"
+                android:paddingBottom="@dimen/space_2"
+                android:paddingLeft="@dimen/space_4"
+                android:paddingRight="@dimen/space_4"
+                android:paddingTop="@dimen/space_2"
+                android:text="进修"
+                android:textColor="@color/label_color"
+                android:textSize="@dimen/text_size_12"/>
+
+            <TextView
+                android:id="@+id/tv_activity_recommend_label_two"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/space_10"
+                android:background="@drawable/course_item_shape_courselabel"
+                android:paddingBottom="@dimen/space_2"
+                android:paddingLeft="@dimen/space_4"
+                android:paddingRight="@dimen/space_4"
+                android:paddingTop="@dimen/space_2"
+                android:text="培训"
+                android:textColor="@color/label_color"
+                android:textSize="@dimen/text_size_12"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/activity_recommend_starttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_5"
+            android:text="开始时间：2016年8月19日"
+            android:textColor="@color/body_color"
+            android:textSize="@dimen/text_size_13"/>
+
+        <TextView
+            android:id="@+id/activity_recommend_endtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_5"
+            android:text="结束时间：2016年8月19日"
+            android:textColor="@color/body_color"
+            android:textSize="@dimen/text_size_13"/>
+
+        <TextView
+            android:id="@+id/activity_recommend_joinnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_5"
+            android:text="参与人数：99人"
+            android:textColor="@color/body_color"
+            android:textSize="@dimen/text_size_13"/>
+
+        <TextView
+            android:id="@+id/activity_recommend_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_5"
+            android:text="30.00魔豆"
+            android:textColor="@color/label_color"
+            android:textSize="@dimen/text_size_13"/>
+    </LinearLayout>
+</LinearLayout>
