@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_10"
+            android:background="@color/line_hui"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/space_10"
+                >
+
+                <com.fips.huashun.widgets.CircleImageView
+                    android:id="@+id/top_iv_icon"
+                    android:layout_width="@dimen/space_33"
+                    android:layout_height="@dimen/space_33"
+                    android:src="@drawable/user_head_default"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/space_10"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_notice_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="活动公告"
+                        android:textColor="@color/enterprise_act__defaulttext"
+                        android:textSize="@dimen/text_size_15"/>
+
+                    <TextView
+                        android:id="@+id/top_tv_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_5"
+                        android:text="12-1 10:59"
+                        android:textColor="@color/enterprise_act_qianhui"
+                        android:textSize="@dimen/text_size_10"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/top_tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginRight="@dimen/space_10"
+            android:text="通知:本次活动机会难得,大家积极参加,有问题在下方留言,我会及时的回复的。。"
+            android:textColor="@color/enterprise_act__defaulttext"
+            android:textSize="@dimen/text_size_14"/>
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
+            android:id="@+id/xrcy_leave_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/line_hui"/>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/leavewall_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:gravity="center"
+        android:visibility="gone">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/weikaifang"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/space_5"
+                android:text="本活动未开放留言墙功能！"
+                android:textColor="@color/bg_hui"
+                android:textSize="@dimen/space_20"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</FrameLayout>

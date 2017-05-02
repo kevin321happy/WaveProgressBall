@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  android:orientation="vertical"
+  tools:context="com.fips.huashun.ui.activity.HadSignUpActivity">
+  <com.fips.huashun.ui.utils.NavigationBar
+    android:id="@+id/ent_nb_had_signup"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"></com.fips.huashun.ui.utils.NavigationBar>
+
+  <com.handmark.pulltorefresh.library.PullToRefreshListView
+    android:id="@+id/lv_had_sign_up"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:background="@color/green_dan"
+    android:divider="@drawable/had_signup_listdivider"
+    android:dividerHeight="@dimen/space_1"
+    android:scrollbars="none"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+
+</LinearLayout>

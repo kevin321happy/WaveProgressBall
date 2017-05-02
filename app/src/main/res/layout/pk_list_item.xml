@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="45dp"
+  android:foreground="?attr/selectableItemBackground"
+  app:cardCornerRadius="1dp"
+  app:cardElevation="2dp">
+  <LinearLayout
+    android:id="@+id/iv_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/pk_bgnormal"
+    android:orientation="horizontal">
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginLeft="@dimen/space_10"
+      android:layout_marginRight="@dimen/space_10"
+      android:orientation="horizontal">
+      <com.fips.huashun.widgets.HkTextView
+        android:id="@+id/pk_item_rank"
+        style="@style/pk_ranking_style"
+        android:layout_width="20dp"
+        android:layout_marginRight="@dimen/space_10"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_horizontal"
+        android:text="4" />
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+      <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <com.fips.huashun.widgets.HeadTagIamge
+          android:id="@+id/pk_item_icon"
+          android:layout_width="@dimen/space_30"
+          android:layout_height="@dimen/space_35"
+          android:paddingTop="@dimen/space_5"></com.fips.huashun.widgets.HeadTagIamge>
+        <!-- <com.fips.huashun.widgets.CircleImageView
+           android:id="@+id/pk_item_icon"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:layout_height="wrap_content"
+           android:src="@drawable/can_d" />-->
+        <com.fips.huashun.widgets.HkTextView
+          android:id="@+id/pk_item_name"
+          style="@style/pk_tag_style"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:gravity="center_vertical"
+          android:text="张三" />
+      </LinearLayout>
+      <com.fips.huashun.widgets.HkTextView
+        android:id="@+id/pk_item_department"
+        style="@style/pk_tag_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_vertical"
+        android:text="销售部" />
+      <com.fips.huashun.widgets.HkTextView
+        android:id="@+id/pk_item_score"
+        style="@style/pk_tag_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="3"
+        android:layout_gravity="center_vertical"
+        android:text="" />
+      <com.fips.huashun.widgets.HkTextView
+        android:id="@+id/pk_item_like"
+        style="@style/pk_likecounts_style"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+
+        android:layout_gravity="center_vertical"
+        android:text="0" />
+      </LinearLayout>
+    </LinearLayout>
+  </LinearLayout>
+</android.support.v7.widget.CardView>

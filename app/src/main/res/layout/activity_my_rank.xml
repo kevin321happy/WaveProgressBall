@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/green_dan"
+    android:fitsSystemWindows="true"
+   >
+
+    <com.fips.huashun.ui.utils.NavigationBar
+        android:id="@+id/na_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></com.fips.huashun.ui.utils.NavigationBar>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/space_20"
+        android:layout_marginRight="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_10"
+        android:background="@drawable/button_shape_white"
+        android:layout_height="130dp">
+
+
+        <FrameLayout
+            android:id="@+id/fl_ri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">2
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:src="@drawable/today"
+            android:scaleType="fitXY"
+            />
+
+            <LinearLayout
+               android:layout_gravity="center|bottom|right"
+                android:layout_marginRight="@dimen/space_10"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="@dimen/space_10"
+                android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="在所有人中排名"
+                android:textColor="@color/white"
+                android:gravity="center|right"
+                android:textSize="@dimen/text_size_16"
+                android:layout_height="40dp" />
+                <TextView
+                    android:id="@+id/tv_rank1"
+                    android:layout_width="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:gravity="center|right"
+                    android:textSize="@dimen/text_size_20"
+                    android:layout_marginLeft="@dimen/space_5"
+                    android:layout_marginRight="@dimen/space_5"
+                    android:layout_height="30dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="名"
+                    android:textColor="@color/white"
+                    android:gravity="center|right"
+                    android:textSize="@dimen/text_size_16"
+                    android:layout_height="30dp" />
+            </LinearLayout>
+        </FrameLayout>
+        
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_below="@id/fl_ri"
+                android:layout_marginLeft="@dimen/space_10"
+                android:layout_marginRight="@dimen/space_10"
+                android:layout_height="40dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textColor="#EA5514"
+                    android:layout_alignParentLeft="true"
+                    android:text="一天平均学习时长"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/text_size_16"
+                    />
+                <TextView
+                    android:id="@+id/tv_time1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#EA5514"
+                android:layout_alignParentRight="true"
+                android:text=""
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_size_16"
+                />
+            </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/space_20"
+        android:layout_marginRight="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/button_shape_white"
+        android:layout_height="130dp">
+
+
+        <FrameLayout
+            android:id="@+id/fl_zhou"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:src="@drawable/week"
+                android:scaleType="fitXY"
+                />
+
+            <LinearLayout
+                android:layout_gravity="center|bottom|right"
+                android:layout_marginRight="@dimen/space_10"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="@dimen/space_10"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="在所有人中排名"
+                    android:textColor="@color/white"
+                    android:gravity="center|right"
+                    android:textSize="@dimen/text_size_16"
+                    android:layout_height="40dp" />
+                <TextView
+                    android:id="@+id/tv_rank2"
+                    android:layout_width="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:gravity="center|right"
+                    android:textSize="@dimen/text_size_20"
+                    android:layout_marginLeft="@dimen/space_5"
+                    android:layout_marginRight="@dimen/space_5"
+
+                    android:layout_height="30dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="名"
+                    android:textColor="@color/white"
+                    android:gravity="center|right"
+                    android:textSize="@dimen/text_size_16"
+                    android:layout_height="30dp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_below="@id/fl_zhou"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginRight="@dimen/space_10"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/title_color"
+                android:layout_alignParentLeft="true"
+                android:text="本周学习时长"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_size_16"
+                />
+            <TextView
+                android:id="@+id/tv_time2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="@color/title_color"
+                android:layout_alignParentRight="true"
+                android:text=""
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_size_16"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginLeft="@dimen/space_20"
+        android:layout_marginRight="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/button_shape_white"
+        android:layout_height="130dp">
+
+
+        <FrameLayout
+            android:id="@+id/fl_zong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:src="@drawable/zong"
+                android:scaleType="fitXY"
+                />
+
+            <LinearLayout
+                android:layout_gravity="center|bottom|right"
+                android:layout_marginRight="@dimen/space_10"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="@dimen/space_10"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="在所有人中排名"
+                    android:textColor="@color/white"
+                    android:gravity="center|right"
+                    android:textSize="@dimen/text_size_16"
+                    android:layout_height="40dp" />
+                <TextView
+                    android:id="@+id/tv_rank3"
+                    android:layout_width="wrap_content"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:gravity="center|right"
+                    android:textSize="@dimen/text_size_20"
+                    android:layout_marginLeft="@dimen/space_5"
+                    android:layout_marginRight="@dimen/space_5"
+                    android:layout_height="30dp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="名"
+                    android:textColor="@color/white"
+                    android:gravity="center|right"
+                    android:textSize="@dimen/text_size_16"
+                    android:layout_height="30dp" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_below="@id/fl_zong"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginRight="@dimen/space_10"
+            android:layout_height="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#2EA7E0"
+                android:layout_alignParentLeft="true"
+                android:text="在线累积学习时长"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_size_16"
+                />
+            <TextView
+                android:id="@+id/tv_time3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#2EA7E0"
+                android:layout_alignParentRight="true"
+                android:text=""
+                android:gravity="center_vertical"
+                android:textSize="@dimen/text_size_16"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

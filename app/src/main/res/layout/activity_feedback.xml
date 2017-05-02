@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <com.fips.huashun.ui.utils.NavigationBar
+        android:id="@+id/nb_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.fips.huashun.ui.utils.NavigationBar>
+
+    <EditText
+        android:id="@+id/et_feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_10"
+        android:background="@drawable/feedback_text_shape"
+        android:gravity="left|top"
+        android:minLines="6"
+        android:padding="@dimen/space_5"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_size_14"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rc_view"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        <Button
+            android:id="@+id/bt_add"
+            android:layout_width="@dimen/space_60"
+            android:layout_height="@dimen/space_60"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginTop="@dimen/space_10"
+            android:background="@drawable/feedback_increase"/>
+
+       
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_submit"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginLeft="@dimen/space_30"
+        android:layout_marginRight="@dimen/space_30"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/selector_login_button"
+        android:text="确认提交"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"/>
+</LinearLayout>

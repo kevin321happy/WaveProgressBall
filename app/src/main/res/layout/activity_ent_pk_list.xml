@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:id="@+id/activity_ent_pk_list"
+  android:layout_width="match_parent"
+  android:fitsSystemWindows="true"
+  android:paddingBottom="@dimen/space_10"
+  android:layout_height="match_parent"
+  android:background="@drawable/pk_beijing1"
+  android:orientation="horizontal"
+  tools:context="com.fips.huashun.ui.activity.EntPkListActivity">
+  <LinearLayout
+    android:id="@+id/pk_ll_top"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <ImageButton
+      android:id="@+id/pk_back"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
+      style="?android:attr/borderlessButtonStyle"
+      android:src="@drawable/ph_back" />
+    <RadioGroup
+      android:id="@+id/pk_rg"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:gravity="center_horizontal"
+      android:orientation="horizontal">
+      <ImageButton
+        android:id="@+id/ib_exam"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/test_scores" />
+      <ImageButton
+        android:id="@+id/ib_student"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/students_scores" />
+      <ImageButton
+        android:id="@+id/ib_teacher"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/pk_lecturermark" />
+    </RadioGroup>
+    <ImageButton
+      android:id="@+id/pk_share"
+      android:layout_width="40dp"
+      android:layout_height="40dp"
+      style="?android:attr/borderlessButtonStyle"
+      android:src="@drawable/pk_share" />
+  </LinearLayout>
+  <!--中间部分-->
+  <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/space_15"
+    android:layout_marginLeft="@dimen/space_25"
+    android:layout_marginRight="@dimen/space_25"
+    android:layout_above="@+id/pk_ll_bottom"
+    android:layout_below="@+id/pk_ll_top"
+    android:layout_centerHorizontal="true"
+    android:background="@android:color/transparent">
+    <LinearLayout
+      android:id="@+id/pk_ll_toprank"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginTop="@dimen/space_20"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentLeft="true"
+      android:layout_alignParentStart="true"
+      android:background="@drawable/pk_beijing2"
+      android:orientation="vertical">
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_30"
+        android:orientation="horizontal">
+        <!--第二名-->
+        <LinearLayout
+          android:id="@+id/the_second"
+          android:visibility="invisible"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:gravity="center"
+          android:layout_marginLeft="@dimen/space_10"
+          android:background="@color/transparent"
+          android:orientation="vertical">
+          <!--头像的相对布局-->
+          <RelativeLayout
+            android:id="@+id/pk_icontwo"
+            style="@style/pk_rlicon_style">
+            <com.fips.huashun.widgets.HeadTagIamge
+              android:id="@+id/pk_icon_toptwo"
+              android:layout_width="@dimen/space_50"
+              android:layout_height="@dimen/space_50"
+              android:layout_marginTop="@dimen/space_10"
+              >
+            </com.fips.huashun.widgets.HeadTagIamge>
+
+            <ImageView
+              style="@style/pk_crown_style"
+              android:src="@drawable/pk_toptwo" />
+          </RelativeLayout>
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <com.fips.huashun.widgets.HkTextView
+              android:id="@+id/pk_tv_twoname"
+              style="@style/pk_name_style"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:shadowRadius="1"
+              android:text="张三" />
+            <com.fips.huashun.widgets.HkTextView
+              android:id="@+id/pk_tv_twocommon"
+              style="@style/pk_name_style"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:shadowRadius="1"
+              android:text="97分" />
+          </LinearLayout>
+          <com.fips.huashun.widgets.HkTextView
+           android:id="@+id/pk_tv_twojob"
+            style="@style/pk_job_style" />
+          <com.fips.huashun.widgets.HkTextView
+            android:id="@+id/pk_tv_dianzantwo"
+            style="@style/pk_likecounts_style"
+            android:shadowRadius="1"
+            android:text="99999" />
+        </LinearLayout>
+        <!--第一名-->
+        <LinearLayout
+          android:id="@+id/the_first"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:layout_marginLeft="@dimen/space_20"
+          android:layout_marginRight="@dimen/space_20"
+          android:background="@color/transparent"
+          android:gravity="center"
+          android:orientation="vertical">
+          <!--头像的相对布局-->
+          <RelativeLayout
+            android:id="@+id/pk_icon_one"
+            style="@style/pk_rlicon_style">
+            <com.fips.huashun.widgets.HeadTagIamge
+              android:id="@+id/pk_icon_topone"
+              android:layout_width="@dimen/space_50"
+              android:layout_height="@dimen/space_50"
+              android:layout_marginTop="@dimen/space_10"></com.fips.huashun.widgets.HeadTagIamge>
+
+            <ImageView
+              style="@style/pk_crown_style"
+              android:src="@drawable/pk_topone" />
+          </RelativeLayout>
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <com.fips.huashun.widgets.HkTextView
+              android:id="@+id/pk_tv_onename"
+              style="@style/pk_name_style"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:shadowRadius="1"
+              android:text="" />
+            <com.fips.huashun.widgets.HkTextView
+              android:id="@+id/pk_tv_onecommon"
+              style="@style/pk_name_style"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:shadowRadius="1"
+              android:text="" />
+          </LinearLayout>
+          <com.fips.huashun.widgets.HkTextView
+            android:id="@+id/pk_tv_onejob"
+            style="@style/pk_job_style" />
+          <com.fips.huashun.widgets.HkTextView
+            android:id="@+id/pk_tv_dianzanone"
+            style="@style/pk_likecounts_style"
+            android:shadowRadius="1"
+            android:text="0" />
+        </LinearLayout>
+        <!--第三名-->
+        <LinearLayout
+          android:id="@+id/the_third"
+          android:layout_width="0dp"
+          android:visibility="invisible"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:gravity="center"
+          android:layout_marginRight="@dimen/space_10"
+          android:background="@color/transparent"
+          android:orientation="vertical">
+          <!--头像的相对布局-->
+          <RelativeLayout
+            android:id="@+id/pk_iconthree"
+            style="@style/pk_rlicon_style">
+            <com.fips.huashun.widgets.HeadTagIamge
+              android:id="@+id/pk_icon_topthreee"
+              android:layout_width="@dimen/space_50"
+              android:layout_height="@dimen/space_50"
+              android:layout_marginTop="@dimen/space_10"></com.fips.huashun.widgets.HeadTagIamge>
+           <!-- <com.fips.huashun.widgets.CircleImageView
+              android:id="@+id/pk_icon_topthreee"
+              style="@style/pk_icon_style"
+              app:border_color="#ffd543"
+              app:border_width="@dimen/space_1"/>-->
+            <ImageView
+              style="@style/pk_crown_style"
+              android:src="@drawable/pk_topthree" />
+          </RelativeLayout>
+          <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+            <com.fips.huashun.widgets.HkTextView
+              android:id="@+id/pk_tv_threename"
+              style="@style/pk_name_style"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:shadowRadius="1"
+              android:text="张三" />
+            <com.fips.huashun.widgets.HkTextView
+              android:id="@+id/pk_tv_threecommon"
+              style="@style/pk_name_style"
+              android:layout_width="wrap_content"
+              android:layout_height="match_parent"
+              android:shadowRadius="1"
+              android:text="97分" />
+          </LinearLayout>
+          <com.fips.huashun.widgets.HkTextView
+            android:id="@+id/pk_tv_threejob"
+            style="@style/pk_job_style" />
+          <com.fips.huashun.widgets.HkTextView
+            android:id="@+id/pk_tv_dianzanthree"
+            style="@style/pk_likecounts_style"
+            android:shadowRadius="1"
+            android:text="99999" />
+        </LinearLayout>
+      </LinearLayout>
+      <!--名次导航-->
+        <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="@dimen/space_10"
+          android:layout_marginRight="@dimen/space_10"
+          android:background="@drawable/pk_bgtitle"
+          android:gravity="center_vertical"
+          android:orientation="horizontal">
+          <com.fips.huashun.widgets.HkTextView
+            style="@style/pk_tag_style"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:text="名次" />
+          <com.fips.huashun.widgets.HkTextView
+            style="@style/pk_tag_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="姓名" />
+          <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:orientation="horizontal">
+            <com.fips.huashun.widgets.HkTextView
+              android:background="@drawable/pk_switchjob"
+              android:textColor="@color/enterprise_act__text"
+              android:id="@+id/pk_tv_department"
+              style="@style/pk_tag_style"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text="岗位" />
+            <View
+              android:layout_width="@dimen/space_1"
+              android:layout_height="match_parent"
+              android:background="@color/white"></View>
+            <com.fips.huashun.widgets.HkTextView
+              android:id="@+id/pk_tv_job"
+              style="@style/pk_tag_style"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:text="部门" />
+          </LinearLayout>
+          <com.fips.huashun.widgets.HkTextView
+            android:id="@+id/tag_common"
+            style="@style/pk_tag_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="3"
+            android:text="考试成绩" />
+          <com.fips.huashun.widgets.HkTextView
+            style="@style/pk_tag_style"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:text="点赞" />
+        </LinearLayout>
+
+      <!--排名的列表-->
+      <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/pk_xrcy_rank"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/space_10"
+        android:layout_marginRight="@dimen/space_10"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+    </LinearLayout>
+    <!--顶部的标题-->
+    <ImageView
+      android:id="@+id/pk_rank_title"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_centerHorizontal="true"
+      android:src="@drawable/test_scores_title" />
+  </RelativeLayout>
+  <!--底部-->
+  <LinearLayout
+    android:id="@+id/pk_ll_bottom"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:padding="@dimen/space_10"
+    android:gravity="center"
+    android:orientation="horizontal">
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/space_10"
+      android:layout_alignParentBottom="true"
+      android:src="@drawable/pk_hongqi" />
+    <com.fips.huashun.widgets.HkTextView
+      android:id="@+id/pk_tv_rank"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="我当前的排名：第五名已经超越了189名小伙伴"
+      android:textColor="@color/white"
+      android:textSize="@dimen/text_size_14"
+      android:typeface="normal" />
+  </LinearLayout>
+</RelativeLayout>

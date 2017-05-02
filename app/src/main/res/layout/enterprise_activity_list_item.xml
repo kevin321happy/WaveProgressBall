@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+   >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ent_activity_iv"
+            android:layout_width="@dimen/space_110"
+            android:layout_height="@dimen/space_90"
+            android:scaleType="fitXY"
+            android:background="@color/transparent"
+            android:src="@drawable/ent_list_iv_24"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_toRightOf="@+id/ent_activity_iv"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/ent_activity_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                android:singleLine="true"
+                android:text="运用项目管理达成相应的变革的竞争的啊多少级啦大家分厘卡"
+                android:textColor="@color/enterprise_act__defaulttext"
+                android:textSize="@dimen/text_size_14"/>
+            <!--地点-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ent_address"/>
+
+                <TextView
+                    android:id="@+id/ent_activity_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="融科智谷"
+                    android:textColor="@color/enterprise_act_hui"
+                    android:textSize="@dimen/text_size_11"
+                    />
+            </LinearLayout>
+            <!--时间-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ent_countdown"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/ent_activity_starttime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="01月20日09：00"
+                        android:textColor="@color/enterprise_act_hui"
+                        android:textSize="@dimen/text_size_11"
+                        />
+                    <TextView
+                        android:id="@+id/ent_activity_endtime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="-01月20日09：00"
+                        android:textColor="@color/enterprise_act_hui"
+                        android:textSize="@dimen/text_size_11"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/ent_activity_tabs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_margin="@dimen/space_8"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_baoming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/activity_tabs_shape"
+            android:paddingBottom="@dimen/space_3"
+            android:paddingLeft="@dimen/space_2"
+            android:paddingRight="@dimen/space_2"
+            android:paddingTop="@dimen/space_3"
+            android:layout_marginRight="@dimen/space_10"
+            android:text="报名"
+            android:textSize="@dimen/text_size_11"/>
+
+        <TextView
+            android:id="@+id/tv_qiandao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/space_10"
+            android:background="@drawable/activity_tabs_shape"
+            android:paddingBottom="@dimen/space_3"
+            android:paddingLeft="@dimen/space_2"
+            android:paddingRight="@dimen/space_2"
+            android:paddingTop="@dimen/space_3"
+            android:text="签到"
+            android:textSize="@dimen/text_size_11"/>
+
+        <TextView
+            android:id="@+id/tv_diaoyan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/activity_tabs_shape"
+            android:paddingBottom="@dimen/space_3"
+            android:paddingLeft="@dimen/space_2"
+            android:paddingRight="@dimen/space_2"
+            android:paddingTop="@dimen/space_3"
+            android:layout_marginRight="@dimen/space_10"
+            android:text="调研"
+            android:textSize="@dimen/text_size_11"/>
+
+        <TextView
+            android:id="@+id/tv_kaohe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/activity_tabs_shape"
+            android:paddingBottom="@dimen/space_3"
+            android:paddingLeft="@dimen/space_2"
+            android:paddingRight="@dimen/space_2"
+            android:paddingTop="@dimen/space_3"
+            android:layout_marginRight="@dimen/space_10"
+            android:text="考核"
+            android:textSize="@dimen/text_size_11"/>
+
+      <!--  <TextView
+            android:id="@+id/tv_pk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/activity_tabs_shape"
+            android:paddingBottom="@dimen/space_3"
+            android:paddingLeft="@dimen/space_2"
+            android:paddingRight="@dimen/space_2"
+            android:paddingTop="@dimen/space_3"
+            android:layout_marginRight="@dimen/space_10"
+            android:text="PK榜"
+            android:textSize="@dimen/text_size_11"/>-->
+
+        <TextView
+            android:id="@+id/tv_kecheng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/activity_tabs_shape"
+            android:paddingBottom="@dimen/space_3"
+            android:paddingLeft="@dimen/space_2"
+            android:paddingRight="@dimen/space_2"
+            android:paddingTop="@dimen/space_3"
+            android:layout_marginRight="@dimen/space_10"
+            android:text="在线课堂"
+            android:textSize="@dimen/text_size_11"/>
+
+        <TextView
+            android:id="@+id/tv_liuyan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/activity_tabs_shape"
+            android:paddingBottom="@dimen/space_3"
+            android:paddingLeft="@dimen/space_2"
+            android:paddingRight="@dimen/space_2"
+            android:paddingTop="@dimen/space_3"
+          android:layout_marginRight="@dimen/space_10"
+            android:text="留言墙"
+            android:textSize="@dimen/text_size_11"/>
+
+        <TextView
+          android:id="@+id/tv_fankui"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/activity_tabs_shape"
+          android:paddingBottom="@dimen/space_3"
+          android:paddingLeft="@dimen/space_2"
+          android:paddingRight="@dimen/space_2"
+          android:paddingTop="@dimen/space_3"
+          android:text="反馈室"
+          android:textSize="@dimen/text_size_11"/>
+    </LinearLayout>
+</LinearLayout>
+</android.support.v7.widget.CardView>

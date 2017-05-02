@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingBottom="@dimen/space_5"
+                android:paddingLeft="@dimen/space_10"
+                android:paddingRight="@dimen/space_10"
+                android:paddingTop="@dimen/space_5"
+    >
+
+    <ImageView
+        android:id="@+id/head_iv_fanhui"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/icon_click_selector"
+        android:padding="@dimen/space_5"
+        android:src="@drawable/fh"
+        />
+    <TextView
+        android:id="@+id/tv_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/icon_click_selector"
+        android:padding="@dimen/space_5"
+        android:text="提交"
+        android:textColor="@color/enterprise_act__text"
+        android:textSize="@dimen/text_size_17"/>
+</RelativeLayout>

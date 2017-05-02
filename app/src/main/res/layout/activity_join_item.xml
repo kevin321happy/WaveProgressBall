@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="horizontal"
+              android:paddingBottom="@dimen/space_5"
+              android:paddingTop="@dimen/space_5">
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="left|center">
+
+        <com.fips.huashun.widgets.CircleImageView
+            android:id="@+id/iv_activity_join_item"
+            android:layout_width="@dimen/space_35"
+            android:layout_height="@dimen/space_35"
+            android:src="@drawable/user_head_default"
+            app:border_color="@color/transparent"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_activity_joinname_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="left|center"
+        android:text=""
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_size_14"/>
+
+    <TextView
+        android:id="@+id/tv_activity_joinphone_item"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="left|center"
+        android:text=""
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_size_14"/>
+</LinearLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <com.fips.huashun.ui.utils.NavigationBar
+        android:id="@+id/na_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.fips.huashun.ui.utils.NavigationBar>
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/lv_course_all"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingRight="@dimen/space_5"
+        android:paddingLeft="@dimen/space_5"
+        android:dividerHeight="@dimen/space_8"
+        android:divider="@color/green_dan"
+        android:scrollbars="none"
+        android:background="@color/green_dan"
+        android:listSelector="@android:color/transparent">
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+</LinearLayout>

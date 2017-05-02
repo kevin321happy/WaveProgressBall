@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:fitsSystemWindows="true">
+    <com.fips.huashun.ui.utils.NavigationBar
+        android:id="@+id/nb_updatename"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.fips.huashun.ui.utils.MyEditText
+        android:id="@+id/et_updatename"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginTop="@dimen/space_5"
+        android:layout_marginLeft="@dimen/space_10"
+        android:layout_marginRight="@dimen/space_10"
+        android:paddingTop="@dimen/space_5"
+        android:paddingBottom="@dimen/space_5"
+        android:maxLines="2"
+        android:drawableRight="@drawable/finish"
+        android:textCursorDrawable="@null"
+        android:textSize="@dimen/text_size_14"
+        android:textColor="@color/text_black"
+        android:background="@drawable/button_shape_green"
+        />
+</LinearLayout>

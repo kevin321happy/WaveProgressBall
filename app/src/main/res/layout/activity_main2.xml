@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:clipToPadding="false"
+  android:fitsSystemWindows="true"
+  android:orientation="vertical">
+
+  <FrameLayout
+    android:id="@+id/realtabcontent"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:background="#FFF" />
+
+  <com.fips.huashun.widgets.DMFragmentTabHost
+    android:id="@+id/tabhost"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_alignParentBottom="true"
+    android:background="@color/white" />
+</LinearLayout>

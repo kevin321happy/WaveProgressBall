@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <com.fips.huashun.ui.utils.NavigationBar
+        android:id="@+id/nb_enterprise_vote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.fips.huashun.ui.utils.NavigationBar>
+
+    <TextView
+        android:id="@+id/tv_vote_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="@dimen/space_5"
+        android:textColor="@color/text_black"
+        android:singleLine="true"
+        android:textSize="@dimen/text_size_15"
+        />
+
+    <TextView
+        android:id="@+id/tv_vote_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="@dimen/space_5"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_size_14"/>
+
+    <TextView
+        android:id="@+id/tv_vote_rule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="@dimen/space_5"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_size_14"/>
+
+    <TextView
+        android:id="@+id/tv_vote_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/space_15"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/text_size_14"/>
+
+
+        <ListView
+            android:id="@+id/lv_enterprise_vote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_15"
+            android:layout_marginRight="@dimen/space_15"
+            android:scrollbars="none">
+        </ListView>
+
+        <Button
+            android:id="@+id/bt_enterprise_vote"
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="@dimen/space_30"
+            android:layout_marginRight="@dimen/space_30"
+            android:layout_marginTop="@dimen/space_20"
+            android:background="@drawable/selector_login_button"
+            android:text="提交"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16"/>
+
+</LinearLayout>

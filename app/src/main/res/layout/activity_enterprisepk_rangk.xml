@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/space_5"
+        android:paddingBottom="@dimen/space_5"
+        android:orientation="horizontal"
+        android:background="@color/title_color">
+        <LinearLayout
+            android:id="@+id/ll_back"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/course_reslt_back"/>
+        </LinearLayout>
+        <RadioGroup
+            android:id="@+id/rb"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/space_20"
+            android:layout_height="@dimen/space_35"
+            android:layout_marginRight="@dimen/space_30"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:background="@drawable/pk_rangk_title_shape">
+            <RadioButton
+                android:id="@+id/guid1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="个人"
+                android:textSize="@dimen/text_size_14"
+                style="@style/base_tittle_group_item_left"
+              />
+
+            <RadioButton
+                android:id="@+id/guid2"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="部门"
+                android:textSize="@dimen/text_size_14"
+                style="@style/base_tittle_group_item_mid"
+                android:layout_height="match_parent" />
+
+            <RadioButton
+                android:id="@+id/guid3"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:text="企业"
+                android:textSize="@dimen/text_size_14"
+                style="@style/base_tittle_group_item_right"
+                android:layout_height="match_parent" />
+        </RadioGroup>
+    </LinearLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_enterprise"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:flipInterval="30"
+        android:persistentDrawingCache="animation" />
+</LinearLayout>

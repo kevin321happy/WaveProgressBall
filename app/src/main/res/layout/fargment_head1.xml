@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+			  android:layout_width="match_parent"
+			  android:orientation="vertical"
+				android:id="@+id/scrollView"
+				android:background="@color/main_bg_color"
+			  android:layout_height="match_parent">
+
+
+	<LinearLayout android:layout_width="match_parent"
+				  android:orientation="vertical"
+				  android:layout_height="match_parent">
+		<com.fips.huashun.ui.cycleviewpager.ImageCycleView
+			android:layout_width="match_parent"
+
+			android:layout_height="200dp" />
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1px"
+			android:background="@color/line_gary" />
+
+
+		<com.fips.huashun.widgets.MyGridView
+			android:id="@+id/gv_view"
+			android:layout_width="match_parent"
+			android:gravity="center"
+			android:background="@color/white"
+			android:horizontalSpacing="5dp"
+			android:numColumns="4"
+			android:stretchMode="columnWidth"
+			android:verticalSpacing="5dp"
+			android:focusableInTouchMode="false"
+			android:layout_height="100dp"></com.fips.huashun.widgets.MyGridView>
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1px"
+			android:background="@color/line_gary" />
+		<View
+			android:layout_width="match_parent"
+			android:layout_height="1px"
+			android:layout_marginTop="@dimen/space_10"
+			android:background="@color/line_gary" />
+		<com.fips.huashun.widgets.MyListView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"></com.fips.huashun.widgets.MyListView>
+
+	<LinearLayout android:layout_width="match_parent"
+				  android:orientation="vertical"
+				  android:layout_height="wrap_content">
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="@dimen/space_35"
+			android:background="@color/white"
+			android:gravity="center_vertical"
+			/>
+		<ImageView
+			android:layout_marginTop="@dimen/space_5"
+			android:layout_width="match_parent"
+
+			android:scaleType="fitXY"
+			android:id="@+id/iv_image_advertise"
+			android:layout_height="120dp"/>
+
+
+
+
+
+	</LinearLayout>
+	</LinearLayout>
+</ScrollView>
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+    <com.fips.huashun.ui.utils.NavigationBar
+        android:id="@+id/nb_course_evaluate_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </com.fips.huashun.ui.utils.NavigationBar>
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/lv_course_evaluate"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingLeft="@dimen/space_10"
+        android:paddingRight="@dimen/space_10"
+        android:scrollbars="none"/>
+
+        <Button
+            android:id="@+id/btn_course_evaluate"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/space_40"
+            android:text="发表评论"
+            android:background="@drawable/selector_join_activity"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16"
+            android:visibility="gone"/>
+</LinearLayout>

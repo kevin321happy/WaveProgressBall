@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  android:orientation="vertical">
+  <com.fips.huashun.ui.utils.NavigationBar
+    android:id="@+id/na_bar_ent_studyonline"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></com.fips.huashun.ui.utils.NavigationBar>
+  <com.baoyz.swipemenulistview.SwipeMenuListView
+    android:id="@+id/lv_study_online"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:divider="@drawable/stutyonlinelist_item_divider"
+    android:dividerHeight="@dimen/space_1"></com.baoyz.swipemenulistview.SwipeMenuListView>
+</LinearLayout>

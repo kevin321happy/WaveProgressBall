@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="250dp"
+  android:layout_height="100dp"
+  android:orientation="vertical"
+  >
+  <ImageView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/textView_number"
+    android:layout_marginTop="2dp"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:src="@drawable/all_course_head_default"
+    />
+</LinearLayout>

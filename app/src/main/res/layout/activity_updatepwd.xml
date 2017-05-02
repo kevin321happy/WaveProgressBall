@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <com.fips.huashun.ui.utils.NavigationBar
+        android:id="@+id/nb_updatepwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:layout_margin="@dimen/space_10"
+        android:background="@drawable/button_shape_green"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_10"
+            android:text="原密码"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/text_size_14"/>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginTop="@dimen/space_10"
+            android:background="@color/text_hui"/>
+
+        <EditText
+            android:id="@+id/et_old_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_40"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawablePadding="@dimen/space_5"
+            android:hint="请输入您现在使用的密码"
+            android:inputType="textPassword"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:textColor="@color/text_black"
+            android:textColorHint="@color/text_hui"
+            android:textSize="@dimen/text_size_14"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginLeft="@dimen/space_10"
+        android:layout_marginRight="@dimen/space_10"
+        android:layout_marginTop="@dimen/space_5"
+        android:background="@drawable/button_shape_green"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_10"
+            android:text="新密码"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/text_size_14"/>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginTop="@dimen/space_10"
+            android:background="@color/text_hui"/>
+
+        <EditText
+            android:id="@+id/et_new_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_40"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawablePadding="@dimen/space_5"
+            android:hint="请输入新密码"
+            android:inputType="textPassword"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:textColor="@color/text_black"
+            android:textColorHint="@color/text_hui"
+            android:textSize="@dimen/text_size_14"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginLeft="@dimen/space_10"
+        android:layout_marginRight="@dimen/space_10"
+        android:layout_marginTop="@dimen/space_15"
+        android:background="@drawable/button_shape_green"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/space_10"
+            android:text="确    认"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/text_size_14"/>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_10"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginTop="@dimen/space_10"
+            android:background="@color/text_hui"/>
+
+        <EditText
+            android:id="@+id/et_confirm_new_pwd"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/space_40"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawablePadding="@dimen/space_5"
+            android:hint="请再输入一次新密码"
+            android:inputType="textPassword"
+            android:maxLength="11"
+            android:singleLine="true"
+            android:textColor="@color/text_black"
+            android:textColorHint="@color/text_hui"
+            android:textSize="@dimen/text_size_14"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_save"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginLeft="@dimen/space_30"
+        android:layout_marginRight="@dimen/space_30"
+        android:layout_marginTop="@dimen/space_20"
+        android:background="@drawable/selector_login_button"
+        android:text="确认修改"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_16"/>
+</LinearLayout>

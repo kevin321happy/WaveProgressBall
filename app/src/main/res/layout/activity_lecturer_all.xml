@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_48"
+        android:background="@color/title_color"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="@dimen/space_30"
+            android:layout_height="@dimen/space_30"
+            android:src="@drawable/course_reslt_back"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginRight="@dimen/space_10"
+            android:layout_weight="1"
+            android:background="@drawable/shap_home_button">
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:drawableLeft="@drawable/sousuo"
+                android:drawablePadding="@dimen/space_5"
+                android:paddingLeft="@dimen/space_10"
+                android:background="@null"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_15"
+                android:imeOptions="actionSearch"
+                />
+
+            <ImageView
+                android:id="@+id/iv_cancle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/guanbi"
+                android:layout_marginRight="@dimen/space_8"
+                android:visibility="gone"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <com.handmark.pulltorefresh.library.PullToRefreshListView
+        android:id="@+id/pl_refesh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingRight="@dimen/space_5"
+        android:paddingLeft="@dimen/space_5"
+        android:dividerHeight="@dimen/space_8"
+        android:divider="@color/divider_color"
+        android:scrollbars="none"
+        android:background="#F2F2F2">
+        android:listSelector="@android:color/transparent"
+    </com.handmark.pulltorefresh.library.PullToRefreshListView>
+</LinearLayout>

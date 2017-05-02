@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:paddingTop="@dimen/space_5"
+  android:paddingBottom="@dimen/space_5"
+  android:orientation="vertical">
+  <LinearLayout style="@style/ent_organization_ll_allmember">
+    <CheckBox
+      android:id="@+id/cb_check_dep"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="gone" />
+    <TextView
+      android:id="@+id/tv_dep_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="人力资源部"
+      android:textColor="@color/enterprise_act__defaulttext"
+      android:textSize="@dimen/text_size_16" />
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:gravity="right"
+      android:orientation="horizontal">
+      <TextView
+        android:id="@+id/tv_dep_member_count"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:text="5人" />
+      <ImageView
+        android:layout_width="@dimen/space_20"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/space_10"
+        android:layout_marginRight="@dimen/space_10"
+        android:padding="@dimen/space_5"
+        android:background="@color/bg_hui"
+        android:src="@drawable/open" />
+    </LinearLayout>
+  </LinearLayout>
+
+
+</LinearLayout>

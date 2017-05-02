@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/buy_color"
+              android:gravity="bottom"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/buy_color"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/space_50"
+                android:text="课程名称："
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/text_size_15"/>
+
+            <TextView
+                android:id="@+id/tv_course_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:minHeight="@dimen/space_50"
+                android:text=""
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/text_size_15"/>
+
+            <ImageView
+                android:id="@+id/iv_buy_close"
+                android:layout_width="@dimen/space_25"
+                android:layout_height="@dimen/space_25"
+                android:layout_marginTop="@dimen/space_5"
+                android:src="@drawable/buy_close"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/space_1"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginRight="@dimen/space_10"
+            android:background="@color/space_color"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="活动价格："
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/text_size_14"/>
+
+            <TextView
+                android:id="@+id/tv_course_price"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="30.00魔豆"
+                android:textColor="@color/label_color"
+                android:textSize="@dimen/text_size_14"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/space_1"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginRight="@dimen/space_10"
+            android:background="@color/space_color"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="当前魔豆："
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/text_size_14"/>
+
+            <TextView
+                android:id="@+id/tv_bean_point"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="20.00魔豆"
+                android:textColor="@color/label_color"
+                android:textSize="@dimen/text_size_14"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/space_1"
+            android:layout_marginLeft="@dimen/space_10"
+            android:layout_marginRight="@dimen/space_10"
+            android:background="@color/space_color"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginBottom="@dimen/space_10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/space_10"
+            android:paddingRight="@dimen/space_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="您当前还差："
+                android:textColor="@color/text_black"
+                android:textSize="@dimen/text_size_14"/>
+
+            <TextView
+                android:id="@+id/tv_need_point"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:text="10.00魔豆"
+                android:textColor="@color/label_color"
+                android:textSize="@dimen/text_size_14"/>
+
+            <Button
+                android:id="@+id/btn_recharge"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/space_30"
+                android:background="@drawable/cottage_item_shape_courselabel"
+                android:text="去充值"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_14"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/bt_buy_course"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/space_40"
+            android:background="@drawable/selector_join_activity"
+            android:text="购买课程"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_16"/>
+    </LinearLayout>
+</LinearLayout>

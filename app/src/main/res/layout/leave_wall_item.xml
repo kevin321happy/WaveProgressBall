@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:fresco="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:background="#ffffff"
+  android:orientation="vertical">
+  <!--留言墙-->
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/space_10"
+    android:paddingLeft="@dimen/space_10"
+    android:orientation="horizontal">
+    <!--头像处理-->
+    <RelativeLayout
+      android:layout_width="@dimen/space_45"
+      android:layout_height="@dimen/space_45">
+      <com.fips.huashun.widgets.HeadTagIamge
+        android:id="@+id/leave_iv_image"
+        android:layout_width="@dimen/space_40"
+        android:layout_height="@dimen/space_45"></com.fips.huashun.widgets.HeadTagIamge>
+    </RelativeLayout>
+
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/space_10"
+      android:orientation="vertical">
+
+      <TextView
+        android:id="@+id/leave_tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="吴伟"
+        android:textColor="@color/enterprise_act__defaulttext"
+        android:textSize="@dimen/text_size_14" />
+      <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_10"
+        android:orientation="horizontal">
+        <TextView
+          android:id="@+id/leave_tv_time"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="12-13    12:30"
+          android:textColor="@color/enterprise_act_qianhui"
+          android:textSize="@dimen/text_size_10" />
+        <TextView
+          android:id="@+id/leave_tv_delete"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="@dimen/space_10"
+          android:padding="@dimen/space_3"
+          android:text="删除"
+          android:textColor="@color/enterprise_act__text"
+          android:textSize="@dimen/text_size_10"
+          android:visibility="gone" />
+      </LinearLayout>
+    </LinearLayout>
+  </LinearLayout>
+  <!--转发的标题-->
+  <TextView
+    android:id="@+id/leave_tv_zftitle"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/space_10"
+    android:layout_marginLeft="@dimen/space_10"
+    android:text="转发某某某的"
+    android:textColor="@color/enterprise_act__defaulttext"
+    android:textSize="@dimen/text_size_14"
+    android:visibility="gone" />
+  <LinearLayout
+    android:id="@+id/leave_zfbg"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/space_20"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <!--内容文字-->
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/space_10"
+      android:layout_marginLeft="@dimen/space_10"
+      android:gravity="center_vertical"
+      android:orientation="horizontal">
+      <TextView
+        android:id="@+id/leave_first_publish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="代思:"
+        android:textColor="#4A7AAA"
+        android:textSize="@dimen/text_size_14"
+        android:visibility="gone" />
+      <TextView
+        android:id="@+id/leave_tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请问本次活动是直播吗？"
+        android:textColor="@color/enterprise_act__defaulttext"
+        android:textSize="@dimen/text_size_14" />
+    </LinearLayout>
+    <!--视频的图片-->
+    <FrameLayout
+      android:id="@+id/video_image"
+      style="@style/fl_leavewall_videoimage">
+      <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/iv_thum_image"
+        android:src="@drawable/pk_bgnormal"
+        fresco:roundAsCircle="true"
+        fresco:roundingBorderColor="#00ff00"
+        fresco:roundingBorderWidth="2dp"
+        style="@style/sd_leavewall_imagethum" />
+      <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/video_bg" />
+    </FrameLayout>
+    <!--九宮格圖片-->
+    <cn.bingoogolapple.photopicker.widget.BGANinePhotoLayout
+      android:id="@+id/npl_item_moment_photos"
+      style="@style/MatchWrap"
+      android:layout_marginTop="5dp"
+      android:layout_marginLeft="@dimen/space_10"
+      android:visibility="gone"
+      app:bga_npl_itemCornerRadius="0dp"
+      app:bga_npl_itemSpanCount="3"
+      app:bga_npl_itemWhiteSpacing="4dp"
+      app:bga_npl_itemWidth="0dp"
+      app:bga_npl_otherWhiteSpacing="64dp"
+      app:bga_npl_placeholderDrawable="@mipmap/bga_pp_ic_holder_light"
+      app:bga_npl_showAsLargeWhenOnlyOne="true" />
+  </LinearLayout>
+  <View
+    android:id="@+id/leave_division_top"
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/line_hui" />
+  <!--底部的点赞评论和转发-->
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="30dp"
+    android:orientation="horizontal">
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:gravity="center"
+      android:orientation="horizontal">
+
+      <ImageView
+        android:id="@+id/leave_iv_zhuanfa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_5"
+        android:src="@drawable/zhuan_fa" />
+
+      <TextView
+        android:id="@+id/tv_forwardcount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_10"
+        android:text="666"
+        android:textColor="@color/enterprise_act_hui"
+        android:textSize="@dimen/text_size_10"
+        android:visibility="invisible" />
+
+    </LinearLayout>
+
+    <View
+      android:layout_width="1dp"
+      android:layout_height="@dimen/space_20"
+      android:layout_marginTop="@dimen/space_5"
+      android:background="@color/line_hui" />
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:gravity="center"
+      android:orientation="horizontal">
+
+      <ImageView
+        android:id="@+id/leave_iv_pinglun"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_5"
+        android:src="@drawable/ping_lun" />
+
+      <TextView
+        android:id="@+id/tv_commentcount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_10"
+        android:text="666"
+        android:textColor="@color/enterprise_act_hui"
+        android:textSize="@dimen/text_size_10" />
+
+    </LinearLayout>
+
+    <View
+      android:layout_width="1dp"
+      android:layout_height="@dimen/space_20"
+      android:layout_marginTop="@dimen/space_5"
+      android:background="@color/line_hui" />
+
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:gravity="center"
+      android:orientation="horizontal">
+
+      <ImageView
+        android:id="@+id/leave_iv_dianzan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_5"
+        android:src="@drawable/dianzan_hou" />
+
+      <TextView
+        android:id="@+id/tv_likecount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/space_10"
+        android:text="666"
+        android:textColor="@color/enterprise_act_hui"
+        android:textSize="@dimen/text_size_10" />
+    </LinearLayout>
+
+  </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="wrap_content"
+              android:layout_height="@dimen/space_48"
+              android:orientation="vertical"
+              android:gravity="center_horizontal"
+              android:background="@drawable/selector_item_background">
+        <TextView
+            android:id="@+id/tv_horizontal_pklist_item"
+            android:layout_width="@dimen/space_100"
+            android:layout_height="@dimen/space_100"
+            android:layout_marginTop="@dimen/space_5"
+            android:layout_marginBottom="@dimen/space_5"
+            android:text="综合排名"
+            android:textColor="@color/text_black"
+            android:textSize="@dimen/text_size_14"
+            android:gravity="center"/>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/text_black"/>
+</LinearLayout>
