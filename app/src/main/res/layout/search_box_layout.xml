@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
   <!--搜索框-->
-  <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/space_50">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="@dimen/space_50"
+  >
     <com.fips.huashun.widgets.CustomEditText
       android:id="@+id/et_search_friend"
       android:layout_width="match_parent"

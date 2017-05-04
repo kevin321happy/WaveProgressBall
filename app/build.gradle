@@ -90,6 +90,7 @@ repositories {
 }
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.google.code.gson:gson:2.7'
@@ -102,9 +103,7 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.pingxx:pingpp-core:2.1.+'
     //必须添加
-
     // compile 'com.pingxx:pingpp-alipay:2.1.9'
-
     //使用支付宝时添加
     compile 'com.github.jd-alexander:LikeButton:0.2.0'
     compile 'com.joanzapata.pdfview:android-pdfview:1.0.4@aar'
@@ -124,7 +123,6 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:24.1.0'
     compile 'cn.bingoogolapple:bga-adapter:1.1.8@aar'
     // -------------------- 以上4个库是必须依赖的 ----------------------------
-
     //权限检查
     compile 'pub.devrel:easypermissions:0.3.0'
     compile project(':CommonRecycler')

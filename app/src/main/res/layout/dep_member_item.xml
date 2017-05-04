@@ -2,8 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:fresco="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
-  android:layout_height="match_parent"
+  android:layout_height="wrap_content"
   android:orientation="vertical">
+
   <LinearLayout style="@style/ent_organization_ll_memberitem">
     <CheckBox
       android:id="@+id/cb_check_dep"
@@ -20,7 +21,6 @@
       android:layout_gravity="center"
       android:src="@drawable/ic_launcher"
       fresco:roundAsCircle="true" />
-
     <LinearLayout
       android:layout_width="0dp"
       android:layout_height="match_parent"
@@ -45,4 +45,5 @@
         android:textSize="@dimen/text_size_12" />
     </LinearLayout>
   </LinearLayout>
+
 </LinearLayout>

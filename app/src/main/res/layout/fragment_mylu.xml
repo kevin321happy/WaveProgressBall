@@ -3,9 +3,10 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical">
+
   <ListView
     android:id="@+id/lv_list"
     android:layout_width="match_parent"
-    android:listSelector="@color/transparent"
-    android:layout_height="wrap_content"></ListView>
+    android:layout_height="wrap_content"
+    android:listSelector="@color/transparent"></ListView>
 </LinearLayout>

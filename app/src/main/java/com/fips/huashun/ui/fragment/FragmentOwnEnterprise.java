@@ -30,6 +30,7 @@ import com.fips.huashun.net.HttpUtil;
 import com.fips.huashun.net.LoadDatahandler;
 import com.fips.huashun.net.LoadJsonHttpResponseHandler;
 import com.fips.huashun.ui.activity.CourseDetailActivity;
+import com.fips.huashun.ui.activity.EntOrganizationActivity;
 import com.fips.huashun.ui.activity.EnterpriseActList;
 import com.fips.huashun.ui.activity.EnterpriseCourseActivity;
 import com.fips.huashun.ui.activity.EnterpriseMycourseActivity;
@@ -200,11 +201,11 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
             break;
           case 1:
             // 组织架构
-            intent = new Intent(getActivity(), WebviewActivity.class);
-            intent.putExtra("key", 1);
-            intent.putExtra("entid", enterpriseId);
-            startActivity(intent);
-//            startActivity(new Intent(getActivity(), EntOrganizationActivity.class));
+//            intent = new Intent(getActivity(), WebviewActivity.class);
+//            intent.putExtra("key", 1);
+//            intent.putExtra("entid", enterpriseId);
+//            startActivity(intent);
+            startActivity(new Intent(getActivity(), EntOrganizationActivity.class));
             break;
           case 2:
             // 企业部门

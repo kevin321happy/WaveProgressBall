@@ -20,14 +20,12 @@
   <string name="download_error_timeout">下载超时！</string>
   <string name="download_error_un_know_host">找不到服务器。</string>
   <string name="download_error_url">URL地址错误。</string>
-  <string name="download_error_un">未知错误。</string>
-
+  <string name="download_error_un">请检查网络！</string>
 
   <!-- TODO: Remove or change this placeholder text -->
   <string name="click_to_apply">我要报名</string>
   <string name="study_online_itemtitle">演讲的力量</string>
   <string name="study_online_itemcontent1">请大家开课前观看此视频</string>
-
   <!--数字选择器-->
   <!-- Font -->
   <string name="roboto_light">sans-serif-light</string>

@@ -18,7 +18,6 @@ import com.baidu.mapapi.SDKInitializer;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.fips.huashun.common.Constants;
 import com.fips.huashun.modle.bean.UserInfo;
-import com.fips.huashun.ui.utils.CrashHandler;
 import com.fips.huashun.ui.utils.PreferenceUtils;
 import com.fips.huashun.ui.utils.SPUtils;
 import com.fips.huashun.ui.utils.SharePreferenceUtil;
@@ -71,7 +70,7 @@ public class ApplicationEx extends Application {
     super.onCreate();
     mApplicationEx = this;
     handler = new Handler();
-    CrashHandler.getInstance().init(this);//初始化全局异常管理
+//    CrashHandler.getInstance().init(this);//初始化全局异常管理
     mInstance = this;
     UMShareAPI.get(this);
     isFirstRun();

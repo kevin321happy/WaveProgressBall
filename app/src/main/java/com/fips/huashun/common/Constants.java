@@ -395,7 +395,6 @@ public class Constants {
   public static Typeface TF_HKHB_FONT = null;
   public static Typeface TC_HKWW_FONT = null;
   public static Typeface TF_HANYI_FONT = null;
-
   /** 接口改造 **/
   /**
    * 企业中 我的课程
@@ -464,5 +463,4 @@ public class Constants {
    * 忘记密码重置
    */
   public static final String FORGOTPWD_URL = "http://admin.52qmct.com/Api/LoginCommon/forgotPassword";
-
 }

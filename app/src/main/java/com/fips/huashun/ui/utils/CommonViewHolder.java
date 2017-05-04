@@ -16,7 +16,6 @@ import java.util.Map;
  * <p/>
  * 通用的解决： 使用集合代替多个成员变量
  *
- * 要求：会用
  */
 public class CommonViewHolder {
     public final View convertView;

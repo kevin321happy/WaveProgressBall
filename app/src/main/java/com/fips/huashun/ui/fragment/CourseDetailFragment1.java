@@ -49,6 +49,7 @@ import org.json.JSONObject;
 
 /**
  * @author hulin
+ * 课程目录界面
  */
 public class CourseDetailFragment1 extends Fragment implements CourseMuluAdapter.Callback {
 
@@ -152,7 +153,6 @@ public class CourseDetailFragment1 extends Fragment implements CourseMuluAdapter
           public void onStart() {
             super.onStart();
           }
-
           @Override
           public void onSuccess(JSONObject data) {
             super.onSuccess(data);
@@ -162,6 +162,9 @@ public class CourseDetailFragment1 extends Fragment implements CourseMuluAdapter
               if (suc.equals("y")) {
                 couseMulus = gson.fromJson(data.getString("data").toString(), CouserMulu.class);
                 List<CouseMuluInfo> couseMuluInfos = couseMulus.getData();
+                if (couseMuluInfos.size() == 0) {
+                  return;
+                }
                 String eid = couseMuluInfos.get(0).getEid();
                 mCoursename = couseMuluInfos.get(0).getCourseName();
                 if (eid.equals("-1")) {//-1为非企业的课程
@@ -308,10 +311,10 @@ public class CourseDetailFragment1 extends Fragment implements CourseMuluAdapter
           .querySectionBySectionId(item.getSessonid());
       if (sectionEntity != null && sectionEntity.getState() == 2) {
         pdfUrl = sectionEntity.getLocalpath();
-        type="3";
+        type = "3";
       } else {
-        pdfUrl = Constants.IMG_URL+item.getCoursedoc();
-        type="0";
+        pdfUrl = Constants.IMG_URL + item.getCoursedoc();
+        type = "0";
       }
       addStudy(courseId, item.getSessonid());
       Intent intent = new Intent(getActivity(), PdfActivity.class);
@@ -389,6 +392,7 @@ public class CourseDetailFragment1 extends Fragment implements CourseMuluAdapter
     super.onActivityResult(requestCode, resultCode, data);
     initData(courseId);
   }
+
   //添加学习
   private void addStudy(String id, String sessonid) {
     RequestParams requestParams = new RequestParams();
