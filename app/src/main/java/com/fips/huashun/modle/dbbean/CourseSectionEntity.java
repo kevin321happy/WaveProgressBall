@@ -24,7 +24,7 @@ public class CourseSectionEntity {
   private String localpath;//文件的本地路径
   @DatabaseField
   private String courseid;//课程的Id
-  @DatabaseField
+  @DatabaseField//非空
   private String chapterId;//章节ID
   @DatabaseField
   private String chapterName;//章节名
@@ -34,6 +34,17 @@ public class CourseSectionEntity {
   private String fileSize;//文件大小
   @DatabaseField
   private String progress;//下载进度
+  @DatabaseField
+  private long speed;//下载速度
+
+//  public long getSpeed() {
+//    return speed;
+//  }
+//
+//  public void setSpeed(long speed) {
+//    this.speed = speed;
+//  }
+
   public String getProgress() {
     return progress;
   }

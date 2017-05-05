@@ -7,13 +7,18 @@
     android:id="@+id/ll_download_manage"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/space_5"
     android:background="@color/line_hui"
     android:gravity="center_vertical"
     android:orientation="horizontal">
     <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="@dimen/space_30"
+      android:paddingLeft="@dimen/space_10"
+      android:background="@color/line_hui"
+      android:gravity="center_vertical"
       android:text="下载管理"
-      style="@style/tv_download_title" />
+      android:textColor="@color/text_hui"
+      android:textSize="@dimen/text_size_14" />
     <TextView
       android:id="@+id/tv_left_room"
       android:layout_width="wrap_content"
@@ -30,7 +35,7 @@
     <ImageView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:src="@drawable/open" />
+      android:src="@drawable/icon_more" />
   </LinearLayout>
 
   <ListView

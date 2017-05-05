@@ -1,7 +1,8 @@
 package com.fips.huashun.ui.fragment;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import butterknife.Bind;
@@ -12,16 +13,35 @@ import com.fips.huashun.db.dao.SectionDownloadDao;
 import com.fips.huashun.modle.dbbean.CourseEntity;
 import com.fips.huashun.modle.dbbean.CourseSectionEntity;
 import com.fips.huashun.modle.event.SectionDownloadStateEvent;
+import com.fips.huashun.service.CourseDownloadService;
 import com.fips.huashun.ui.activity.BaseActivity;
+import com.fips.huashun.ui.activity.PdfActivity;
+import com.fips.huashun.ui.activity.VedioPlayActivity;
 import com.fips.huashun.ui.adapter.HaveDownloadedAdapter;
+import com.fips.huashun.ui.adapter.HaveDownloadedAdapter.OnChildItemClickListener;
 import com.fips.huashun.ui.adapter.OnDownloadAdapter;
+import com.fips.huashun.ui.adapter.OnDownloadAdapter.OnDeleteClickListener;
+import com.fips.huashun.ui.utils.AlertDialogUtils;
+import com.fips.huashun.ui.utils.AlertDialogUtils.DialogClickInter;
+import com.fips.huashun.ui.utils.NavigationBar;
+import com.fips.huashun.ui.utils.NavigationBar.NavigationListener;
+import com.fips.huashun.ui.utils.ToastUtil;
+import com.fips.huashun.ui.utils.Utils;
 import com.fips.huashun.widgets.CustomExpandableListView;
 import com.fips.huashun.widgets.NoScrollListView;
+import com.shuyu.gsyvideoplayer.utils.FileUtils;
 import de.greenrobot.event.EventBus;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import rx.Observable;
+import rx.Observable.OnSubscribe;
+import rx.Observer;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * description: 课程下载管理界面
@@ -34,9 +54,8 @@ import java.util.Map;
  * 落在谷底 思人生
  */
 
-public class DownloadManageActivity extends BaseActivity {
-
-
+public class DownloadManageActivity extends BaseActivity implements OnChildItemClickListener,
+    OnDeleteClickListener {
   @Bind(R.id.lv_download_queue)
   NoScrollListView mNoScrollListView;
   @Bind(R.id.ll_download_finish)
@@ -45,6 +64,8 @@ public class DownloadManageActivity extends BaseActivity {
   LinearLayout mLlDownloadQueue;
   @Bind(R.id.lv_download_finish)
   CustomExpandableListView mLvDownloadFinish;
+  @Bind(R.id.NavigationBar)
+  NavigationBar mNavigationBar;
   private CourseNameDao mCourseNameDao;
   private SectionDownloadDao mSectionDownloadDao;
   private List<String> mGroup;
@@ -52,22 +73,47 @@ public class DownloadManageActivity extends BaseActivity {
   private HaveDownloadedAdapter mDownloadedAdapter;
   private OnDownloadAdapter mOnDownloadAdapter;
   private Map<String, Integer> bindmap = new HashMap();
+  private EventBus mEventBus;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_download_manage);
+    boolean serviceWork = Utils
+        .isServiceWork(this, "com.fips.huashun.service.CourseDownloadService");
+    if (serviceWork == false) {
+      Intent it = new Intent(this, CourseDownloadService.class);
+      this.startService(it);
+    }
     ButterKnife.bind(this);
+    mEventBus = EventBus.getDefault();
+    initView();
+    getDaos();
+  }
+
+  @Override
+  public void initView() {
+    mNavigationBar.setTitle("下载管理");
+    mNavigationBar.setLeftImage(R.drawable.fanhui);
+    mNavigationBar.setListener(new NavigationListener() {
+      @Override
+      public void onButtonClick(int button) {
+        if (button == NavigationBar.LEFT_VIEW) {
+          finish();
+        }
+      }
+    });
     mGroup = new ArrayList<>();
     mMap = new HashMap<>();
     mDownloadedAdapter = new HaveDownloadedAdapter();
     mOnDownloadAdapter = new OnDownloadAdapter(this);
+    mLvDownloadFinish.setGroupIndicator(null);//取消自带的指示箭头
     //设置适配器
     mLvDownloadFinish.setAdapter(mDownloadedAdapter);
     mNoScrollListView.setAdapter(mOnDownloadAdapter);
-    getDaos();
-    initDownQueueCourse();
-    initDownloadFinishCourse();
+
+    mDownloadedAdapter.setOnChildItemClickListener(this);
+    mOnDownloadAdapter.setOnDeleteClickListener(this);
   }
 
   @Override
@@ -77,28 +123,57 @@ public class DownloadManageActivity extends BaseActivity {
     EventBus.getDefault().register(this);
   }
 
-  //获取在下载队列中的课程
-  private void initDownQueueCourse() {
-    //获取正在下载中的课程
-    List<CourseSectionEntity> sectionEntities = mSectionDownloadDao.querySectionOnDownload();
-    if (sectionEntities == null || sectionEntities.size() == 0) {
-      mLlDownloadQueue.setVisibility(View.GONE);
-      return;
-    }
-    Log.d("DownloadManageActivity", "查到的章节长度" + sectionEntities.size());
-    for (int i = 0; i < sectionEntities.size(); i++) {
-      //保存到集合
-      bindmap.put(sectionEntities.get(i).getSectionId(), i);
-
-    }
-    mOnDownloadAdapter.setData(sectionEntities);
-    mOnDownloadAdapter.notifyDataSetChanged();
+  //界面可见
+  @Override
+  protected void onResume() {
+    super.onResume();
+    //在视图可见的时候刷新,当从后台进入的时候也会刷新
+    initDownQueueCourse();
+    initDownloadFinishCourse();
   }
-
 
   @Override
   public boolean isSystemBarTranclucent() {
     return false;
+  }
+
+  //获取在下载队列中的课程
+  private void initDownQueueCourse() {
+    //获取正在下载中的课程
+    Observable.create(new OnSubscribe<List<CourseSectionEntity>>() {
+      @Override
+      public void call(Subscriber<? super List<CourseSectionEntity>> subscriber) {
+        List<CourseSectionEntity> sectionEntities = mSectionDownloadDao.querySectionOnDownload();
+        //发出
+        subscriber.onNext(sectionEntities);
+      }
+    }).subscribeOn(Schedulers.io())//查询数据放IO线程
+        .observeOn(AndroidSchedulers.mainThread())//回调在主线程
+        .subscribe(new Observer<List<CourseSectionEntity>>() {
+          @Override
+          public void onCompleted() {
+
+          }
+
+          @Override
+          public void onError(Throwable e) {
+
+          }
+
+          @Override
+          public void onNext(List<CourseSectionEntity> sectionEntities) {
+            if (sectionEntities == null || sectionEntities.size() == 0) {
+              mLlDownloadQueue.setVisibility(View.GONE);
+              return;
+            }
+            for (int i = 0; i < sectionEntities.size(); i++) {
+              //保存到集合
+              bindmap.put(sectionEntities.get(i).getSectionId(), i);
+            }
+            mOnDownloadAdapter.setData(sectionEntities);
+            mOnDownloadAdapter.notifyDataSetChanged();
+          }
+        });
   }
 
   //获取已经下载的数据
@@ -115,15 +190,18 @@ public class DownloadManageActivity extends BaseActivity {
       //根据课程的Id来查询该课程下面的下载状态为2的课程
       List<CourseSectionEntity> sectionEntities = mSectionDownloadDao
           .querySectionByCourseId(courseid);
-//      Log.i("test", "查到的结果长度为 ：" + sectionEntities.size());
       if (sectionEntities != null && sectionEntities.size() > 0) {
         mGroup.add(coursename);
         //如果课程下面有下载了的章节,保存到MAP集合
         mMap.put(coursename, sectionEntities);
       }
     }
+
     //设置数据,刷新适配器
     mDownloadedAdapter.setData(mGroup, mMap);
+    for (int i = 0; i < mGroup.size(); i++) {
+      mLvDownloadFinish.expandGroup(i);
+    }
     mDownloadedAdapter.notifyDataSetChanged();
   }
 
@@ -139,11 +217,10 @@ public class DownloadManageActivity extends BaseActivity {
 
   //收到了章节正在下载的事件
   public void onEventMainThread(SectionDownloadStateEvent event) {
-
     int state = event.getState();
     if (state == 0) {
       //开始下载
-    } else if (state == 1) {
+    } else if (state == 1 || state == 3) {
       //下载中列表指定条目刷新
       String what = event.getWhat();
       //获取当前的位置
@@ -169,7 +246,6 @@ public class DownloadManageActivity extends BaseActivity {
       //得到要更新的item的view
       View view = mNoScrollListView.getChildAt(itemIndex - visiblePosition);
       //调用adapter更新界面
-      Log.i("test1000", "指定条目位置 ：" + itemIndex);
       mOnDownloadAdapter.updateView(view, itemIndex);
     }
   }
@@ -185,5 +261,98 @@ public class DownloadManageActivity extends BaseActivity {
   protected void onDestroy() {
     super.onDestroy();
 
+  }
+
+  //点击已下载的课程的监听
+  @Override
+  public void onStudy(String localpath, String sectionId, String courseid, String type) {
+    if (type.equals("2")) {
+      //跳转到视频播放
+      Intent intent = new Intent(this, VedioPlayActivity.class);
+      intent.putExtra("courseid", courseid);
+      intent.putExtra("url", localpath);
+      startActivity(intent);
+    } else if (type.equals("3")) {
+      //跳转到pdf学习
+      Intent intent = new Intent(this, PdfActivity.class);
+      intent.putExtra("courseid", courseid);
+      intent.putExtra("type", "3");
+      intent.putExtra("pdfurl", localpath);
+      startActivity(intent);
+    }
+  }
+
+  //删除已下载的章节
+  @Override
+  public void onDelete(String localpath, String sectionId) {
+    Suggestdelete(localpath, sectionId);
+  }
+
+  //删除正在下载的章节
+  @Override
+  public void deleteOnDownloadSection(String localpath, String sectionId) {
+    Suggestdelete(localpath, sectionId);
+  }
+
+  //删除给用户提示
+  private void Suggestdelete(final String localpath, final String sectionId) {
+    AlertDialogUtils.showTowBtnDialog(DownloadManageActivity.this, "确定删除已下载的文件？", "取消", "确定",
+        new DialogClickInter() {
+          @Override
+          public void leftClick(AlertDialog dialog) {
+            dialog.dismiss();
+          }
+
+          @Override
+          public void rightClick(AlertDialog dialog) {
+            SectionDownloadStateEvent stateEvent = new SectionDownloadStateEvent(
+                -1);
+            mEventBus.post(stateEvent);
+            deleteCourseFile(localpath, sectionId);
+            dialog.dismiss();
+          }
+        });
+  }
+
+  //删除已下载的课程
+  private void deleteCourseFile(final String localpath, final String sectionId) {
+    //rxjava
+    Observable.create(new OnSubscribe<String>() {
+      @Override
+      public void call(Subscriber<? super String> subscriber) {
+        mSectionDownloadDao.deleteSectionById(sectionId);
+        File file = new File(localpath);
+        if (file.exists() && file.length() > 0) {
+          FileUtils.deleteFiles(file);
+        }
+        subscriber.onNext("删除成功！");
+      }
+    }).subscribeOn(Schedulers.io()) // 指定 subscribe() 发生在 IO 线程
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Observer<String>() {
+          @Override
+          public void onCompleted() {
+
+          }
+
+          @Override
+          public void onError(Throwable e) {
+
+          }
+
+          @Override
+          public void onNext(String s) {
+            ToastUtil.getInstant().show(s);
+            //发送EvenBus刷新目录界面
+            SectionDownloadStateEvent stateEvent = new SectionDownloadStateEvent();
+            stateEvent.setState(-1);
+            if (mEventBus != null) {
+              mEventBus.post(stateEvent);
+            }
+            //刷新
+            initDownQueueCourse();
+            initDownloadFinishCourse();
+          }
+        });
   }
 }

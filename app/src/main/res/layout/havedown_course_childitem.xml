@@ -40,12 +40,12 @@
         android:text="已完成"
         android:textColor="@color/enterprise_act__defaulttext"
         android:textSize="@dimen/text_size_14"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
       <TextView
         android:id="@+id/tv_child_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="100M"
+        android:text=""
         android:textSize="@dimen/text_size_12"
         android:textColor="@color/enterprise_act_hui"
         android:visibility="visible" />

@@ -28,10 +28,8 @@ import java.util.Map;
  * 落在谷底 思人生
  */
 public class HaveDownloadedAdapter extends BaseExpandableListAdapter {
-
   private List<String> mGroup;
   private Map<String, List<CourseSectionEntity>> mMap;
-
   private OnChildItemClickListener mOnChildItemClickListener;
 
   public OnChildItemClickListener getOnChildItemClickListener() {
@@ -98,7 +96,7 @@ public class HaveDownloadedAdapter extends BaseExpandableListAdapter {
     if (isExpanded) {
       iv_open.setImageResource(R.drawable.course_result_fan);
     } else {
-      iv_open.setImageResource(R.drawable.arrow_open);
+      iv_open.setImageResource(R.drawable.icon_more);
     }
     return convertView;
   }
@@ -123,20 +121,20 @@ public class HaveDownloadedAdapter extends BaseExpandableListAdapter {
     if (isLastChild) {
       cl_line.setVisibility(View.GONE);
     }
-
     //绑定数据
     tv_name.setText(sectionEntity.getSectionname());
+    tv_size.setText(Utils.FormentFileSize(Long.parseLong(sectionEntity.getFileSize())));
     final int state = sectionEntity.getState();
-    if (state == 2) {
-      tv_state.setText("已完成");
-      tv_size.setText(Utils.FormentFileSize(Long.parseLong(sectionEntity.getFileSize())));
-    } else if (state == 1) {
-      tv_state.setText("下载中");
-      tv_size.setText("当前已下载：" + sectionEntity.getProgress());
-    } else if (state == -1) {
-      tv_state.setText("下载失败");
-      tv_size.setText("当前已下载：" + sectionEntity.getProgress());
-    }
+//    if (state == 2) {
+//      tv_state.setText("已完成");
+////      tv_size.setText(Utils.FormentFileSize(Long.parseLong(sectionEntity.getFileSize())));
+//    } else if (state == 1) {
+//      tv_state.setText("下载中");
+////      tv_size.setText("当前已下载：" + sectionEntity.getProgress());
+//    } else if (state == -1) {
+//      tv_state.setText("下载失败");
+////      tv_size.setText("当前已下载：" + sectionEntity.getProgress());
+//    }
 
     //点击删除
     iv_delete.setOnClickListener(new OnClickListener() {

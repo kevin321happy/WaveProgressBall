@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Environment;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import com.fips.huashun.R;
 import com.fips.huashun.db.dao.SectionDownloadDao;
 import com.fips.huashun.modle.dbbean.CourseSectionEntity;
@@ -30,6 +29,11 @@ import de.greenrobot.event.EventBus;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
+import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Action1;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 public class CourseDownloadService extends Service {
 
@@ -95,17 +99,19 @@ public class CourseDownloadService extends Service {
   public void onEventMainThread(OnPuaseDownloadEvent event) {
     String pid = event.getWhat();
     String sectionUrl = event.getSectionUrl();
-//    String sectionName = event.getSectionName();
     DownloadRequest downloadRequest = DownloadRequests.get(pid);
     if (downloadRequest == null) {
       return;
-    }
-    //在下载的时候点击了,暂停当前下载
-    if (downloadRequest.isStarted() && !downloadRequest.isFinished()) {
-      downloadRequest.cancel();
-    } else if (!downloadRequest.inQueue()) {
-      String filename = pid + sectionUrl.substring(sectionUrl.lastIndexOf("."));
-      addToDownloadQueue(pid, sectionUrl, filename);
+//      String filename = pid + sectionUrl.substring(sectionUrl.lastIndexOf("."));
+//      addToDownloadQueue(pid, sectionUrl, filename);
+    } else {
+      //在下载的时候点击了,暂停当前下载
+      if (downloadRequest.isStarted() && !downloadRequest.isFinished()) {
+        downloadRequest.cancel();
+      } else if (!downloadRequest.inQueue()) {
+        String filename = pid + sectionUrl.substring(sectionUrl.lastIndexOf("."));
+        addToDownloadQueue(pid, sectionUrl, filename);
+      }
     }
   }
 
@@ -149,10 +155,7 @@ public class CourseDownloadService extends Service {
     DownloadRequest downloadRequest = NoHttp
         .createDownloadRequest(url, mPath, name, true, true);
     //设置取消请求的标识
-//    downloadRequest.setCancelSign(pid);
     DownloadRequests.put(pid, downloadRequest);
-    Log.i("test366", "设置了取消请求的标识pid ：" + s);
-//    mDownloadQueue.put(pid, downloadRequest);
     //将任务加入队列
     mDownloadQueue.add(Integer.parseInt(pid), downloadRequest, mDownloadListener);
   }
@@ -228,28 +231,45 @@ public class CourseDownloadService extends Service {
     }
 
     @Override
-    public void onFinish(int what, String filePath) {
+    public void onFinish(final int what, final String filePath) {
       //在集合中移除改队列
-      DownloadRequests.remove(what+"");
+      DownloadRequests.remove(what + "");
       //更新数据库
-      if (mSectionDownloadDao != null) {
-        CourseSectionEntity courseSectionEntity = mSectionDownloadDao
-            .querySectionBySectionId(what + "");
-        if (courseSectionEntity != null) {
-          courseSectionEntity.setState(2);
-          courseSectionEntity.setLocalpath(filePath);
-          mSectionDownloadDao.upDataInfo(courseSectionEntity);
+      if (mSectionDownloadDao == null) {
+        return;
+      }
+      //Rxjava
+      Observable.just(mSectionDownloadDao)
+          .map(new Func1<SectionDownloadDao, SectionDownloadStateEvent>() {
+            @Override
+            public SectionDownloadStateEvent call(SectionDownloadDao SectionDownloadDao) {
+              CourseSectionEntity courseSectionEntity = mSectionDownloadDao
+                  .querySectionBySectionId(what + "");
+              if (courseSectionEntity != null) {
+                courseSectionEntity.setState(2);
+                courseSectionEntity.setLocalpath(filePath);
+                mSectionDownloadDao.upDataInfo(courseSectionEntity);
+              }
+              SectionDownloadStateEvent downloadStateEvent = new SectionDownloadStateEvent();
+              downloadStateEvent.setState(2);
+              downloadStateEvent.setWhat(what + "");
+              return downloadStateEvent;
+            }
+          })
+          .subscribeOn(Schedulers.io()) // 指定 subscribe() 发生在 IO 线程
+          .observeOn(AndroidSchedulers.mainThread()) // 指定 Subscriber 的回调发生在主线程
+          .subscribe(new Action1<SectionDownloadStateEvent>() {
+        @Override
+        public void call(SectionDownloadStateEvent sectionDownloadStateEvent) {
+          if (mEventBus != null) {
+            CourseSectionEntity sectionEntity = mSectionDownloadDao
+                .querySectionBySectionId(what + "");
+            String s = sectionEntity.toString();
+            mEventBus.post(sectionDownloadStateEvent);
+          }
         }
-      }
-      //发送EvenBus下载中
-      if (mEventBus != null) {
-        SectionDownloadStateEvent downloadStateEvent = new SectionDownloadStateEvent();
-        downloadStateEvent.setState(2);
-        downloadStateEvent.setWhat(what + "");
-        mEventBus.post(downloadStateEvent);
-      }
+      });
     }
-
     @Override
     public void onCancel(int what) {
       //保存到数据库状态3
@@ -266,7 +286,7 @@ public class CourseDownloadService extends Service {
       if (mEventBus != null) {
         SectionDownloadStateEvent downloadStateEvent = new SectionDownloadStateEvent();
         downloadStateEvent.setWhat(what + "");
-        downloadStateEvent.setState(1);
+        downloadStateEvent.setState(3);
         mEventBus.post(downloadStateEvent);
       }
     }

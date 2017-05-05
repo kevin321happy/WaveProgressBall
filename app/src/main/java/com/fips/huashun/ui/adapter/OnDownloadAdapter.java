@@ -32,10 +32,15 @@ import java.util.List;
 public class OnDownloadAdapter extends BaseAdapter {
 
   EventBus eventBus = EventBus.getDefault();
-
   private List<CourseSectionEntity> mData;
   private Context mContext;
   private SectionDownloadDao mSectionDownloadDao;
+  private OnDeleteClickListener mOnDeleteClickListener;
+
+  public void setOnDeleteClickListener(
+      OnDeleteClickListener onDeleteClickListener) {
+    mOnDeleteClickListener = onDeleteClickListener;
+  }
 
   public OnDownloadAdapter(Context context) {
     mContext = context;
@@ -69,6 +74,7 @@ public class OnDownloadAdapter extends BaseAdapter {
       holder.tv_section_totlesize = (TextView) convertView.findViewById(R.id.tv_totlesize);
       holder.tv_section_speed = (TextView) convertView.findViewById(R.id.tv_speed);
       holder.iv_download = (ImageView) convertView.findViewById(R.id.iv_download);
+      holder.iv_delete= (ImageView) convertView.findViewById(R.id.iv_delete);
       holder.pb_progress = (AnimateHorizontalProgressBar) convertView
           .findViewById(R.id.pb_progress);
       convertView.setTag(holder);
@@ -107,16 +113,16 @@ public class OnDownloadAdapter extends BaseAdapter {
         eventBus.post(puaseDownloadEvent);
       }
     });
-//    holder.iv_download.setOnClickListener(new OnClickListener() {
-//      @Override
-//      public void onClick(View v) {
-//        OnPuaseDownloadEvent puaseDownloadEvent = new OnPuaseDownloadEvent();
-//        puaseDownloadEvent.setWhat(sectionEntity.getSectionId());
-//        puaseDownloadEvent.setSectionUrl(sectionEntity.getSectionUrl());
-//        puaseDownloadEvent.setSectionName(sectionEntity.getSectionname());
-//        eventBus.post(puaseDownloadEvent);
-//      }
-//    });
+    //点击删除的监听
+    holder.iv_delete.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (mOnDeleteClickListener != null) {
+          mOnDeleteClickListener
+              .deleteOnDownloadSection(sectionEntity.getLocalpath(), sectionEntity.getSectionId());
+        }
+      }
+    });
     return convertView;
   }
 
@@ -161,6 +167,7 @@ public class OnDownloadAdapter extends BaseAdapter {
     hodler.tv_section_name = (TextView) view.findViewById(tv_section_name);
     hodler.tv_section_totlesize = (TextView) view.findViewById(R.id.tv_totlesize);
     hodler.tv_section_speed = (TextView) view.findViewById(R.id.tv_speed);
+    hodler.iv_delete = (ImageView) view.findViewById(R.id.iv_delete);
     hodler.pb_progress = (AnimateHorizontalProgressBar) view
         .findViewById(R.id.pb_progress);
     //设置条目的数据
@@ -174,14 +181,29 @@ public class OnDownloadAdapter extends BaseAdapter {
         .querySectionBySectionId(sectionEntity.getSectionId());
     //绑定数据
     hodler.tv_section_name.setText(entity.getSectionname() + "");//章节名字
-    hodler.tv_section_totlesize
-        .setText(Utils.FormentFileSize(Long.parseLong(entity.getFileSize())));//章节大小
-    String fileType = entity.getFileType();
+    Integer progress = Integer.valueOf(entity.getProgress());
+    long totlesize = Long.parseLong(entity.getFileSize());//总长度
+    long courrentsize = totlesize * progress / 100;
+    if (progress == 100) {
+      hodler.tv_section_totlesize
+          .setText(Utils.FormentFileSize(totlesize));//章节大小
+      hodler.iv_download.setImageResource(R.drawable.finish_d);
+    } else {
+      hodler.tv_section_totlesize
+          .setText(
+              Utils.FormentFileSize(courrentsize) + "/" + Utils.FormentFileSize(totlesize));//章节大小
+      ChangeDownloadUi(entity.getState(), hodler.iv_download);
+    }
     //设置进度
-    hodler.pb_progress.setProgress(Integer.valueOf(entity.getProgress()));
-    ChangeDownloadUi(entity.getState(), hodler.iv_download);
-    final int state = entity.getState();
+    hodler.pb_progress.setProgress(progress);
+    //显示当前的百分比
+    hodler.tv_section_speed.setText(progress + "%");
+  }
 
+  public interface OnDeleteClickListener {
+
+    //删除正在下载的课程
+    void deleteOnDownloadSection(String localpath, String sectionId);
   }
 
   private class ViewHolder {
@@ -191,6 +213,7 @@ public class OnDownloadAdapter extends BaseAdapter {
     private TextView tv_section_totlesize;
     private TextView tv_section_speed;
     private ImageView iv_download;
+    private ImageView iv_delete;
     private AnimateHorizontalProgressBar pb_progress;
   }
 }

@@ -86,8 +86,6 @@ public class CourseMuluAdapter extends BaseAdapter {
   public CourseMuluAdapter(Context context, List<CouseMuluInfo> ships) {
     this.icontext = context;
     this.items = ships;
-//    isWifi = Utils.isWifi(icontext);
-
   }
 
   public List<CouseMuluInfo> getAllListDate() {
@@ -229,18 +227,25 @@ public class CourseMuluAdapter extends BaseAdapter {
       case 1:
         iv_icon.setVisibility(View.GONE);
         tv_down.setVisibility(View.VISIBLE);
+        tv_down.setText("下载中");
         iv_download.setEnabled(false);
         break;
       case 2:
+        tv_down.setVisibility(View.GONE);
         iv_icon.setVisibility(View.VISIBLE);
         iv_icon.setImageResource(R.drawable.finish_d);
-        tv_down.setVisibility(View.GONE);
         iv_download.setEnabled(false);
         break;
       case -1:
+        tv_down.setVisibility(View.GONE);
         iv_icon.setVisibility(View.VISIBLE);
         iv_icon.setImageResource(R.drawable.again_d);
-        tv_down.setVisibility(View.GONE);
+        break;
+      case 3:
+        iv_icon.setVisibility(View.GONE);
+        tv_down.setVisibility(View.VISIBLE);
+        tv_down.setText("暂停中");
+        iv_download.setEnabled(false);
         break;
       default:
         iv_icon.setVisibility(View.VISIBLE);

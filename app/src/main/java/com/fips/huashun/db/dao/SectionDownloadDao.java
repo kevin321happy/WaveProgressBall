@@ -105,13 +105,12 @@ public class SectionDownloadDao {
     }
     return courseSectionEntity;
   }
-
   //根据课程ID来查询课程
   public List<CourseSectionEntity> querySectionByCourseId(String courseid) {
     List<CourseSectionEntity> sectionEntities = null;
     try {
       sectionEntities = mCourseDownloadDao.queryBuilder().where().eq("courseid", courseid)
-          .and().ne("state", 0 + "")
+          .and().eq("state", 2 + "")
           .query();
     } catch (SQLException e) {
       e.printStackTrace();

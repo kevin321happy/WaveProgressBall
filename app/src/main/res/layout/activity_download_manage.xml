@@ -3,9 +3,11 @@
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
   android:orientation="vertical"
   tools:context="com.fips.huashun.ui.fragment.DownloadManageActivity">
   <com.fips.huashun.ui.utils.NavigationBar
+    android:id="@+id/NavigationBar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
   </com.fips.huashun.ui.utils.NavigationBar>
@@ -28,15 +30,15 @@
         <com.fips.huashun.widgets.NoScrollListView
           android:id="@+id/lv_download_queue"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content">
-        </com.fips.huashun.widgets.NoScrollListView>
+        android:divider="@color/transparent"
+          android:layout_height="wrap_content"></com.fips.huashun.widgets.NoScrollListView>
       </LinearLayout>
       <!--已下载列表-->
       <LinearLayout
-        android:layout_marginTop="@dimen/space_10"
         android:id="@+id/ll_download_finish"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_10"
         android:orientation="vertical">
         <TextView
           style="@style/tv_download_title"
@@ -44,7 +46,8 @@
         <com.fips.huashun.widgets.CustomExpandableListView
           android:id="@+id/lv_download_finish"
           android:layout_width="match_parent"
-          android:layout_height="wrap_content"/>
+          android:layout_height="wrap_content"
+          android:childDivider="@android:color/transparent" />
       </LinearLayout>
     </LinearLayout>
   </com.fips.huashun.widgets.SpringScrollview>

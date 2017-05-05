@@ -36,6 +36,18 @@
         android:textColor="@color/enterprise_act_hui"
         android:textSize="@dimen/text_size_15" />
     </LinearLayout>
+
+
+    <ImageView
+      android:id="@+id/iv_delete"
+      android:layout_width="@dimen/space_35"
+      android:layout_height="@dimen/space_35"
+      android:layout_marginTop="@dimen/space_5"
+      android:layout_marginBottom="@dimen/space_10"
+      android:layout_marginRight="@dimen/space_10"
+      android:layout_gravity="center_vertical"
+      android:padding="@dimen/space_4"
+      android:src="@drawable/down_delete_select" />
     <ImageView
       android:id="@+id/iv_download"
       android:layout_width="@dimen/space_35"
@@ -80,6 +92,8 @@
         android:textSize="@dimen/text_size_9" />
     </LinearLayout>
     <com.fips.huashun.widgets.AnimateHorizontalProgressBar
+      android:layout_marginLeft="@dimen/space_15"
+      android:layout_marginRight="@dimen/space_15"
       android:id="@+id/pb_progress"
       android:layout_width="match_parent"
       android:layout_height="2dp"

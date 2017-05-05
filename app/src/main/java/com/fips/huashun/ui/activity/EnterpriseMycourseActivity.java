@@ -62,7 +62,6 @@ public class EnterpriseMycourseActivity extends BaseActivity implements OnClickL
   private ListView mListView;
   // 适配器
   private EnterpriseMycourseAdapter enterpriseMycourseAdapter;
-
   private ArrayList<RadioButton> rb;
   private RadioButton view1;
   private RadioButton view2;
@@ -250,6 +249,7 @@ public class EnterpriseMycourseActivity extends BaseActivity implements OnClickL
         mEx_listview.setVisibility(View.VISIBLE);
         if (mDownloadedAdapter == null) {
           mDownloadedAdapter = new HaveDownloadedAdapter();
+          //设置监听
           mDownloadedAdapter.setOnChildItemClickListener(this);
         }
         mEx_listview.setAdapter(mDownloadedAdapter);
@@ -266,9 +266,9 @@ public class EnterpriseMycourseActivity extends BaseActivity implements OnClickL
     mMap.clear();
     mGroup.clear();
     List<CourseEntity> entityList = mCourseNameDao.queryAll();
-   if (entityList==null){
-     return;
-   }
+    if (entityList == null) {
+      return;
+    }
     for (CourseEntity courseEntity : entityList) {
       String courseid = courseEntity.getCourseid();
       String coursename = courseEntity.getCoursename();
@@ -276,7 +276,7 @@ public class EnterpriseMycourseActivity extends BaseActivity implements OnClickL
       List<CourseSectionEntity> sectionEntities = mSectionDownloadDao
           .querySectionByCourseId(courseid);
 //      Log.i("test", "查到的结果长度为 ：" + sectionEntities.size());
-      if (sectionEntities!=null&&sectionEntities.size() > 0) {
+      if (sectionEntities != null && sectionEntities.size() > 0) {
         mGroup.add(coursename);
         //如果课程下面有下载了的章节,保存到MAP集合
         mMap.put(coursename, sectionEntities);
@@ -321,16 +321,16 @@ public class EnterpriseMycourseActivity extends BaseActivity implements OnClickL
   public void onStudy(String localpath, String sectionId, String courseid, String type) {
     if (type.equals("2")) {
       //跳转到视频播放
-      Intent intent = new Intent(this,VedioPlayActivity.class);
-      intent.putExtra("courseid",courseid);
-      intent.putExtra("url",localpath);
+      Intent intent = new Intent(this, VedioPlayActivity.class);
+      intent.putExtra("courseid", courseid);
+      intent.putExtra("url", localpath);
       startActivity(intent);
     } else if (type.equals("3")) {
       //跳转到pdf学习
       Intent intent = new Intent(this, PdfActivity.class);
       intent.putExtra("courseid", courseid);
       intent.putExtra("type", "3");
-      intent.putExtra("pdfurl",localpath);
+      intent.putExtra("pdfurl", localpath);
       startActivity(intent);
     }
   }
@@ -351,6 +351,7 @@ public class EnterpriseMycourseActivity extends BaseActivity implements OnClickL
           }
         });
   }
+
   //删除已下载的课程
   private void deleteCourseFile(String localpath, String sectionId) {
     mSectionDownloadDao.deleteSectionById(sectionId);

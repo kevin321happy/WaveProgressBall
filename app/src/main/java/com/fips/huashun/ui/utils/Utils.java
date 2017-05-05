@@ -1,6 +1,8 @@
 package com.fips.huashun.ui.utils;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -27,6 +29,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -69,6 +72,26 @@ public class Utils {
       return true;
     }
     return false;
+  }
+  /**
+   * 判断服务是否开启
+   */
+  public static boolean isServiceWork(Context context, String ServiceName) {
+    boolean isWork = false;
+    ActivityManager am = (ActivityManager) ((Activity) context)
+        .getSystemService(Context.ACTIVITY_SERVICE);
+    List<RunningServiceInfo> runningServices = am.getRunningServices(40);
+    if (runningServices.size() < 0) {
+      return false;
+    }
+    for (int i = 0; i < runningServices.size(); i++) {
+      String mName = runningServices.get(i).service.getClassName().toString();
+      if (mName.equals(ServiceName)) {
+        isWork = true;
+        break;
+      }
+    }
+    return isWork;
   }
 
   /**

@@ -21,7 +21,7 @@ import java.util.Map;
 public class DataDownloadHelp extends OrmLiteSqliteOpenHelper {
 
   private static final String DB_NAMW = "datadowload.db";
-  private static final int DB_VERSION = 2;
+  private static final int DB_VERSION = 3;
   private static DataDownloadHelp instance;
   private Map<String, Dao> daos = new HashMap<String, Dao>();
 

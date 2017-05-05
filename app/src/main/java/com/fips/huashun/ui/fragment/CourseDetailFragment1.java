@@ -347,7 +347,6 @@ public class CourseDetailFragment1 extends Fragment implements Callback, OnClick
   public void onEventMainThread(RecommendEvent event) {
     mReceivecourseid = event.getCourseid();
   }
-
   //收到课程下载的EventBus
   public void onEventMainThread(SectionDownloadStateEvent event) {
     //只要不是下载中就刷新
