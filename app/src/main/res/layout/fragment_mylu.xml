@@ -3,6 +3,35 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical">
+  <LinearLayout
+    android:id="@+id/ll_download_manage"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/space_5"
+    android:background="@color/line_hui"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+    <TextView
+      android:text="下载管理"
+      style="@style/tv_download_title" />
+    <TextView
+      android:id="@+id/tv_left_room"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginLeft="@dimen/space_10"
+      android:text="可用空间7.2G"
+      android:textColor="@color/bg_hui"
+      android:textSize="@dimen/text_size_14" />
+    <View
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:background="@color/transparent" />
+    <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/open" />
+  </LinearLayout>
 
   <ListView
     android:id="@+id/lv_list"

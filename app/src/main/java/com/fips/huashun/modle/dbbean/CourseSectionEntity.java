@@ -34,7 +34,6 @@ public class CourseSectionEntity {
   private String fileSize;//文件大小
   @DatabaseField
   private String progress;//下载进度
-
   public String getProgress() {
     return progress;
   }

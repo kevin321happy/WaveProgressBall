@@ -8,14 +8,15 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
+import android.os.StatFs;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

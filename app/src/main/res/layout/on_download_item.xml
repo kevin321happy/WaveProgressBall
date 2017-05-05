@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="60dp"
+  android:gravity="center_vertical"
+
+  >
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/space_15"
+    android:orientation="horizontal">
+    <TextView
+      android:id="@+id/iv_section_image"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="@dimen/space_10"
+      android:layout_gravity="center_vertical"
+      android:padding="@dimen/space_2"
+      android:background="@drawable/activity_tabs_shape"
+      android:text="视频"
+      android:textSize="@dimen/text_size_14" />
+    <LinearLayout
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:gravity="center_vertical"
+      android:orientation="vertical">
+      <TextView
+        android:id="@+id/tv_section_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/study_online_itemtitle"
+        android:textColor="@color/enterprise_act_hui"
+        android:textSize="@dimen/text_size_15" />
+    </LinearLayout>
+    <ImageView
+      android:id="@+id/iv_download"
+      android:layout_width="@dimen/space_35"
+      android:layout_height="@dimen/space_35"
+      android:layout_marginTop="@dimen/space_5"
+      android:layout_marginBottom="@dimen/space_10"
+      android:layout_marginRight="@dimen/space_10"
+      android:layout_gravity="center_vertical"
+      android:padding="@dimen/space_4"
+      android:src="@drawable/can_d" />
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_toRightOf="@id/iv_materials_image"
+    android:orientation="vertical">
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      <TextView
+        android:id="@+id/tv_speed"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginLeft="@dimen/space_15"
+        android:gravity="left"
+        android:text="12k/s"
+        android:textColor="@color/enterprise_act__text"
+        android:textSize="@dimen/text_size_9"
+        android:visibility="visible" />
+      <TextView
+        android:id="@+id/tv_totlesize"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginRight="@dimen/space_10"
+        android:gravity="right"
+        android:text="100M/s"
+        android:textColor="@color/enterprise_act__text"
+        android:textSize="@dimen/text_size_9" />
+    </LinearLayout>
+    <com.fips.huashun.widgets.AnimateHorizontalProgressBar
+      android:id="@+id/pb_progress"
+      android:layout_width="match_parent"
+      android:layout_height="2dp"
+      android:max="100"
+      android:visibility="visible"
+      app:ahp_progressColor="@color/title_color" />
+  </LinearLayout>
+</RelativeLayout>

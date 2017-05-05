@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:orientation="vertical"
+  tools:context="com.fips.huashun.ui.fragment.DownloadManageActivity">
+  <com.fips.huashun.ui.utils.NavigationBar
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+  </com.fips.huashun.ui.utils.NavigationBar>
+  <com.fips.huashun.widgets.SpringScrollview
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+      <!--下载中的列表-->
+      <LinearLayout
+        android:id="@+id/ll_download_queue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+          style="@style/tv_download_title"
+          android:text="正在下载" />
+        <com.fips.huashun.widgets.NoScrollListView
+          android:id="@+id/lv_download_queue"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content">
+        </com.fips.huashun.widgets.NoScrollListView>
+      </LinearLayout>
+      <!--已下载列表-->
+      <LinearLayout
+        android:layout_marginTop="@dimen/space_10"
+        android:id="@+id/ll_download_finish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+          style="@style/tv_download_title"
+          android:text="已下载" />
+        <com.fips.huashun.widgets.CustomExpandableListView
+          android:id="@+id/lv_download_finish"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"/>
+      </LinearLayout>
+    </LinearLayout>
+  </com.fips.huashun.widgets.SpringScrollview>
+</LinearLayout>

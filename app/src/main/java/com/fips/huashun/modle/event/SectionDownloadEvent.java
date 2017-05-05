@@ -1,6 +1,5 @@
 package com.fips.huashun.modle.event;
-
-/** 
+/**
  * description: 课程下载的Event
  * autour: Kevin
  * company:锦绣氘(武汉)科技有限公司

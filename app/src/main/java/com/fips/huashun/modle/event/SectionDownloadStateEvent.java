@@ -11,7 +11,21 @@ package com.fips.huashun.modle.event;
  * 落在谷底 思人生
 */
 public class SectionDownloadStateEvent {
+
+  /**
+   * 下载的时候的状态
+   * -1表示下载失败 0表示下载开始  1表示下载中  2表示下载完成
+   */
   private int state;
+  private String what;
+
+  public String getWhat() {
+    return what;
+  }
+
+  public void setWhat(String what) {
+    this.what = what;
+  }
 
   public SectionDownloadStateEvent(int state) {
     this.state = state;

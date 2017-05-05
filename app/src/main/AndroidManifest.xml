@@ -68,11 +68,8 @@
   <!-- Required -->
   <uses-permission android:name="com.fips.huashun.permission.JPUSH_MESSAGE" />
   <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
-
   <uses-permission android:name="android.permission.VIBRATE" />
-
   <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
   <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
   <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
@@ -91,7 +88,7 @@
     <meta-data
       android:name="com.baidu.lbsapi.API_KEY"
       android:value="SVDPYTMFiran0vGWRCBvhTZ9UPMnI47H" />
-    <!--  //key:开发者申请的key-->
+    <!-- //key:开发者申请的key -->
     <!-- 友盟统计 -->
     <meta-data
       android:name="UMENG_APPKEY"
@@ -100,7 +97,7 @@
     <meta-data
       android:name="UMENG_CHANNEL"
       android:value="wandoujia" />
-    <!--android:value="${UMENG_CHANNEL_VALUE}" -->
+    <!-- android:value="${UMENG_CHANNEL_VALUE}" -->
     <!-- 360更新 -->
     <activity
       android:configChanges="keyboardHidden|orientation|screenSize"
@@ -111,6 +108,7 @@
     <service
       android:exported="false"
       android:name="com.qihoo.appstore.updatelib.CheckUpdateService" />
+
     <provider
       android:authorities="com.qihoo.appstore.updatesdk.fileprovider"
       android:exported="false"
@@ -120,11 +118,11 @@
         android:name="android.support.FILE_PROVIDER_PATHS"
         android:resource="@xml/update_apk_path" />
     </provider>
-    <!--课程下载服务-->
+    <!-- 课程下载服务 -->
     <service
       android:enabled="true"
       android:exported="false"
-      android:name="com.fips.huashun.service.CourseDownloadService" />
+      android:name=".service.CourseDownloadService" />
     <!-- 极光推送服务 -->
     <!-- Required SDK 核心功能 -->
     <!-- 可配置android:process参数将PushService放在其他进程中 -->
@@ -146,6 +144,7 @@
       android:name="cn.jpush.android.service.PushReceiver">
       <intent-filter android:priority="1000">
         <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+
         <category android:name="com.fips.huashun" />
       </intent-filter>
       <intent-filter>
@@ -485,8 +484,9 @@
     <activity
       android:name=".ui.activity.ActResearchActivity"
       android:windowSoftInputMode="adjustPan|stateHidden" />
-    <!--视频拍摄-->
+    <!-- 视频拍摄 -->
     <activity android:name="mabeijianxi.camera.MediaRecorderActivity" />
+
     <service
       android:exported="false"
       android:name=".service.DownloadService" />
@@ -503,24 +503,24 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
       android:name=".ui.activity.LeaveDetailActivity"
       android:windowSoftInputMode="stateHidden|adjustPan" />
     <activity android:name=".ui.activity.EntPkListActivity" />
-    
-    <activity android:name=".ui.activity.VedioPlayActivity"
-      android:launchMode="singleTask"/>
-
+    <activity
+      android:launchMode="singleTask"
+      android:name=".ui.activity.VedioPlayActivity" />
     <activity android:name=".ui.activity.TestActivity" />
-    <activity android:name=".ui.activity.EntTesstActivity"></activity>
-    <!--录制视频的界面-->
+    <activity android:name=".ui.activity.EntTesstActivity" />
+    <!-- 录制视频的界面 -->
     <activity android:name=".ui.activity.SendSmallVideoActivity" />
-    <!--小视频播放界面-->
+    <!-- 小视频播放界面 -->
     <activity android:name=".ui.activity.VideoPlayerActivity" />
-    <!--视频选择界面-->
+    <!-- 视频选择界面 -->
     <activity android:name=".ui.activity.VideoPickActivity" />
-    <!--我的课程一级界面-->
+    <!-- 我的课程一级界面 -->
     <activity android:name=".ui.activity.EntMyCourseActivity" />
-    <!--企业文化界面-->
+    <!-- 企业文化界面 -->
     <activity android:name=".ui.activity.EnterpriseCulture" />
-    <!--企业组织架构界面-->
+    <!-- 企业组织架构界面 -->
     <activity android:name=".ui.activity.EntOrganizationActivity" />
+    <activity android:name=".ui.fragment.DownloadManageActivity"></activity>
   </application>
 
 </manifest>

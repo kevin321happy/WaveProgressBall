@@ -7,14 +7,20 @@ import android.app.ActivityManager.RunningServiceInfo;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
+import android.os.StatFs;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 import com.fips.huashun.ApplicationEx;
 import com.fips.huashun.R;
 import com.fips.huashun.common.Constants;
@@ -37,21 +43,22 @@ import com.fips.huashun.ui.activity.LoginActivity;
 import com.fips.huashun.ui.activity.PdfActivity;
 import com.fips.huashun.ui.activity.WebviewActivity;
 import com.fips.huashun.ui.adapter.CourseMuluAdapter;
+import com.fips.huashun.ui.adapter.CourseMuluAdapter.Callback;
 import com.fips.huashun.ui.utils.PreferenceUtils;
 import com.fips.huashun.ui.utils.ToastUtil;
 import com.google.gson.Gson;
 import com.loopj.android.http.RequestParams;
 import com.umeng.analytics.MobclickAgent;
 import de.greenrobot.event.EventBus;
+import java.io.File;
 import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * @author hulin
- * 课程目录界面
+ * @author hulin 课程目录界面
  */
-public class CourseDetailFragment1 extends Fragment implements CourseMuluAdapter.Callback {
+public class CourseDetailFragment1 extends Fragment implements Callback, OnClickListener {
 
   private View rootView;
   private Gson gson;
@@ -67,7 +74,8 @@ public class CourseDetailFragment1 extends Fragment implements CourseMuluAdapter
   private SectionDownloadDao mSectionDownloadDao;
   private CourseNameDao mCourseNameDao;
   private String mCoursename;
-
+  private LinearLayout mLl_download_manage;
+  private TextView mTv_leftroom;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -153,6 +161,7 @@ public class CourseDetailFragment1 extends Fragment implements CourseMuluAdapter
           public void onStart() {
             super.onStart();
           }
+
           @Override
           public void onSuccess(JSONObject data) {
             super.onSuccess(data);
@@ -229,8 +238,11 @@ public class CourseDetailFragment1 extends Fragment implements CourseMuluAdapter
 
 
   private void initView() {
-
     lv_list = (ListView) rootView.findViewById(R.id.lv_list);
+    mLl_download_manage = (LinearLayout) rootView.findViewById(R.id.ll_download_manage);
+    mTv_leftroom = (TextView) rootView.findViewById(R.id.tv_left_room);
+    mTv_leftroom.setText(getMemoryInfo());
+    mLl_download_manage.setOnClickListener(this);
     adapter = new CourseMuluAdapter(getActivity(), this);
     lv_list.setAdapter(adapter);
   }
@@ -338,7 +350,8 @@ public class CourseDetailFragment1 extends Fragment implements CourseMuluAdapter
 
   //收到课程下载的EventBus
   public void onEventMainThread(SectionDownloadStateEvent event) {
-    if (event.getState() == 1) {
+    //只要不是下载中就刷新
+    if (event.getState() != 1) {
       if (adapter != null) {
         adapter.notifyDataSetChanged();
       }
@@ -475,5 +488,33 @@ public class CourseDetailFragment1 extends Fragment implements CourseMuluAdapter
     }
   }
 
+  /**
+   * 根据路径获取内存状态
+   */
+  private String getMemoryInfo() {
+    // 获得手机内部存储控件的状态
+    File dataFileDir = Environment.getDataDirectory();
+    // 获得一个磁盘状态对象
+    StatFs stat = new StatFs(dataFileDir.getPath());
+
+    long blockSize = stat.getBlockSize();   // 获得一个扇区的大小
+
+    long totalBlocks = stat.getBlockCount();    // 获得扇区的总数
+
+    long availableBlocks = stat.getAvailableBlocks();   // 获得可用的扇区数量
+
+    // 总空间
+    String totalMemory = Formatter.formatFileSize(getActivity(), totalBlocks * blockSize);
+    // 可用空间
+    String availableMemory = Formatter.formatFileSize(getActivity(), availableBlocks * blockSize);
+    return "剩余空间: " + availableMemory;
+  }
+
+  //点击跳转到下载管理
+  @Override
+  public void onClick(View v) {
+    startActivity(new Intent(getActivity(),DownloadManageActivity.class));
+
+  }
 }
 
