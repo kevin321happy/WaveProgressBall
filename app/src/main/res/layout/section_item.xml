@@ -14,10 +14,10 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginLeft="@dimen/space_10"
+      android:textSize="@dimen/text_size_10"
       android:padding="@dimen/space_2"
       android:background="@drawable/activity_tabs_shape"
       android:text="PDF" />
-
     <TextView
       android:id="@+id/tv_course_section_name"
       android:layout_width="0dp"
@@ -25,12 +25,29 @@
       android:layout_weight="1"
       android:layout_marginLeft="@dimen/space_10"
       android:text="1、企业组织架构的绘制" />
-    <ImageView
-      android:id="@+id/iv_course_section_down"
+    <FrameLayout
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_gravity="center"
       android:layout_marginRight="@dimen/space_10"
-      android:src="@drawable/can_d" />
+      android:background="@color/transparent">
+      <TextView
+        android:id="@+id/tv_course_section_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/space_2"
+        android:background="@color/transparent"
+        android:visibility="invisible"
+        android:text="下载"
+        android:textColor="@color/enterprise_act__text"
+        android:textSize="@dimen/text_size_10" />
+      <ImageView
+        android:id="@+id/iv_course_section_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/can_d"
+        />
+    </FrameLayout>
   </LinearLayout>
   <com.fips.huashun.widgets.CustomDashedLineView
     android:id="@+id/course_section_line"

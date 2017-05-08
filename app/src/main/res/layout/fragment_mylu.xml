@@ -7,14 +7,13 @@
     android:id="@+id/ll_download_manage"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/line_hui"
+    android:background="@color/white"
     android:gravity="center_vertical"
     android:orientation="horizontal">
     <TextView
       android:layout_width="wrap_content"
       android:layout_height="@dimen/space_30"
       android:paddingLeft="@dimen/space_10"
-      android:background="@color/line_hui"
       android:gravity="center_vertical"
       android:text="下载管理"
       android:textColor="@color/text_hui"
@@ -35,12 +34,19 @@
     <ImageView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginRight="@dimen/space_10"
       android:src="@drawable/icon_more" />
   </LinearLayout>
 
-  <ListView
-    android:id="@+id/lv_list"
+  <!--<ListView
+     android:id="@+id/lv_list"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content"
+     android:listSelector="@color/transparent"></ListView>-->
+  <ExpandableListView
+    android:id="@+id/ex_listview"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:listSelector="@color/transparent"></ListView>
+    android:layout_height="match_parent"
+    android:listSelector="@color/transparent"
+    android:childDivider="@color/transparent"/>
 </LinearLayout>

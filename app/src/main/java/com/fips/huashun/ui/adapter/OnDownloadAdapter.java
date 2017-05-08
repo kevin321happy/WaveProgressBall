@@ -9,11 +9,13 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.fips.huashun.R;
 import com.fips.huashun.db.dao.SectionDownloadDao;
 import com.fips.huashun.modle.dbbean.CourseSectionEntity;
 import com.fips.huashun.modle.event.OnPuaseDownloadEvent;
+import com.fips.huashun.ui.utils.ToastUtil;
 import com.fips.huashun.ui.utils.Utils;
 import com.fips.huashun.widgets.AnimateHorizontalProgressBar;
 import de.greenrobot.event.EventBus;
@@ -35,11 +37,11 @@ public class OnDownloadAdapter extends BaseAdapter {
   private List<CourseSectionEntity> mData;
   private Context mContext;
   private SectionDownloadDao mSectionDownloadDao;
-  private OnDeleteClickListener mOnDeleteClickListener;
+  private OnSectionDownloadListener mOnSectionDownloadListener;
 
-  public void setOnDeleteClickListener(
-      OnDeleteClickListener onDeleteClickListener) {
-    mOnDeleteClickListener = onDeleteClickListener;
+  public void setOnSectionDownloadListener(
+      OnSectionDownloadListener onSectionDownloadListener) {
+    mOnSectionDownloadListener = onSectionDownloadListener;
   }
 
   public OnDownloadAdapter(Context context) {
@@ -69,12 +71,13 @@ public class OnDownloadAdapter extends BaseAdapter {
       holder = new ViewHolder();
       convertView = LayoutInflater.from(parent.getContext()).inflate(
           R.layout.on_download_item, null);
+      holder.container = (RelativeLayout) convertView.findViewById(R.id.container);
       holder.iv_section = (TextView) convertView.findViewById(R.id.iv_section_image);
       holder.tv_section_name = (TextView) convertView.findViewById(tv_section_name);
       holder.tv_section_totlesize = (TextView) convertView.findViewById(R.id.tv_totlesize);
       holder.tv_section_speed = (TextView) convertView.findViewById(R.id.tv_speed);
       holder.iv_download = (ImageView) convertView.findViewById(R.id.iv_download);
-      holder.iv_delete= (ImageView) convertView.findViewById(R.id.iv_delete);
+      holder.iv_delete = (ImageView) convertView.findViewById(R.id.iv_delete);
       holder.pb_progress = (AnimateHorizontalProgressBar) convertView
           .findViewById(R.id.pb_progress);
       convertView.setTag(holder);
@@ -97,13 +100,19 @@ public class OnDownloadAdapter extends BaseAdapter {
     }
     //设置进度
     if (sectionEntity.getProgress() != null) {
-      holder.pb_progress.setProgress(Integer.valueOf(sectionEntity.getProgress()));
+      String progress = sectionEntity.getProgress();
+      String last = progress.substring(progress.length() - 1);
+      if (last.equals("%")) {
+        progress = progress.substring(0, progress.length() - 1);
+      }
+      holder.pb_progress.setProgress(Integer.valueOf(progress));
     }
     //暂停点击的监听
     holder.iv_download.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
         if (state == 2) {
+          ToastUtil.getInstant().show("已下载成功");
           return;
         }
         OnPuaseDownloadEvent puaseDownloadEvent = new OnPuaseDownloadEvent();
@@ -117,8 +126,8 @@ public class OnDownloadAdapter extends BaseAdapter {
     holder.iv_delete.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
-        if (mOnDeleteClickListener != null) {
-          mOnDeleteClickListener
+        if (mOnSectionDownloadListener != null) {
+          mOnSectionDownloadListener
               .deleteOnDownloadSection(sectionEntity.getLocalpath(), sectionEntity.getSectionId());
         }
       }
@@ -155,7 +164,6 @@ public class OnDownloadAdapter extends BaseAdapter {
     }
   }
 
-
   //局部数据
   public void updateView(View view, int itemIndex) {
     if (view == null) {
@@ -163,6 +171,7 @@ public class OnDownloadAdapter extends BaseAdapter {
     }
     //从View中取出hodler
     ViewHolder hodler = (ViewHolder) view.getTag();
+    hodler.container = (RelativeLayout) view.findViewById(R.id.container);
     hodler.iv_section = (TextView) view.findViewById(R.id.iv_section_image);
     hodler.tv_section_name = (TextView) view.findViewById(tv_section_name);
     hodler.tv_section_totlesize = (TextView) view.findViewById(R.id.tv_totlesize);
@@ -175,7 +184,7 @@ public class OnDownloadAdapter extends BaseAdapter {
   }
 
   //刷新条目的数据
-  private void setItemData(ViewHolder hodler, int itemIndex) {
+  private void setItemData(final ViewHolder hodler, int itemIndex) {
     CourseSectionEntity sectionEntity = mData.get(itemIndex);
     final CourseSectionEntity entity = mSectionDownloadDao
         .querySectionBySectionId(sectionEntity.getSectionId());
@@ -185,9 +194,9 @@ public class OnDownloadAdapter extends BaseAdapter {
     long totlesize = Long.parseLong(entity.getFileSize());//总长度
     long courrentsize = totlesize * progress / 100;
     if (progress == 100) {
-      hodler.tv_section_totlesize
-          .setText(Utils.FormentFileSize(totlesize));//章节大小
-      hodler.iv_download.setImageResource(R.drawable.finish_d);
+      if (mOnSectionDownloadListener != null) {
+        mOnSectionDownloadListener.onFinishDownloadSection();
+      }
     } else {
       hodler.tv_section_totlesize
           .setText(
@@ -200,14 +209,22 @@ public class OnDownloadAdapter extends BaseAdapter {
     hodler.tv_section_speed.setText(progress + "%");
   }
 
-  public interface OnDeleteClickListener {
+
+  public interface OnSectionDownloadListener {
 
     //删除正在下载的课程
     void deleteOnDownloadSection(String localpath, String sectionId);
+
+    //章节下载完成
+    void onFinishDownloadSection();
   }
 
   private class ViewHolder {
 
+    public ViewHolder() {
+    }
+
+    private RelativeLayout container;
     private TextView iv_section;
     private TextView tv_section_name;
     private TextView tv_section_totlesize;

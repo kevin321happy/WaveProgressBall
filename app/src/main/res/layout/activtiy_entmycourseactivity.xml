@@ -188,7 +188,7 @@
         <LinearLayout style="@style/ent_mycourse_ll_inner">
           <TextView
             style="@style/ent_mycourse_tv_state"
-            android:text="已下载" />
+            android:text="下载管理" />
           <TextView
             android:id="@+id/tv_has_download"
             style="@style/ent_mycourse_tv_count"

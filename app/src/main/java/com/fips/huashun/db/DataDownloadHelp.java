@@ -21,7 +21,7 @@ import java.util.Map;
 public class DataDownloadHelp extends OrmLiteSqliteOpenHelper {
 
   private static final String DB_NAMW = "datadowload.db";
-  private static final int DB_VERSION = 3;
+  private static final int DB_VERSION = 2;
   private static DataDownloadHelp instance;
   private Map<String, Dao> daos = new HashMap<String, Dao>();
 
@@ -44,7 +44,6 @@ public class DataDownloadHelp extends OrmLiteSqliteOpenHelper {
   @Override
   public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion,
       int newVersion) {
-//    onUpgrade
     //更新表
     try {
       TableUtils.dropTable(connectionSource, DataDownloadInfo.class, true);
@@ -55,7 +54,6 @@ public class DataDownloadHelp extends OrmLiteSqliteOpenHelper {
       e.printStackTrace();
     }
   }
-
 
   //单例获取该实例
   public static synchronized DataDownloadHelp getHelper(Context context) {

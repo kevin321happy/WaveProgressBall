@@ -85,15 +85,17 @@ public class SectionDownloadDao {
 
   //查询正在下载中的课程
   public List<CourseSectionEntity> querySectionOnDownload() {
-    List<CourseSectionEntity> mlist=null;
+    List<CourseSectionEntity> mlist = null;
     //查询所有的下载中的课程
     try {
-      mlist = mCourseDownloadDao.queryBuilder().where().eq("state", 1).or().eq("state", 3).query();
+      mlist = mCourseDownloadDao.queryBuilder().where().eq("state", 1).or().eq("state", 3).or()
+          .eq("state", -1).query();
     } catch (SQLException e) {
       e.printStackTrace();
     }
     return mlist;
   }
+
   //根据章节Id来查询章节内容
   public CourseSectionEntity querySectionBySectionId(String id) {
     CourseSectionEntity courseSectionEntity = null;
@@ -105,6 +107,7 @@ public class SectionDownloadDao {
     }
     return courseSectionEntity;
   }
+
   //根据课程ID来查询课程
   public List<CourseSectionEntity> querySectionByCourseId(String courseid) {
     List<CourseSectionEntity> sectionEntities = null;
@@ -116,6 +119,19 @@ public class SectionDownloadDao {
       e.printStackTrace();
     }
     return sectionEntities;
+
+  }
+
+  //查询所有已下载的课程
+  public List<CourseSectionEntity> queryAllHaveDownload() {
+    List<CourseSectionEntity> entityList = null;
+    try {
+      entityList = mCourseDownloadDao.queryBuilder().where().eq("state", 2)
+          .query();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return entityList;
   }
 
   //根据章节的Id删除章节

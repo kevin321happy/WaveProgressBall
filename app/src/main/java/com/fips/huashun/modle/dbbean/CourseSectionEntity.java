@@ -10,6 +10,16 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable
 public class CourseSectionEntity {
 
+  public CourseSectionEntity() {
+  }
+  public CourseSectionEntity(int id, String sectionId, String sectionUrl, int state,
+      String localpath) {
+    this.id = id;
+    this.sectionId = sectionId;
+    this.sectionUrl = sectionUrl;
+    this.state = state;
+    this.localpath = localpath;
+  }
   @DatabaseField(generatedId = true)//自增主键
   private long id;
   @DatabaseField(unique = true)//章节ID,唯一字段
@@ -24,7 +34,7 @@ public class CourseSectionEntity {
   private String localpath;//文件的本地路径
   @DatabaseField
   private String courseid;//课程的Id
-  @DatabaseField//非空
+  @DatabaseField
   private String chapterId;//章节ID
   @DatabaseField
   private String chapterName;//章节名
@@ -34,95 +44,14 @@ public class CourseSectionEntity {
   private String fileSize;//文件大小
   @DatabaseField
   private String progress;//下载进度
-  @DatabaseField
-  private long speed;//下载速度
 
-//  public long getSpeed() {
-//    return speed;
-//  }
-//
-//  public void setSpeed(long speed) {
-//    this.speed = speed;
-//  }
 
-  public String getProgress() {
-    return progress;
-  }
-  public void setProgress(String progress) {
-    this.progress = progress;
-  }
-
-  public String getChapterId() {
-    return chapterId;
-  }
-  public void setChapterId(String chapterId) {
-    this.chapterId = chapterId;
-  }
-
-  public String getChapterName() {
-    return chapterName;
-  }
-
-  public void setChapterName(String chapterName) {
-    this.chapterName = chapterName;
-  }
-
-  public String getFileType() {
-    return fileType;
-  }
-  public void setFileType(String fileType) {
-    this.fileType = fileType;
-  }
-
-  public String getFileSize() {
-    return fileSize;
-  }
-
-  public void setFileSize(String fileSize) {
-    this.fileSize = fileSize;
-  }
-
-  public String getSectionname() {
-    return sectionname;
-  }
-
-  public void setSectionname(String sectionname) {
-    this.sectionname = sectionname;
-  }
-
-  public String getCourseid() {
-    return courseid;
-  }
-  public void setCourseid(String courseid) {
-    this.courseid = courseid;
-  }
-
-  public CourseSectionEntity() {
-
-  }
-
-  public String getCourseId() {
-    return courseid;
-  }
-
-  public void setCourseId(String courseId) {
-    this.courseid = courseId;
-  }
-
-  public CourseSectionEntity(int id, String sectionId, String sectionUrl, int state,
-      String localpath) {
-    this.id = id;
-    this.sectionId = sectionId;
-    this.sectionUrl = sectionUrl;
-    this.state = state;
-    this.localpath = localpath;
-  }
 
   public long getId() {
     return id;
   }
 
-  public void setId(int id) {
+  public void setId(long id) {
     this.id = id;
   }
 
@@ -132,6 +61,14 @@ public class CourseSectionEntity {
 
   public void setSectionId(String sectionId) {
     this.sectionId = sectionId;
+  }
+
+  public String getSectionname() {
+    return sectionname;
+  }
+
+  public void setSectionname(String sectionname) {
+    this.sectionname = sectionname;
   }
 
   public String getSectionUrl() {
@@ -157,20 +94,52 @@ public class CourseSectionEntity {
   public void setLocalpath(String localpath) {
     this.localpath = localpath;
   }
-  @Override
-  public String toString() {
-    return "CourseSectionEntity{" +
-        "id=" + id +
-        ", sectionId='" + sectionId + '\'' +
-        ", sectionname='" + sectionname + '\'' +
-        ", sectionUrl='" + sectionUrl + '\'' +
-        ", state=" + state +
-        ", localpath='" + localpath + '\'' +
-        ", courseid='" + courseid + '\'' +
-        ", chapterId='" + chapterId + '\'' +
-        ", chapterName='" + chapterName + '\'' +
-        ", fileType='" + fileType + '\'' +
-        ", fileSize='" + fileSize + '\'' +
-        '}';
+
+  public String getCourseid() {
+    return courseid;
+  }
+
+  public void setCourseid(String courseid) {
+    this.courseid = courseid;
+  }
+
+  public String getChapterId() {
+    return chapterId;
+  }
+
+  public void setChapterId(String chapterId) {
+    this.chapterId = chapterId;
+  }
+
+  public String getChapterName() {
+    return chapterName;
+  }
+
+  public void setChapterName(String chapterName) {
+    this.chapterName = chapterName;
+  }
+
+  public String getFileType() {
+    return fileType;
+  }
+
+  public void setFileType(String fileType) {
+    this.fileType = fileType;
+  }
+
+  public String getFileSize() {
+    return fileSize;
+  }
+
+  public void setFileSize(String fileSize) {
+    this.fileSize = fileSize;
+  }
+
+  public String getProgress() {
+    return progress;
+  }
+
+  public void setProgress(String progress) {
+    this.progress = progress;
   }
 }

@@ -1,66 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:fitsSystemWindows="true">
-    <com.fips.huashun.ui.utils.NavigationBar
-        android:id="@+id/na_bar_task"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </com.fips.huashun.ui.utils.NavigationBar>
-    <HorizontalScrollView
-        android:id="@+id/scrollview"
-        android:layout_width="match_parent"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  android:orientation="vertical">
+  <com.fips.huashun.ui.utils.NavigationBar
+    android:id="@+id/na_bar_task"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"></com.fips.huashun.ui.utils.NavigationBar>
+  <HorizontalScrollView
+    android:id="@+id/scrollview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none">
+    <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+      <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <!--<RadioButton-->
+        <!--style="@style/radio_style"-->
+        <!--android:id="@+id/rb1"-->
+        <!--android:checked="true"-->
+        <!--android:text="今日任务"/>-->
+        <!--  <RadioButton
+              style="@style/radio_style"
+              android:id="@+id/rb2"
+              android:text="我的投票"/>-->
+        <!--<RadioButton-->
+        <!--style="@style/radio_style"-->
+        <!--android:id="@+id/rb3"-->
+        <!--android:text="企业任务"/>-->
+        <RadioButton
+          android:id="@+id/rb3"
+          style="@style/task_radio_style"
+          android:text="我的调研" />
+        <RadioButton
+          android:id="@+id/rb4"
+          style="@style/task_radio_style"
+          android:text="我的考试" />
+      </RadioGroup>
+      <LinearLayout
+        android:id="@+id/tv_indicator"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:scrollbars="none" >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-            <RadioGroup
-                android:id="@+id/rg"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:orientation="horizontal" >
-                <!--<RadioButton-->
-                    <!--style="@style/radio_style"-->
-                    <!--android:id="@+id/rb1"-->
-                    <!--android:checked="true"-->
-                    <!--android:text="今日任务"/>-->
-                <RadioButton
-                    style="@style/radio_style"
-                    android:id="@+id/rb2"
-                    android:text="我的投票"/>
-                <!--<RadioButton-->
-                <!--style="@style/radio_style"-->
-                <!--android:id="@+id/rb3"-->
-                <!--android:text="企业任务"/>-->
-                <RadioButton
-                style="@style/radio_style"
-                android:id="@+id/rb3"
-                android:text="我的调研"/>
-                <RadioButton
-                    style="@style/radio_style"
-                    android:id="@+id/rb4"
-                    android:text="我的考试"/>
-            </RadioGroup>
-            <TextView
-                android:id="@+id/tv_indicator"
-                android:layout_width="@dimen/space_90"
-                android:layout_height="2dp"
-                android:background="@color/mycourse_text_blue" />
-        </LinearLayout>
-    </HorizontalScrollView>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:background="@color/green_dan"/>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_enterprise_pkpage"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:flipInterval="30"
-        android:persistentDrawingCache="animation" />
+        android:background="@color/transparent"
+        android:gravity="center_horizontal">
+      <TextView
+        android:layout_width="@dimen/space_90"
+        android:layout_height="2dp"
+        android:background="@color/mycourse_text_blue" />
+      </LinearLayout>
+    </LinearLayout>
+  </HorizontalScrollView>
+  <View
+    android:layout_width="match_parent"
+    android:layout_height="10dp"
+    android:background="@color/green_dan" />
+  <android.support.v4.view.ViewPager
+    android:id="@+id/vp_enterprise_pkpage"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:flipInterval="30"
+    android:persistentDrawingCache="animation" />
 </LinearLayout>

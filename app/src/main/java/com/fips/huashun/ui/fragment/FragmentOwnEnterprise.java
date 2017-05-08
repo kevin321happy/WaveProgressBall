@@ -30,10 +30,10 @@ import com.fips.huashun.net.HttpUtil;
 import com.fips.huashun.net.LoadDatahandler;
 import com.fips.huashun.net.LoadJsonHttpResponseHandler;
 import com.fips.huashun.ui.activity.CourseDetailActivity;
+import com.fips.huashun.ui.activity.EntMyCourseActivity;
 import com.fips.huashun.ui.activity.EntOrganizationActivity;
 import com.fips.huashun.ui.activity.EnterpriseActList;
 import com.fips.huashun.ui.activity.EnterpriseCourseActivity;
-import com.fips.huashun.ui.activity.EnterpriseMycourseActivity;
 import com.fips.huashun.ui.activity.EnterpriseNoticeActivity;
 import com.fips.huashun.ui.activity.EnterprisePkActivity;
 import com.fips.huashun.ui.activity.TaskActivity;
@@ -223,7 +223,7 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
             break;
           case 4:
             // 我的课程
-            intent = new Intent(getActivity(), EnterpriseMycourseActivity.class);
+            intent = new Intent(getActivity(), EntMyCourseActivity.class);
             intent.putExtra("enterpriseId", enterpriseId);
             startActivity(intent);
             break;
@@ -280,7 +280,6 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
           @Override
           public void onSuccess(JSONObject data) {
             super.onSuccess(data);
-            //保存jsonObject数据,保存10天
             mACache.put(CacheConstans.OWNENTERPISE_INFO_JSON, data, ACache.TIME_DAY * 2);
             showOwnEnterprise(data);
           }

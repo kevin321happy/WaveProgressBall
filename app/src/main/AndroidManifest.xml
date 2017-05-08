@@ -520,7 +520,7 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
     <activity android:name=".ui.activity.EnterpriseCulture" />
     <!-- 企业组织架构界面 -->
     <activity android:name=".ui.activity.EntOrganizationActivity" />
-    <activity android:name=".ui.fragment.DownloadManageActivity"></activity>
+    <activity android:name=".ui.activity.DownloadManageActivity"></activity>
   </application>
 
 </manifest>

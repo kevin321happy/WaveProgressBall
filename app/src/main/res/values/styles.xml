@@ -196,7 +196,18 @@
 
   <style name="radio_style">
     <item name="android:layout_width">@dimen/space_90</item>
-    <!-- <item name="android:layout_weight">1</item>-->
+     <item name="android:layout_weight">1</item>
+    <item name="android:layout_height">wrap_content</item>
+    <item name="android:button">@null</item>
+    <item name="android:textColor">@drawable/selector_tittle_color</item>
+    <item name="android:gravity">center</item>
+    <item name="android:textSize">14sp</item>
+    <item name="android:background">@android:color/transparent</item>
+  </style>
+  <!--企业任务task_radio_style-->
+  <style name="task_radio_style">
+    <item name="android:layout_width">180dp</item>
+    <item name="android:layout_weight">1</item>
     <item name="android:layout_height">wrap_content</item>
     <item name="android:button">@null</item>
     <item name="android:textColor">@drawable/selector_tittle_color</item>

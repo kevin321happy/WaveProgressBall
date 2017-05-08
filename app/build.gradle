@@ -32,7 +32,7 @@ android {
         /*突破应用方法数65535的限制  'x86'*/
         ndk {
             //cpu类型的.so库。
-            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a', 'x86'
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
         }
     }
     sourceSets {
@@ -48,7 +48,7 @@ android {
         }
         debug {
             minifyEnabled false
-            //  signingConfig signingConfigs.debug
+            //signingConfig signingConfigs.debug
             proguardFiles 'proguard-rules.pro'
             signingConfig signingConfigs.config
         }

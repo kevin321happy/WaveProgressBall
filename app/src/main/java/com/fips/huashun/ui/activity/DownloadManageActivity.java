@@ -1,4 +1,4 @@
-package com.fips.huashun.ui.fragment;
+package com.fips.huashun.ui.activity;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -16,9 +16,6 @@ import com.fips.huashun.modle.dbbean.CourseEntity;
 import com.fips.huashun.modle.dbbean.CourseSectionEntity;
 import com.fips.huashun.modle.event.SectionDownloadStateEvent;
 import com.fips.huashun.service.CourseDownloadService;
-import com.fips.huashun.ui.activity.BaseActivity;
-import com.fips.huashun.ui.activity.PdfActivity;
-import com.fips.huashun.ui.activity.VedioPlayActivity;
 import com.fips.huashun.ui.adapter.HaveDownloadedAdapter;
 import com.fips.huashun.ui.adapter.HaveDownloadedAdapter.OnChildItemClickListener;
 import com.fips.huashun.ui.adapter.OnDownloadAdapter;

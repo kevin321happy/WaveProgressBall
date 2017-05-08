@@ -18,8 +18,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import com.fips.huashun.ApplicationEx;
 import com.fips.huashun.R;
@@ -27,6 +27,7 @@ import com.fips.huashun.common.Constants;
 import com.fips.huashun.db.dao.CourseNameDao;
 import com.fips.huashun.db.dao.SectionDownloadDao;
 import com.fips.huashun.modle.bean.BeginEventType;
+import com.fips.huashun.modle.bean.CourseMuluTitle;
 import com.fips.huashun.modle.bean.CoursrdetailInfo;
 import com.fips.huashun.modle.bean.CouseMuluInfo;
 import com.fips.huashun.modle.bean.CouserMulu;
@@ -39,11 +40,12 @@ import com.fips.huashun.net.HttpUtil;
 import com.fips.huashun.net.LoadDatahandler;
 import com.fips.huashun.net.LoadJsonHttpResponseHandler;
 import com.fips.huashun.service.CourseDownloadService;
+import com.fips.huashun.ui.activity.DownloadManageActivity;
 import com.fips.huashun.ui.activity.LoginActivity;
 import com.fips.huashun.ui.activity.PdfActivity;
 import com.fips.huashun.ui.activity.WebviewActivity;
 import com.fips.huashun.ui.adapter.CourseMuluAdapter;
-import com.fips.huashun.ui.adapter.CourseMuluAdapter.Callback;
+import com.fips.huashun.ui.adapter.CourseMuluAdapter.OnSectionItemClickListener;
 import com.fips.huashun.ui.utils.PreferenceUtils;
 import com.fips.huashun.ui.utils.ToastUtil;
 import com.google.gson.Gson;
@@ -51,23 +53,25 @@ import com.loopj.android.http.RequestParams;
 import com.umeng.analytics.MobclickAgent;
 import de.greenrobot.event.EventBus;
 import java.io.File;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
  * @author hulin 课程目录界面
  */
-public class CourseDetailFragment1 extends Fragment implements Callback, OnClickListener {
+public class CourseDetailFragment1 extends Fragment implements OnClickListener,
+    OnSectionItemClickListener {
 
   private View rootView;
   private Gson gson;
-  private ListView lv_list;
   private CourseMuluAdapter adapter;
   private String courseId;
   private CouserMulu couseMulus;
-  private String mTeacherid;
-  private String mBuytype;
   private boolean mIsEnterpriseCourse;
   private String mReceivecourseid;
   private CoursrdetailInfo mCoursrdetailInfo;
@@ -76,15 +80,17 @@ public class CourseDetailFragment1 extends Fragment implements Callback, OnClick
   private String mCoursename;
   private LinearLayout mLl_download_manage;
   private TextView mTv_leftroom;
+  private ExpandableListView mEx_listview;
+  private CourseMuluAdapter mAdapter;
+  private List<CourseMuluTitle> mGroup;
+  private Map<String, List<CouseMuluInfo>> mMap;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     EventBus.getDefault().register(this);
-    if (mSectionDownloadDao == null) {
-      mSectionDownloadDao = new SectionDownloadDao(getContext());
-      mCourseNameDao = new CourseNameDao(getContext());
-    }
+    mSectionDownloadDao = new SectionDownloadDao(getContext());
+    mCourseNameDao = new CourseNameDao(getContext());
   }
 
   @Override
@@ -93,6 +99,10 @@ public class CourseDetailFragment1 extends Fragment implements Callback, OnClick
     //开启服务
     //先判断服务是否开启,没开启就开启
     //开启服务
+    //在视图可见的时候刷新界面
+    if (mAdapter != null) {
+      mAdapter.notifyDataSetChanged();
+    }
     boolean serviceWork = isServiceWork(getActivity(),
         "com.fips.huashun.service.CourseDownloadService");
     if (serviceWork == false) {
@@ -170,22 +180,39 @@ public class CourseDetailFragment1 extends Fragment implements Callback, OnClick
               String msg = data.get("msg").toString();
               if (suc.equals("y")) {
                 couseMulus = gson.fromJson(data.getString("data").toString(), CouserMulu.class);
-                List<CouseMuluInfo> couseMuluInfos = couseMulus.getData();
-                if (couseMuluInfos.size() == 0) {
+                List<CouseMuluInfo> CouseMuluInfos = couseMulus.getData();
+                if (CouseMuluInfos.size() == 0) {
                   return;
                 }
-                String eid = couseMuluInfos.get(0).getEid();
-                mCoursename = couseMuluInfos.get(0).getCourseName();
+                String eid = CouseMuluInfos.get(0).getEid();
+                mCoursename = CouseMuluInfos.get(0).getCourseName();
                 if (eid.equals("-1")) {//-1为非企业的课程
                   mIsEnterpriseCourse = false;
+                  mLl_download_manage.setVisibility(View.GONE);
                 } else {
                   mIsEnterpriseCourse = true;
+                  mLl_download_manage.setVisibility(View.VISIBLE);
                   //如果为企业课程保存课程信息到数据库
                   //保存数据到数据库
-                  saveToDb(couseMuluInfos);
+                  try {
+                    saveToDb(CouseMuluInfos);
+                  } catch (SQLException e) {
+                    e.printStackTrace();
+                  }
                 }
-                adapter.setListItems(couseMuluInfos);
-                adapter.notifyDataSetChanged();
+                CourseMuluTitle muluTitle = new CourseMuluTitle();
+                muluTitle.setTitlename(mCoursename);
+                mGroup.add(muluTitle);
+                mMap.put(mGroup.get(0).getTitlename(), CouseMuluInfos);
+                if (mAdapter != null) {
+                  mAdapter.setData(mGroup, mMap);
+                }
+                mEx_listview.setAdapter(mAdapter);
+                //取消自带的指示器
+                mEx_listview.setGroupIndicator(null);
+                //默认展开第一个列表
+                mEx_listview.expandGroup(0);
+                mAdapter.notifyDataSetChanged();
               }
             } catch (JSONException e) {
               e.printStackTrace();
@@ -200,7 +227,7 @@ public class CourseDetailFragment1 extends Fragment implements Callback, OnClick
   }
 
   //保存课程id到章节表
-  private void saveToDb(final List<CouseMuluInfo> couseMuluInfos) {
+  private void saveToDb(final List<CouseMuluInfo> couseMuluInfos) throws SQLException {
     new Thread(new Runnable() {
       @Override
       public void run() {
@@ -225,7 +252,7 @@ public class CourseDetailFragment1 extends Fragment implements Callback, OnClick
             courseSectionEntity.setState(0);//状态
             courseSectionEntity.setSectionId(couseMuluInfo.getSessonid());//章节ID
             courseSectionEntity.setSectionUrl(url);//章节下载路径
-            courseSectionEntity.setCourseId(couseMuluInfo.getCourseId());//课程ID
+            courseSectionEntity.setCourseid(couseMuluInfo.getCourseId());//课程ID
             courseSectionEntity.setSectionname(couseMuluInfo.getSectionname());//节名
             courseSectionEntity.setFileSize(couseMuluInfo.getFileSize());//文件大小
             courseSectionEntity.setFileType(type);//文件的类型
@@ -238,53 +265,19 @@ public class CourseDetailFragment1 extends Fragment implements Callback, OnClick
 
 
   private void initView() {
-    lv_list = (ListView) rootView.findViewById(R.id.lv_list);
+    mEx_listview = (ExpandableListView) rootView.findViewById(R.id.ex_listview);
     mLl_download_manage = (LinearLayout) rootView.findViewById(R.id.ll_download_manage);
     mTv_leftroom = (TextView) rootView.findViewById(R.id.tv_left_room);
     mTv_leftroom.setText(getMemoryInfo());
     mLl_download_manage.setOnClickListener(this);
-    adapter = new CourseMuluAdapter(getActivity(), this);
-    lv_list.setAdapter(adapter);
+    mAdapter = new CourseMuluAdapter(getActivity());
+    mAdapter.setOnSectionItemClickListener(this);
+    mMap = new HashMap<>();
+    mGroup = new ArrayList<>();
+    //设置适配器
+//    mEx_listview.setAdapter(mAdapter);
   }
 
-  @Override
-  public void click(View v, int position) {
-    switch ((int) v.getTag()) {
-      case 1:
-        for (int a = 0; a < adapter.getAllListDate().size(); a++) {
-          if (a == position) {
-            if (adapter.getAllListDate().get(a).isclik()) {
-              adapter.getAllListDate().get(a).setIsclik(false);
-            } else {
-              adapter.getAllListDate().get(a).setIsclik(true);
-            }
-          } else {
-            adapter.getAllListDate().get(a).setIsclik(false);
-          }
-        }
-        adapter.notifyDataSetChanged();
-        break;
-      case 2:
-        CouseMuluInfo item = (CouseMuluInfo) adapter.getItem(position);
-        if (ApplicationEx.getInstance().isLogined()) {
-          if (couseMulus != null && couseMulus.getBuytype().equals("1")) {
-            startLearnCourse(item);
-          } else {
-            if (mIsEnterpriseCourse) {
-              startLearnCourse(item);
-              //TODO 模拟购买课程
-              buyCourseById();
-            } else {
-              ToastUtil.getInstant().show("未购买课程");
-            }
-          }
-        } else {
-          Intent toLogin = new Intent(getActivity(), LoginActivity.class);
-          startActivityForResult(toLogin, 1024);
-        }
-        break;
-    }
-  }
 
   //开始学习课程
   private void startLearnCourse(CouseMuluInfo item) {
@@ -347,12 +340,13 @@ public class CourseDetailFragment1 extends Fragment implements Callback, OnClick
   public void onEventMainThread(RecommendEvent event) {
     mReceivecourseid = event.getCourseid();
   }
+
   //收到课程下载的EventBus
   public void onEventMainThread(SectionDownloadStateEvent event) {
     //只要不是下载中就刷新
     if (event.getState() != 1) {
-      if (adapter != null) {
-        adapter.notifyDataSetChanged();
+      if (mAdapter != null) {
+        mAdapter.notifyDataSetChanged();
       }
     }
   }
@@ -512,8 +506,31 @@ public class CourseDetailFragment1 extends Fragment implements Callback, OnClick
   //点击跳转到下载管理
   @Override
   public void onClick(View v) {
-    startActivity(new Intent(getActivity(),DownloadManageActivity.class));
+    startActivity(new Intent(getActivity(), DownloadManageActivity.class));
 
+  }
+
+  //点击了条目去播放
+  @Override
+  public void onSectionItemClick(int groupPosition, int childPosition) {
+//    CouseMuluInfo item = (CouseMuluInfo) adapter.getItem(position);
+    CouseMuluInfo item = (CouseMuluInfo) mAdapter.getChild(groupPosition, childPosition);
+    if (ApplicationEx.getInstance().isLogined()) {
+      if (couseMulus != null && couseMulus.getBuytype().equals("1")) {
+        startLearnCourse(item);
+      } else {
+        if (mIsEnterpriseCourse) {
+          startLearnCourse(item);
+          //TODO 模拟购买课程
+          buyCourseById();
+        } else {
+          ToastUtil.getInstant().show("未购买课程");
+        }
+      }
+    } else {
+      Intent toLogin = new Intent(getActivity(), LoginActivity.class);
+      startActivityForResult(toLogin, 1024);
+    }
   }
 }
 

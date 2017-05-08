@@ -8,11 +8,12 @@ import android.support.annotation.Nullable;
 import com.fips.huashun.R;
 import com.fips.huashun.db.dao.SectionDownloadDao;
 import com.fips.huashun.modle.dbbean.CourseSectionEntity;
-import com.fips.huashun.modle.event.ChangeDownLoadEvent;
 import com.fips.huashun.modle.event.OnPuaseDownloadEvent;
 import com.fips.huashun.modle.event.SectionDownloadEvent;
 import com.fips.huashun.modle.event.SectionDownloadStateEvent;
+import com.fips.huashun.ui.utils.SPUtils;
 import com.fips.huashun.ui.utils.ToastUtil;
+import com.google.gson.Gson;
 import com.yanzhenjie.nohttp.Headers;
 import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.download.DownloadListener;
@@ -43,11 +44,17 @@ public class CourseDownloadService extends Service {
   private EventBus mEventBus;
   private ToastUtil mToastUtil;
   private Map<String, DownloadRequest> DownloadRequests;
+  private Gson mGson;
 
   @Override
 
   public void onCreate() {
     super.onCreate();
+    //创建表
+//    mGson = new Gson();
+    if (mSectionDownloadDao == null) {
+      mSectionDownloadDao = new SectionDownloadDao(getApplication());
+    }
     mEventBus = EventBus.getDefault();
     mEventBus.register(this);
     mDownloadQueue = NoHttp.newDownloadQueue(3);
@@ -88,40 +95,44 @@ public class CourseDownloadService extends Service {
 
   @Override
   public void onDestroy() {
-    super.onDestroy();
+    //保存到本地
+    String downloadJson = mGson.toJson(DownloadRequests);
+    SPUtils.put(getApplication(), "save", downloadJson);
     if (mEventBus != null) {
       mEventBus.unregister(this);
     }
     mDownloadQueue.cancelAll();
+    //重启服务
+    Intent sevice = new Intent(this, CourseDownloadService.class);
+    this.startService(sevice);
+    super.onDestroy();
   }
 
   //当收到暂停或继续下载的event
   public void onEventMainThread(OnPuaseDownloadEvent event) {
     String pid = event.getWhat();
     String sectionUrl = event.getSectionUrl();
-    DownloadRequest downloadRequest = DownloadRequests.get(pid);
-    if (downloadRequest == null) {
-      return;
-//      String filename = pid + sectionUrl.substring(sectionUrl.lastIndexOf("."));
-//      addToDownloadQueue(pid, sectionUrl, filename);
-    } else {
-      //在下载的时候点击了,暂停当前下载
-      if (downloadRequest.isStarted() && !downloadRequest.isFinished()) {
-        downloadRequest.cancel();
-      } else if (!downloadRequest.inQueue()) {
+    if (DownloadRequests != null) {
+      DownloadRequest downloadRequest = DownloadRequests.get(pid);
+      if (downloadRequest == null) {
         String filename = pid + sectionUrl.substring(sectionUrl.lastIndexOf("."));
         addToDownloadQueue(pid, sectionUrl, filename);
+      } else {
+        //在下载的时候点击了,暂停当前下载
+        if (downloadRequest.isStarted() && !downloadRequest.isFinished()) {
+          downloadRequest.cancel();
+        } else if (!downloadRequest.inQueue()) {
+          String filename = pid + sectionUrl.substring(sectionUrl.lastIndexOf("."));
+          addToDownloadQueue(pid, sectionUrl, filename);
+        }
       }
+    } else {
+      if (DownloadRequests == null) {
+        DownloadRequests = new HashMap<>();
+      }
+      String filename = pid + sectionUrl.substring(sectionUrl.lastIndexOf("."));
+      addToDownloadQueue(pid, sectionUrl, filename);
     }
-  }
-
-  //当收到取消下载的
-  public void onEventMainThread(ChangeDownLoadEvent event) {
-    String pid = event.getPid();
-    final String localPath = event.getLocalPath();
-    //取消下载任务
-    mDownloadQueue.cancelBySign(pid);
-    mDownloadQueue.notify();
   }
 
   //当收到了EventBus的下载的消息
@@ -130,18 +141,14 @@ public class CourseDownloadService extends Service {
       ToastUtil.getInstant().show("亲，当前下载队列已满,请稍后尝试！");
       return;
     }
-    ToastUtil.getInstant().show("已加入下载队列！");
     final String sectionUrl = event.getSectionUrl();
     final String sectionId = event.getSectionId();
-
-    if (mSectionDownloadDao == null) {
-      mSectionDownloadDao = new SectionDownloadDao(getApplication());
-    }
     final String filename = sectionId + sectionUrl.substring(sectionUrl.lastIndexOf("."));
     CourseSectionEntity sectionEntity = mSectionDownloadDao
         .querySectionBySectionId(sectionId);
     sectionEntity.setLocalpath(mPath + filename);
     mSectionDownloadDao.upDataInfo(sectionEntity);
+    ToastUtil.getInstant().show("已加入下载队列！");
     //加入下载的队列中
     addToDownloadQueue(sectionId, sectionUrl, filename);
   }
@@ -151,7 +158,6 @@ public class CourseDownloadService extends Service {
     if (DownloadRequests == null) {
       DownloadRequests = new HashMap<>();
     }
-    String s = pid;
     DownloadRequest downloadRequest = NoHttp
         .createDownloadRequest(url, mPath, name, true, true);
     //设置取消请求的标识
@@ -159,7 +165,6 @@ public class CourseDownloadService extends Service {
     //将任务加入队列
     mDownloadQueue.add(Integer.parseInt(pid), downloadRequest, mDownloadListener);
   }
-
   //文件下载的监听
   private DownloadListener mDownloadListener = new DownloadListener() {
     @Override
@@ -190,7 +195,7 @@ public class CourseDownloadService extends Service {
       } else if (exception instanceof URLError) {
         mToastUtil.show(R.string.download_error_url);
       } else {
-        mToastUtil.show(R.string.download_error_un);
+//        mToastUtil.show(R.string.download_error_un);
       }
     }
 
@@ -259,17 +264,18 @@ public class CourseDownloadService extends Service {
           .subscribeOn(Schedulers.io()) // 指定 subscribe() 发生在 IO 线程
           .observeOn(AndroidSchedulers.mainThread()) // 指定 Subscriber 的回调发生在主线程
           .subscribe(new Action1<SectionDownloadStateEvent>() {
-        @Override
-        public void call(SectionDownloadStateEvent sectionDownloadStateEvent) {
-          if (mEventBus != null) {
-            CourseSectionEntity sectionEntity = mSectionDownloadDao
-                .querySectionBySectionId(what + "");
-            String s = sectionEntity.toString();
-            mEventBus.post(sectionDownloadStateEvent);
-          }
-        }
-      });
+            @Override
+            public void call(SectionDownloadStateEvent sectionDownloadStateEvent) {
+              if (mEventBus != null) {
+                CourseSectionEntity sectionEntity = mSectionDownloadDao
+                    .querySectionBySectionId(what + "");
+                String s = sectionEntity.toString();
+                mEventBus.post(sectionDownloadStateEvent);
+              }
+            }
+          });
     }
+
     @Override
     public void onCancel(int what) {
       //保存到数据库状态3

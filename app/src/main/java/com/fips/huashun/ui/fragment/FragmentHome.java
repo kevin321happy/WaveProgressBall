@@ -22,10 +22,12 @@ import com.fips.huashun.R;
 import com.fips.huashun.common.ACache;
 import com.fips.huashun.common.CacheConstans;
 import com.fips.huashun.common.Constants;
+import com.fips.huashun.db.dao.SectionDownloadDao;
 import com.fips.huashun.modle.bean.CourseInfo;
 import com.fips.huashun.modle.bean.GridViewBean;
 import com.fips.huashun.modle.bean.HomeInfo;
 import com.fips.huashun.modle.bean.TopImgInfo;
+import com.fips.huashun.modle.dbbean.CourseSectionEntity;
 import com.fips.huashun.net.HttpUtil;
 import com.fips.huashun.net.LoadDatahandler;
 import com.fips.huashun.net.LoadJsonHttpResponseHandler;
@@ -341,6 +343,11 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
     switch (v.getId()) {
       case R.id.iv_image_left:
         ToastUtil.getInstant().show("暂未开放！");
+        SectionDownloadDao downloadDao = new SectionDownloadDao(getActivity());
+        List<CourseSectionEntity> sectionEntities = downloadDao.queryAll();
+        for (CourseSectionEntity sectionEntity : sectionEntities) {
+          Log.i("test999",sectionEntity.toString());
+        }
         return;
       case R.id.ll_message:
         if (ApplicationEx.getInstance().isLogined()) {
