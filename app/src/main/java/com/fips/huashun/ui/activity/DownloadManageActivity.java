@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import com.fips.huashun.R;
 import com.fips.huashun.db.dao.CourseNameDao;
 import com.fips.huashun.db.dao.SectionDownloadDao;
@@ -20,7 +22,7 @@ import com.fips.huashun.ui.activity.VedioPlayActivity;
 import com.fips.huashun.ui.adapter.HaveDownloadedAdapter;
 import com.fips.huashun.ui.adapter.HaveDownloadedAdapter.OnChildItemClickListener;
 import com.fips.huashun.ui.adapter.OnDownloadAdapter;
-import com.fips.huashun.ui.adapter.OnDownloadAdapter.OnDeleteClickListener;
+import com.fips.huashun.ui.adapter.OnDownloadAdapter.OnSectionDownloadListener;
 import com.fips.huashun.ui.utils.AlertDialogUtils;
 import com.fips.huashun.ui.utils.AlertDialogUtils.DialogClickInter;
 import com.fips.huashun.ui.utils.NavigationBar;
@@ -55,7 +57,8 @@ import rx.schedulers.Schedulers;
  */
 
 public class DownloadManageActivity extends BaseActivity implements OnChildItemClickListener,
-    OnDeleteClickListener {
+    OnSectionDownloadListener {
+
   @Bind(R.id.lv_download_queue)
   NoScrollListView mNoScrollListView;
   @Bind(R.id.ll_download_finish)
@@ -66,6 +69,8 @@ public class DownloadManageActivity extends BaseActivity implements OnChildItemC
   CustomExpandableListView mLvDownloadFinish;
   @Bind(R.id.NavigationBar)
   NavigationBar mNavigationBar;
+  @Bind(R.id.tv_delete_all)
+  TextView mTvDeleteAll;
   private CourseNameDao mCourseNameDao;
   private SectionDownloadDao mSectionDownloadDao;
   private List<String> mGroup;
@@ -74,6 +79,7 @@ public class DownloadManageActivity extends BaseActivity implements OnChildItemC
   private OnDownloadAdapter mOnDownloadAdapter;
   private Map<String, Integer> bindmap = new HashMap();
   private EventBus mEventBus;
+  private List<CourseEntity> mEntityList;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -111,9 +117,8 @@ public class DownloadManageActivity extends BaseActivity implements OnChildItemC
     //设置适配器
     mLvDownloadFinish.setAdapter(mDownloadedAdapter);
     mNoScrollListView.setAdapter(mOnDownloadAdapter);
-
     mDownloadedAdapter.setOnChildItemClickListener(this);
-    mOnDownloadAdapter.setOnDeleteClickListener(this);
+    mOnDownloadAdapter.setOnSectionDownloadListener(this);
   }
 
   @Override
@@ -175,16 +180,15 @@ public class DownloadManageActivity extends BaseActivity implements OnChildItemC
           }
         });
   }
-
   //获取已经下载的数据
   private void initDownloadFinishCourse() {
     mMap.clear();
     mGroup.clear();
-    List<CourseEntity> entityList = mCourseNameDao.queryAll();
-    if (entityList == null) {
+    mEntityList = mCourseNameDao.queryAll();
+    if (mEntityList == null || mEntityList.size() == 0) {
       return;
     }
-    for (CourseEntity courseEntity : entityList) {
+    for (CourseEntity courseEntity : mEntityList) {
       String courseid = courseEntity.getCourseid();
       String coursename = courseEntity.getCoursename();
       //根据课程的Id来查询该课程下面的下载状态为2的课程
@@ -194,6 +198,14 @@ public class DownloadManageActivity extends BaseActivity implements OnChildItemC
         mGroup.add(coursename);
         //如果课程下面有下载了的章节,保存到MAP集合
         mMap.put(coursename, sectionEntities);
+      }
+      //已下载课程为0门
+      if (mGroup.size() == 0) {
+        mTvDeleteAll.setTextColor(getResources().getColor(R.color.bg_hui));
+        mTvDeleteAll.setEnabled(false);
+      } else {
+        mTvDeleteAll.setTextColor(getResources().getColor(R.color.enterprise_act__text));
+        mTvDeleteAll.setEnabled(true);
       }
     }
 
@@ -294,6 +306,13 @@ public class DownloadManageActivity extends BaseActivity implements OnChildItemC
     Suggestdelete(localpath, sectionId);
   }
 
+  //当章节下载完成了
+  @Override
+  public void onFinishDownloadSection() {
+    //刷新正在下载的列表
+    initDownQueueCourse();
+  }
+
   //删除给用户提示
   private void Suggestdelete(final String localpath, final String sectionId) {
     AlertDialogUtils.showTowBtnDialog(DownloadManageActivity.this, "确定删除已下载的文件？", "取消", "确定",
@@ -305,9 +324,6 @@ public class DownloadManageActivity extends BaseActivity implements OnChildItemC
 
           @Override
           public void rightClick(AlertDialog dialog) {
-            SectionDownloadStateEvent stateEvent = new SectionDownloadStateEvent(
-                -1);
-            mEventBus.post(stateEvent);
             deleteCourseFile(localpath, sectionId);
             dialog.dismiss();
           }
@@ -320,7 +336,11 @@ public class DownloadManageActivity extends BaseActivity implements OnChildItemC
     Observable.create(new OnSubscribe<String>() {
       @Override
       public void call(Subscriber<? super String> subscriber) {
-        mSectionDownloadDao.deleteSectionById(sectionId);
+        //将状态设置为未下载,并更新更新数据看
+        CourseSectionEntity sectionEntity = mSectionDownloadDao
+            .querySectionBySectionId(sectionId);
+        sectionEntity.setState(0);
+        mSectionDownloadDao.upDataInfo(sectionEntity);
         File file = new File(localpath);
         if (file.exists() && file.length() > 0) {
           FileUtils.deleteFiles(file);
@@ -346,12 +366,77 @@ public class DownloadManageActivity extends BaseActivity implements OnChildItemC
             //发送EvenBus刷新目录界面
             SectionDownloadStateEvent stateEvent = new SectionDownloadStateEvent();
             stateEvent.setState(-1);
-            if (mEventBus != null) {
-              mEventBus.post(stateEvent);
-            }
+            mEventBus.post(stateEvent);
             //刷新
             initDownQueueCourse();
             initDownloadFinishCourse();
+          }
+        });
+  }
+
+  @OnClick(R.id.tv_delete_all)
+  public void onViewClicked() {
+    if (mEntityList == null || mEntityList.size() == 0) {
+      return;
+    }
+    //删除所有
+    AlertDialogUtils.showTowBtnDialog(DownloadManageActivity.this, "确定删除所有已下载的文件？", "取消", "确定",
+        new DialogClickInter() {
+          @Override
+          public void leftClick(AlertDialog dialog) {
+            dialog.dismiss();
+          }
+
+          @Override
+          public void rightClick(AlertDialog dialog) {
+            deleteAll();
+            dialog.dismiss();
+          }
+        });
+  }
+
+  //删除所有的已下载
+  private void deleteAll() {
+    Observable.create(new OnSubscribe<String>() {
+      @Override
+      public void call(Subscriber<? super String> subscriber) {
+        //删除操作
+        List<CourseSectionEntity> sectionEntities = mSectionDownloadDao.queryAllHaveDownload();
+        //循环删除
+        if (sectionEntities != null && sectionEntities.size() > 0) {
+          for (CourseSectionEntity sectionEntity : sectionEntities) {
+            sectionEntity.setState(0);
+            mSectionDownloadDao.upDataInfo(sectionEntity);
+            //删除
+            File file = new File(sectionEntity.getLocalpath());
+            if (file.exists() && file.length() > 0) {
+              FileUtils.deleteFiles(file);
+            }
+            subscriber.onNext("删除成功！");
+          }
+        }
+      }
+    }).subscribeOn(Schedulers.io()) // 指定 subscribe() 发生在 IO 线程
+        .observeOn(AndroidSchedulers.mainThread())//在主线程回调
+        .subscribe(new Observer<String>() {
+          @Override
+          public void onCompleted() {
+
+          }
+
+          @Override
+          public void onError(Throwable e) {
+
+          }
+
+          @Override
+          public void onNext(String s) {
+            initDownloadFinishCourse();
+            //发送evenbus
+            //发送EvenBus刷新目录界面
+            SectionDownloadStateEvent stateEvent = new SectionDownloadStateEvent();
+            stateEvent.setState(-1);
+            mEventBus.post(stateEvent);
           }
         });
   }
