@@ -32,7 +32,6 @@ import java.util.List;
  * 落在谷底 思人生
  */
 public class OnDownloadAdapter extends BaseAdapter {
-
   EventBus eventBus = EventBus.getDefault();
   private List<CourseSectionEntity> mData;
   private Context mContext;

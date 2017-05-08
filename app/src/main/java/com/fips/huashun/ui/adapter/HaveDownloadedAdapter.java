@@ -5,14 +5,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.fips.huashun.R;
 import com.fips.huashun.modle.dbbean.CourseSectionEntity;
 import com.fips.huashun.modle.event.ChangeDownLoadEvent;
 import com.fips.huashun.ui.utils.Utils;
-import com.fips.huashun.widgets.CustomDashedLineView;
 import de.greenrobot.event.EventBus;
 import java.util.List;
 import java.util.Map;
@@ -94,9 +92,9 @@ public class HaveDownloadedAdapter extends BaseExpandableListAdapter {
     ImageView iv_open = (ImageView) convertView.findViewById(R.id.iv_parent_open);
     tv_title.setText(title + "");
     if (isExpanded) {
-      iv_open.setImageResource(R.drawable.course_result_fan);
+      iv_open.setImageResource(R.drawable.arrow_down);
     } else {
-      iv_open.setImageResource(R.drawable.icon_more);
+      iv_open.setImageResource(R.drawable.arrow_right);
     }
     return convertView;
   }
@@ -112,30 +110,14 @@ public class HaveDownloadedAdapter extends BaseExpandableListAdapter {
     final List<CourseSectionEntity> sectionEntities = mMap.get(key);
     final CourseSectionEntity sectionEntity = sectionEntities.get(childPosition);
     TextView tv_name = (TextView) convertView.findViewById(R.id.tv_child_name);
+    TextView tv_type = (TextView) convertView.findViewById(R.id.tv_child_type);
     TextView tv_size = (TextView) convertView.findViewById(R.id.tv_child_size);
-    TextView tv_state = (TextView) convertView.findViewById(R.id.tv_child_state);
     ImageView iv_delete = (ImageView) convertView.findViewById(R.id.iv_child_delete);
-    Button bt_study = (Button) convertView.findViewById(R.id.bt_child_study);
-
-    CustomDashedLineView cl_line = (CustomDashedLineView) convertView.findViewById(R.id.cl_line);
-    if (isLastChild) {
-      cl_line.setVisibility(View.GONE);
-    }
     //绑定数据
     tv_name.setText(sectionEntity.getSectionname());
+    tv_type.setText(sectionEntity.getFileType().equals("2")?"视频":"PDF");
     tv_size.setText(Utils.FormentFileSize(Long.parseLong(sectionEntity.getFileSize())));
     final int state = sectionEntity.getState();
-//    if (state == 2) {
-//      tv_state.setText("已完成");
-////      tv_size.setText(Utils.FormentFileSize(Long.parseLong(sectionEntity.getFileSize())));
-//    } else if (state == 1) {
-//      tv_state.setText("下载中");
-////      tv_size.setText("当前已下载：" + sectionEntity.getProgress());
-//    } else if (state == -1) {
-//      tv_state.setText("下载失败");
-////      tv_size.setText("当前已下载：" + sectionEntity.getProgress());
-//    }
-
     //点击删除
     iv_delete.setOnClickListener(new OnClickListener() {
       @Override

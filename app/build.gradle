@@ -111,8 +111,8 @@ dependencies {
     //OkGo联网
     //可以单独使用，不需要依赖下方的扩展包
     //RxJava扩展支持，根据需要添加
-    testCompile 'junit:junit:4.12'
     //视频录制
+    testCompile 'junit:junit:4.12'
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.google.code.gson:gson:2.7'

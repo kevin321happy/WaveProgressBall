@@ -11,6 +11,16 @@
     android:gravity="center_vertical"
     android:orientation="horizontal">
     <TextView
+      android:id="@+id/tv_child_type"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="@dimen/space_10"
+      android:layout_gravity="center_vertical"
+      android:padding="@dimen/space_2"
+      android:background="@drawable/activity_tabs_shape"
+      android:text="视频"
+      android:textSize="@dimen/text_size_10" />
+    <TextView
       android:id="@+id/tv_child_name"
       android:layout_width="0dp"
       android:layout_height="match_parent"
@@ -49,7 +59,6 @@
         android:textSize="@dimen/text_size_12"
         android:textColor="@color/enterprise_act_hui"
         android:visibility="visible" />
-
     </LinearLayout>
     <Button
       android:id="@+id/bt_child_study"
@@ -62,8 +71,9 @@
       android:visibility="gone" />
   </LinearLayout>
 
-  <com.fips.huashun.widgets.CustomDashedLineView
-    android:id="@+id/cl_line"
+  <View
     android:layout_width="match_parent"
-    android:layout_height="5dp" />
+    android:layout_height="1px"
+    android:background="@color/line_hui"
+    />
 </LinearLayout>

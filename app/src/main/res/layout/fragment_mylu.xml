@@ -35,14 +35,8 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginRight="@dimen/space_10"
-      android:src="@drawable/icon_more" />
+      android:src="@drawable/arrow_right" />
   </LinearLayout>
-
-  <!--<ListView
-     android:id="@+id/lv_list"
-     android:layout_width="match_parent"
-     android:layout_height="wrap_content"
-     android:listSelector="@color/transparent"></ListView>-->
   <ExpandableListView
     android:id="@+id/ex_listview"
     android:layout_width="match_parent"

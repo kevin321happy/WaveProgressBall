@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:orientation="vertical" android:layout_width="match_parent"
-  android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="match_parent"
+  android:layout_height="@dimen/navigation_bar_height"
+  android:background="@color/title_color"
+  android:gravity="center_vertical"
+  android:orientation="vertical">
+<ImageButton
+  android:id="@+id/ib_head_back"
+  android:layout_width="@dimen/navigation_bar_height"
+  android:layout_height="@dimen/navigation_bar_height"
+  android:layout_alignParentLeft="true"
+  android:src="@drawable/fanhui"
+  android:background="@null"
+  android:padding="5dp" />
 
-</LinearLayout>
+  <TextView
+    android:id="@+id/tv_head_title"
+    style="@style/navigation_title_style" />
+
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:layout_marginRight="@dimen/space_10"
+    android:layout_alignParentRight="true"
+    android:orientation="horizontal">
+    <ImageView
+      android:id="@+id/iv_head_single_chat"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginRight="@dimen/space_25"
+      android:src="@drawable/icon_single_chat"/>
+    <ImageView
+      android:id="@+id/iv_head_group_chat"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:src="@drawable/icon_group_chat"/>
+  </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,9 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:fitsSystemWindows="true"
+  android:orientation="vertical"
   tools:context="com.fips.huashun.ui.activity.EntCommunicateActivity">
-
-</android.support.constraint.ConstraintLayout>
+  <include
+    android:id="@+id/nb_head"
+    layout="@layout/head_ent_communication" />
+  <FrameLayout
+    android:id="@+id/fl_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+      android:id="@+id/ll_content"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:orientation="vertical"></LinearLayout>
+    <LinearLayout
+      android:id="@+id/ll_empty"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:gravity="center"
+      android:orientation="vertical">
+      <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/iv_no_conversation" />
+      <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_15"
+        android:text="找个小伙伴聊聊~"
+        android:textColor="@color/text_hui"
+        android:textSize="@dimen/text_size_16" />
+    </LinearLayout>
+  </FrameLayout>
+</LinearLayout>

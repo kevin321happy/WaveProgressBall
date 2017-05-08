@@ -44,7 +44,7 @@
           android:layout_height="@dimen/space_30"
           android:paddingLeft="@dimen/space_10"
           android:paddingRight="@dimen/space_10"
-          android:background="@color/line_hui"
+          android:background="@color/white"
           android:gravity="center_vertical"
           android:orientation="horizontal">
           <TextView

@@ -123,9 +123,9 @@ public class CourseMuluAdapter extends BaseExpandableListAdapter {
     String titleOrder = getTitleOrder(groupPosition);
     tv_title.setText(titleOrder +"、"+ courseMuluTitle.getTitlename() + "");
     if (isExpanded) {
-      iv_arrow.setImageResource(R.drawable.course_result_fan);
+      iv_arrow.setImageResource(R.drawable.arrow_down);
     } else {
-      iv_arrow.setImageResource(R.drawable.arrow_open);
+      iv_arrow.setImageResource(R.drawable.arrow_right);
     }
     return convertView;
   }

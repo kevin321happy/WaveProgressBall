@@ -5,6 +5,7 @@
   android:paddingLeft="@dimen/space_10"
   android:paddingRight="@dimen/space_10"
   android:gravity="center_vertical"
+  android:background="@color/line_hui"
   android:orientation="vertical">
   <LinearLayout
     android:layout_width="match_parent"

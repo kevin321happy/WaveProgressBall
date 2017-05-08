@@ -30,6 +30,7 @@ import com.fips.huashun.net.HttpUtil;
 import com.fips.huashun.net.LoadDatahandler;
 import com.fips.huashun.net.LoadJsonHttpResponseHandler;
 import com.fips.huashun.ui.activity.CourseDetailActivity;
+import com.fips.huashun.ui.activity.EntCommunicateActivity;
 import com.fips.huashun.ui.activity.EntMyCourseActivity;
 import com.fips.huashun.ui.activity.EntOrganizationActivity;
 import com.fips.huashun.ui.activity.EnterpriseActList;
@@ -80,7 +81,7 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
   private NoScrollListView mListView;
   private GridViewBean[] mGridViewBeans = {new GridViewBean(R.drawable.coggage_one, "企业文化")
       , new GridViewBean(R.drawable.coggage_two, "组织架构"),
-      new GridViewBean(R.drawable.coggage_three, "企业部门")
+      new GridViewBean(R.drawable.coggage_three, "企业通讯")
       , new GridViewBean(R.drawable.coggage_four, "PK榜"),
       new GridViewBean(R.drawable.coggage_five, "我的课程")
       , new GridViewBean(R.drawable.coggage_six, "企业活动"),
@@ -208,11 +209,14 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
             startActivity(new Intent(getActivity(), EntOrganizationActivity.class));
             break;
           case 2:
+            //Pk榜
             // 企业部门
-            intent = new Intent(getActivity(), WebviewActivity.class);
-            intent.putExtra("key", 2);
-            intent.putExtra("entid", enterpriseId);
-            intent.putExtra("activityId", entinfo.getDeptid());//depid
+            //跳转到企业通讯界面
+            intent=new Intent(getActivity(),EntCommunicateActivity.class);
+//            intent = new Intent(getActivity(), WebviewActivity.class);
+//            intent.putExtra("key", 2);
+//            intent.putExtra("entid", enterpriseId);
+//            intent.putExtra("activityId", entinfo.getDeptid());//depid
             startActivity(intent);
             break;
           case 3:
@@ -277,6 +281,7 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
               showOwnEnterprise(mACacheAsJSONObject);
             }
           }
+
           @Override
           public void onSuccess(JSONObject data) {
             super.onSuccess(data);

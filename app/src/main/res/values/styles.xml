@@ -523,10 +523,22 @@
     <item name="android:layout_width">match_parent</item>
     <item name="android:layout_height">@dimen/space_30</item>
     <item name="android:textColor">@color/text_hui</item>
-    <item name="android:background">@color/line_hui</item>
+    <item name="android:background">@color/white</item>
     <item name="android:textSize">@dimen/text_size_14</item>
     <item name="android:paddingLeft">@dimen/space_10</item>
     <item name="android:gravity">center_vertical</item>
+  </style>
+
+  <style name="navigation_title_style">
+    <item name="android:layout_width">wrap_content</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:layout_centerInParent">true</item>
+    <item name="android:ellipsize">end</item>
+    <item name="android:gravity">center</item>
+    <item name="android:maxLines">2</item>
+    <item name="android:maxWidth">180dp</item>
+    <item name="android:textColor">@color/white</item>
+    <item name="android:textSize">@dimen/text_size_big</item>
   </style>
 
 
