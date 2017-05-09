@@ -266,7 +266,9 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
    * 功能：获取企业信息
    */
   private void initData() {
+
     RequestParams requestParams = new RequestParams();
+
     requestParams.put("type", type);
     requestParams.put("userid", PreferenceUtils.getUserId());
     HttpUtil.getClient().setTimeout(2000);

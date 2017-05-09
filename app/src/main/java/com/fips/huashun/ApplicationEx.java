@@ -38,6 +38,7 @@ import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.OkHttpNetworkExecutor;
 import com.yanzhenjie.nohttp.cache.DBCacheStore;
 import com.yanzhenjie.nohttp.rest.RequestQueue;
+import io.rong.imkit.RongIM;
 import java.io.File;
 import mabeijianxi.camera.VCamera;
 import mabeijianxi.camera.util.DeviceUtils;
@@ -81,8 +82,15 @@ public class ApplicationEx extends Application {
     SDKInitializer.initialize(this);//百度初始化
     initUmeng();
     initJPush();
-//    initRecord();
+    initRongIM();
+    initRecord();
+
     // initText();//加载字体
+  }
+
+  //初始化融云
+  private void initRongIM() {
+    RongIM.init(this);
   }
 
   //初始化视频录制配置
@@ -104,6 +112,7 @@ public class ApplicationEx extends Application {
     VCamera.setDebugMode(true);
     VCamera.initialize(this);
   }
+
   //初始化友盟(分享,統計)
   private void initUmeng() {
     mSPUtil = new SharePreferenceUtil(this, Config.SharePreferenceName);

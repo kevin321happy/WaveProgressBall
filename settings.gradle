@@ -1,1 +1,1 @@
-include ':app', ':library', ':gsyVideoPlayer', ':CommonRecycler'
+include ':app', ':library', ':gsyVideoPlayer', ':CommonRecycler', ':IMLib', ':IMKit'
