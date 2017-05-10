@@ -22,15 +22,16 @@ import com.fips.huashun.R;
 import com.fips.huashun.common.ACache;
 import com.fips.huashun.common.CacheConstans;
 import com.fips.huashun.common.Constants;
+import com.fips.huashun.db.dao.MemberDao;
 import com.fips.huashun.modle.bean.CourseInfo;
 import com.fips.huashun.modle.bean.EnterpriseData;
 import com.fips.huashun.modle.bean.EnterpriseInfo;
 import com.fips.huashun.modle.bean.GridViewBean;
+import com.fips.huashun.modle.dbbean.MemberEntity;
 import com.fips.huashun.net.HttpUtil;
 import com.fips.huashun.net.LoadDatahandler;
 import com.fips.huashun.net.LoadJsonHttpResponseHandler;
 import com.fips.huashun.ui.activity.CourseDetailActivity;
-import com.fips.huashun.ui.activity.EntCommunicateActivity;
 import com.fips.huashun.ui.activity.EntMyCourseActivity;
 import com.fips.huashun.ui.activity.EntOrganizationActivity;
 import com.fips.huashun.ui.activity.EnterpriseActList;
@@ -53,9 +54,16 @@ import com.google.gson.Gson;
 import com.loopj.android.http.RequestParams;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.umeng.analytics.MobclickAgent;
+import io.rong.imkit.RongIM;
+import io.rong.imlib.RongIMClient;
 import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
+import rx.Observable;
+import rx.Observable.OnSubscribe;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * 功能：企业信息展示（企业最新公告，企业名称，企业LOG，企业课程）
@@ -99,6 +107,7 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
   private NavigationBar navigationBar;
   private ImageView iv_imaeBG;
   private ACache mACache;
+  private String mMember_name;
 
 
   @Override
@@ -111,7 +120,81 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
     if (parent != null) {
       parent.removeView(rootView);
     }
+    //连接融云
+    connectRongYun();
     return rootView;
+  }
+
+  //连接融云
+  private void connectRongYun() {
+    Observable.create(new OnSubscribe<String>() {
+      @Override
+      public void call(Subscriber<? super String> subscriber) {
+        //根据用户ID查询Token
+        MemberDao memberDao = new MemberDao(getActivity());
+        MemberEntity memberEntity = memberDao.querMemmberByUid(PreferenceUtils.getUserId());
+        mMember_name = memberEntity.getMember_name();
+        subscriber.onNext(memberEntity.getRy_token());
+      }
+    }).subscribeOn(Schedulers.newThread())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<String>() {
+          @Override
+          public void onCompleted() {
+
+          }
+
+          @Override
+          public void onError(Throwable e) {
+
+          }
+
+          @Override
+          public void onNext(String s) {
+            connect(s);
+
+          }
+        });
+
+  }
+
+  //连接融云
+  private void connect(final String token) {
+//    if (getApplicationInfo().packageName.equals(App.getCurProcessName(getApplicationContext()))) {
+
+      RongIM.connect(token, new RongIMClient.ConnectCallback() {
+
+        /**
+         * Token 错误。可以从下面两点检查 1.  Token 是否过期，如果过期您需要向 App Server 重新请求一个新的 Token
+         *                  2.  token 对应的 appKey 和工程里设置的 appKey 是否一致
+         */
+        @Override
+        public void onTokenIncorrect() {
+          ToastUtil.getInstant().show("连接融云出错了的Token损坏了"+token);
+        }
+        /**
+         * 连接融云成功
+         * @param userid 当前 token 对应的用户 id
+         */
+        @Override
+        public void onSuccess(String userid) {
+          Log.d("LoginActivity", "--onSuccess" + userid);
+          ToastUtil.getInstant().show("连接融云成功了"+mMember_name+"ID:"+userid);
+//          startActivity(new Intent(LoginActivity.this, MainActivity.class));
+//          finish();
+        }
+        /**
+         * 连接融云失败
+         * @param errorCode 错误码，可到官网 查看错误码对应的注释
+         */
+        @Override
+        public void onError(RongIMClient.ErrorCode errorCode) {
+          ToastUtil.getInstant().show("连接融云出错了");
+        }
+      });
+//    }
+
+
   }
 
   @Override
@@ -120,6 +203,7 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
     initActivity();
     //初始化缓存
     mACache = ACache.get(getActivity());
+
     initListener();
   }
 
@@ -198,7 +282,6 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
             intent.putExtra("key", 0);
             intent.putExtra("entid", enterpriseId);
             startActivity(intent);
-
             break;
           case 1:
             // 组织架构
@@ -206,18 +289,21 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
 //            intent.putExtra("key", 1);
 //            intent.putExtra("entid", enterpriseId);
 //            startActivity(intent);
-            startActivity(new Intent(getActivity(), EntOrganizationActivity.class));
+            Intent intent1 = new Intent(getActivity(), EntOrganizationActivity.class);
+            startActivity(intent1);
             break;
           case 2:
             //Pk榜
             // 企业部门
             //跳转到企业通讯界面
-            intent=new Intent(getActivity(),EntCommunicateActivity.class);
+            RongIM.getInstance().startConversationList(getActivity(),null);
+//            RongIM.getInstance().startSubConversationList(getActivity(), Conversation.ConversationType.GROUP);
+//            intent = new Intent(getActivity(), ConversationListActivity.class);
 //            intent = new Intent(getActivity(), WebviewActivity.class);
 //            intent.putExtra("key", 2);
 //            intent.putExtra("entid", enterpriseId);
 //            intent.putExtra("activityId", entinfo.getDeptid());//depid
-            startActivity(intent);
+//            startActivity(intent);
             break;
           case 3:
             // PK榜

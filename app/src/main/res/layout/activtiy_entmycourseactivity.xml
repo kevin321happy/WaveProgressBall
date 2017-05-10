@@ -3,15 +3,17 @@
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:card_view="http://schemas.android.com/tools"
   style="@style/ent_mycourse_ll">
-  <include layout="@layout/head_course_serach" />
+  <!-- <include layout="@layout/head_course_serach" />-->
+  <com.fips.huashun.ui.utils.NavigationBar
+    android:id="@+id/NavigationBar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"></com.fips.huashun.ui.utils.NavigationBar>
   <LinearLayout style="@style/ent_mycourse_ll_out">
     <android.support.v7.widget.CardView
+      android:id="@+id/cd_unfinish"
       style="@style/ent_mycourse_cardview"
       app:contentPaddingLeft="@dimen/space_10"
-      card_view:cardBackgroundColor="@color/white"
-      card_view:cardCornerRadius="8dp"
-      card_view:cardElevation="3dp">
-      <!--＂?android:attr/selectableItemBackground＂-->
+      card_view:cardBackgroundColor="@color/white">
       <LinearLayout style="@style/ent_mycourse_ll_itemout">
         <ImageView
           android:layout_width="wrap_content"
@@ -40,11 +42,10 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
+      android:id="@+id/cd_unpass"
       style="@style/ent_mycourse_cardview"
       app:contentPaddingLeft="@dimen/space_10"
-      card_view:cardBackgroundColor="@color/white"
-      card_view:cardCornerRadius="8dp"
-      card_view:cardElevation="3dp">
+      card_view:cardBackgroundColor="@color/white">
       <LinearLayout style="@style/ent_mycourse_ll_itemout">
         <ImageView
           android:layout_width="wrap_content"
@@ -73,11 +74,10 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
+      android:id="@+id/cd_finish"
       style="@style/ent_mycourse_cardview"
       app:contentPaddingLeft="@dimen/space_10"
-      card_view:cardBackgroundColor="@color/white"
-      card_view:cardCornerRadius="8dp"
-      card_view:cardElevation="3dp">
+      card_view:cardBackgroundColor="@color/white">
       <LinearLayout style="@style/ent_mycourse_ll_itemout">
         <ImageView
           android:layout_width="wrap_content"
@@ -107,11 +107,10 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
+      android:id="@+id/cd_pass"
       style="@style/ent_mycourse_cardview"
       app:contentPaddingLeft="@dimen/space_10"
-      card_view:cardBackgroundColor="@color/white"
-      card_view:cardCornerRadius="8dp"
-      card_view:cardElevation="3dp">
+      card_view:cardBackgroundColor="@color/white">
       <LinearLayout style="@style/ent_mycourse_ll_itemout">
         <ImageView
           android:layout_width="wrap_content"
@@ -141,6 +140,7 @@
     </android.support.v7.widget.CardView>
     <android.support.v7.widget.CardView
       style="@style/ent_mycourse_cardview"
+      android:visibility="gone"
       app:contentPaddingLeft="@dimen/space_10"
       card_view:cardBackgroundColor="@color/white"
       card_view:cardCornerRadius="8dp"
@@ -175,11 +175,10 @@
 
 
     <android.support.v7.widget.CardView
+      android:id="@+id/cd_download"
       style="@style/ent_mycourse_cardview"
       app:contentPaddingLeft="@dimen/space_10"
-      card_view:cardBackgroundColor="@color/white"
-      card_view:cardCornerRadius="8dp"
-      card_view:cardElevation="3dp">
+      card_view:cardBackgroundColor="@color/white">
       <LinearLayout style="@style/ent_mycourse_ll_itemout">
         <ImageView
           android:layout_width="wrap_content"

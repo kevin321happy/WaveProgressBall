@@ -13,13 +13,14 @@
       android:id="@+id/nb_orgainization"
       style="@style/native_bar_style"></com.fips.huashun.ui.utils.NavigationBar>
     <include layout="@layout/search_box_layout" />
-    <com.fips.huashun.widgets.SpringScrollview
+   <!-- <com.fips.huashun.widgets.SpringScrollview
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">
+      android:layout_height="wrap_content">-->
       <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
 
         <LinearLayout style="@style/ent_organization_ll_allmember">
           <CheckBox
@@ -31,24 +32,8 @@
             style="@style/ent_organization_tv_allmember"
             android:text="全体成员" />
         </LinearLayout>
-        <LinearLayout
-          android:id="@+id/ll_member"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical">
-          <TextView
-            style="@style/ent_organization_member_title"
-            android:text="成员" />
-        </LinearLayout>
-        <com.fips.huashun.widgets.NoScrollListView
-          android:id="@+id/lv_dep_list"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"></com.fips.huashun.widgets.NoScrollListView>
-        <!-- <android.support.v7.widget.RecyclerView
-           android:id="@+id/rcv_member"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-         </android.support.v7.widget.RecyclerView>-->
+
+      <!--  &lt;!&ndash;部门的&ndash;&gt;
         <LinearLayout
           android:id="@+id/ll_department"
           android:layout_width="match_parent"
@@ -58,20 +43,47 @@
             style="@style/ent_organization_member_title"
             android:text="部门" />
           <com.fips.huashun.widgets.NoScrollListView
-            android:id="@+id/lv_dep_member"
+            android:id="@+id/lv_dep_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></com.fips.huashun.widgets.NoScrollListView>
-          <!--<android.support.v7.widget.RecyclerView
-            android:id="@+id/rcv_department"
+        </LinearLayout>-->
+      <!--  &lt;!&ndash;成员的&ndash;&gt;
+        <LinearLayout
+          android:id="@+id/ll_member"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+          <TextView
+            style="@style/ent_organization_member_title"
+            android:text="成员" />
+          <com.fips.huashun.widgets.NoScrollListView
+            android:id="@+id/lv_dep_member"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-          </android.support.v7.widget.RecyclerView>-->
-        </LinearLayout>
+
+          </com.fips.huashun.widgets.NoScrollListView>
+        </LinearLayout>-->
       </LinearLayout>
-    </com.fips.huashun.widgets.SpringScrollview>
+   <!-- </com.fips.huashun.widgets.SpringScrollview>-->
+    <!--成员的-->
+    <LinearLayout
+      android:id="@+id/ll_member"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+     <!-- <TextView
+        style="@style/ent_organization_member_title"
+        android:text="成员" />-->
+      <ListView
+        android:id="@+id/lv_dep_member"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+      </ListView>
+    </LinearLayout>
   </LinearLayout>
   <!--底部已选择的人员-->
   <LinearLayout
+    android:id="@+id/ll_have_choose_count"
     android:layout_width="match_parent"
     android:layout_height="@dimen/space_50"
     android:background="@color/line_hui"

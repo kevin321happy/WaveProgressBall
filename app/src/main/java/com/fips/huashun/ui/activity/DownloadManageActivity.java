@@ -41,7 +41,6 @@ import rx.Observer;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-
 /**
  * description: 课程下载管理界面
  * autour: Kevin

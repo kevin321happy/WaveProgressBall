@@ -7,7 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import com.fips.huashun.R;
-import com.fips.huashun.modle.testbean.DepList;
+import com.fips.huashun.modle.dbbean.DepartmentEntity;
 import com.fips.huashun.ui.utils.CommonViewHolder;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,11 +25,15 @@ import java.util.List;
  */
 public class DepListAdapter extends BaseAdapter {
 
-
-  private List<DepList> mData;
-  private HashMap<Integer, Boolean> mSelected=new HashMap<>();
-  private List<DepList> mDepLists = new ArrayList<>();
+  private List<DepartmentEntity> mData;
+  private HashMap<Integer, Boolean> mSelected = new HashMap<>();
+  private List<DepartmentEntity> mDepLists = new ArrayList<>();
   private onDepartmentSelectedListener mOnDepartmentSelectedListener;
+
+
+
+
+
 
   public void setOnDepartmentSelectedListener(
       onDepartmentSelectedListener onDepartmentSelectedListener) {
@@ -53,15 +57,14 @@ public class DepListAdapter extends BaseAdapter {
 
   @Override
   public View getView(final int position, View convertView, ViewGroup parent) {
-    DepList depList = mData.get(position);
+    final DepartmentEntity departmentEntity = mData.get(position);
     CommonViewHolder cvh = CommonViewHolder.createCVH(convertView, R.layout.deplist_item, parent);
     CheckBox cb_dep = (CheckBox) cvh.getView(R.id.cb_check_dep);
     TextView tv_name = (TextView) cvh.getView(R.id.tv_dep_name);
     TextView tv_count = (TextView) cvh.getView(R.id.tv_dep_member_count);
-//    viewHolder.getView()
     //绑定数据
-    tv_name.setText(depList.getName() + "");
-    tv_count.setText(depList.getNumber());
+    tv_name.setText(departmentEntity.getDep_name());
+    tv_count.setText(departmentEntity.getNum() + "");
     //checkbox的选中的监听
     cb_dep.setOnClickListener(new OnClickListener() {
       @Override
@@ -85,11 +88,19 @@ public class DepListAdapter extends BaseAdapter {
         }
       }
     });
+    cvh.convertView.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        if (mOnDepartmentSelectedListener != null) {
+          mOnDepartmentSelectedListener.OnDepItemClick(departmentEntity.getDep_id());
+        }
+      }
+    });
     return cvh.convertView;
   }
 
 
-  public void setData(List<DepList> data) {
+  public void setData(List<DepartmentEntity> data) {
     mData = data;
     initCbStates(mData);
   }
@@ -103,7 +114,7 @@ public class DepListAdapter extends BaseAdapter {
   }
 
   //初始化checkbox的选中状态
-  private void initCbStates(List<DepList> data) {
+  private void initCbStates(List<DepartmentEntity> data) {
     for (int i = 0; i < data.size(); i++) {
       mSelected.put(i, false);
     }
@@ -112,7 +123,9 @@ public class DepListAdapter extends BaseAdapter {
   //部门选中的监听
   public interface onDepartmentSelectedListener {
 
-    void onDepSelected(List<DepList> lists);
+    void onDepSelected(List<DepartmentEntity> lists);
+    void OnDepItemClick(String dep_id);
+
   }
 }
 

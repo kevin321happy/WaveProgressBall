@@ -52,6 +52,7 @@ public class ApplicationEx extends Application {
   private SharePreferenceUtil mSPUtil;
   private static Handler handler;
   private static RequestQueue mRequestQueue;
+
   /**
    * 用户信息
    */
@@ -306,6 +307,7 @@ public class ApplicationEx extends Application {
   public static ApplicationEx getInstance() {
     return mInstance;
   }
+
 
   /**
    * SharePreference

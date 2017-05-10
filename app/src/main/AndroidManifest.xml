@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.fips.huashun"> <!-- 友盟统计 -->
   <uses-sdk android:minSdkVersion="8" />
+
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
   <uses-permission android:name="android.permission.INTERNET" />
   <uses-permission android:name="android.permission.CAMERA" />
@@ -107,6 +108,7 @@
     <service
       android:exported="false"
       android:name="com.qihoo.appstore.updatelib.CheckUpdateService" />
+
     <provider
       android:authorities="com.qihoo.appstore.updatesdk.fileprovider"
       android:exported="false"
@@ -142,6 +144,7 @@
       android:name="cn.jpush.android.service.PushReceiver">
       <intent-filter android:priority="1000">
         <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+
         <category android:name="com.fips.huashun" />
       </intent-filter>
       <intent-filter>
@@ -152,6 +155,7 @@
       <intent-filter>
         <action android:name="android.intent.action.PACKAGE_ADDED" />
         <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
         <data android:scheme="package" />
       </intent-filter>
     </receiver>
@@ -163,6 +167,7 @@
       android:theme="@android:style/Theme.NoTitleBar">
       <intent-filter>
         <action android:name="cn.jpush.android.ui.PushActivity" />
+
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="com.fips.huashun" />
       </intent-filter>
@@ -187,6 +192,7 @@
       android:enabled="true"
       android:name=".receiver.PushNewsReceiver">
       <intent-filter>
+
         <!-- Required 用户注册SDK的intent -->
         <action android:name="cn.jpush.android.intent.REGISTRATION" />
         <!-- Required 用户接收SDK消息的intent -->
@@ -201,12 +207,12 @@
         <category android:name="com.fips.huashun" />
       </intent-filter>
     </receiver>
-    <!--融云IM-->
+    <!-- 融云IM -->
     <provider
-      android:name="android.support.v4.content.FileProvider"
       android:authorities="com.fips.huashun"
       android:exported="false"
-      android:grantUriPermissions="true">
+      android:grantUriPermissions="true"
+      android:name="android.support.v4.content.FileProvider">
       <meta-data
         android:name="android.support.FILE_PROVIDER_PATHS"
         android:resource="@xml/rc_file_path" />
@@ -215,6 +221,7 @@
     <meta-data
       android:name="com.amap.api.v2.apikey"
       android:value="6928c2c1ba5c0905c8c072e782b5450e" />
+
     <activity
       android:name=".ui.activity.StartActivity"
       android:screenOrientation="portrait"
@@ -406,6 +413,7 @@
       android:screenOrientation="portrait">
       <intent-filter>
         <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+
         <category android:name="android.intent.category.DEFAULT" />
       </intent-filter>
     </activity>
@@ -425,8 +433,10 @@
       android:noHistory="true">
       <intent-filter>
         <action android:name="android.intent.action.VIEW" />
+
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
+
         <data android:scheme="tencent1105648823" />
       </intent-filter>
     </activity>
@@ -522,7 +532,44 @@
     <!-- 企业组织架构界面 -->
     <activity android:name=".ui.activity.EntOrganizationActivity" />
     <activity android:name=".ui.activity.DownloadManageActivity" />
-    <activity android:name=".ui.activity.EntCommunicateActivity"></activity>
+    <activity android:name=".ui.activity.EntCommunicateActivity" />
+    <activity android:name=".db.TestViewActivity"></activity>
+    <!--会话界面-->
+    <activity
+      android:name=".ui.activity.ConversationActivity"
+      android:screenOrientation="portrait"
+      android:windowSoftInputMode="stateHidden|adjustResize">
+
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+
+        <category android:name="android.intent.category.DEFAULT" />
+
+        <data
+          android:host="com.fips.huashun"
+          android:pathPrefix="/conversation/"
+          android:scheme="rong" />
+      </intent-filter>
+    </activity>
+    <!--会话列表-->
+
+    <!--会话列表-->
+    <activity
+      android:name=".ui.activity.ConversationListActivity"
+      android:screenOrientation="portrait"
+      android:windowSoftInputMode="stateHidden|adjustResize">
+
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+
+        <category android:name="android.intent.category.DEFAULT" />
+
+        <data
+          android:host="com.fips.huashun"
+          android:pathPrefix="/conversationlist"
+          android:scheme="rong" />
+      </intent-filter>
+    </activity>
   </application>
 
 </manifest>
