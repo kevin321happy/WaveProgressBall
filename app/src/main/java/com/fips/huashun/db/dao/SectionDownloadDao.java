@@ -83,6 +83,7 @@ public class SectionDownloadDao {
     }
   }
 
+<<<<<<< HEAD
   //查询正在下载中的课程
   public List<CourseSectionEntity> querySectionOnDownload() {
     List<CourseSectionEntity> mlist = null;
@@ -96,6 +97,8 @@ public class SectionDownloadDao {
     return mlist;
   }
 
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   //根据章节Id来查询章节内容
   public CourseSectionEntity querySectionBySectionId(String id) {
     CourseSectionEntity courseSectionEntity = null;
@@ -106,19 +109,29 @@ public class SectionDownloadDao {
       e.printStackTrace();
     }
     return courseSectionEntity;
+<<<<<<< HEAD
   }
 
+=======
+
+  }
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   //根据课程ID来查询课程
   public List<CourseSectionEntity> querySectionByCourseId(String courseid) {
     List<CourseSectionEntity> sectionEntities = null;
     try {
       sectionEntities = mCourseDownloadDao.queryBuilder().where().eq("courseid", courseid)
+<<<<<<< HEAD
           .and().eq("state", 2 + "")
+=======
+          .and().ne("state", 0 + "")
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
           .query();
     } catch (SQLException e) {
       e.printStackTrace();
     }
     return sectionEntities;
+<<<<<<< HEAD
 
   }
 
@@ -134,11 +147,18 @@ public class SectionDownloadDao {
     return entityList;
   }
 
+=======
+  }
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   //根据章节的Id删除章节
   public void deleteSectionById(String sectionId) {
     try {
       CourseSectionEntity courseSectionEntity = querySectionBySectionId(sectionId);
+<<<<<<< HEAD
       if (courseSectionEntity != null) {
+=======
+      if (courseSectionEntity!=null){
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
         mCourseDownloadDao.delete(courseSectionEntity);
       }
     } catch (SQLException e) {

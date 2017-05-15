@@ -68,8 +68,16 @@
   <!-- Required -->
   <uses-permission android:name="com.fips.huashun.permission.JPUSH_MESSAGE" />
   <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+<<<<<<< HEAD
   <uses-permission android:name="android.permission.VIBRATE" />
   <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+=======
+
+  <uses-permission android:name="android.permission.VIBRATE" />
+
+  <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
   <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 
@@ -88,7 +96,11 @@
     <meta-data
       android:name="com.baidu.lbsapi.API_KEY"
       android:value="SVDPYTMFiran0vGWRCBvhTZ9UPMnI47H" />
+<<<<<<< HEAD
     <!-- //key:开发者申请的key -->
+=======
+    <!--  //key:开发者申请的key-->
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     <!-- 友盟统计 -->
     <meta-data
       android:name="UMENG_APPKEY"
@@ -97,7 +109,11 @@
     <meta-data
       android:name="UMENG_CHANNEL"
       android:value="wandoujia" />
+<<<<<<< HEAD
     <!-- android:value="${UMENG_CHANNEL_VALUE}" -->
+=======
+    <!--android:value="${UMENG_CHANNEL_VALUE}" -->
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     <!-- 360更新 -->
     <activity
       android:configChanges="keyboardHidden|orientation|screenSize"
@@ -108,7 +124,10 @@
     <service
       android:exported="false"
       android:name="com.qihoo.appstore.updatelib.CheckUpdateService" />
+<<<<<<< HEAD
 
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     <provider
       android:authorities="com.qihoo.appstore.updatesdk.fileprovider"
       android:exported="false"
@@ -118,11 +137,19 @@
         android:name="android.support.FILE_PROVIDER_PATHS"
         android:resource="@xml/update_apk_path" />
     </provider>
+<<<<<<< HEAD
     <!-- 课程下载服务 -->
     <service
       android:enabled="true"
       android:exported="false"
       android:name=".service.CourseDownloadService" />
+=======
+    <!--课程下载服务-->
+    <service
+      android:enabled="true"
+      android:exported="false"
+      android:name="com.fips.huashun.service.CourseDownloadService" />
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     <!-- 极光推送服务 -->
     <!-- Required SDK 核心功能 -->
     <!-- 可配置android:process参数将PushService放在其他进程中 -->
@@ -144,7 +171,10 @@
       android:name="cn.jpush.android.service.PushReceiver">
       <intent-filter android:priority="1000">
         <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY" />
+<<<<<<< HEAD
 
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
         <category android:name="com.fips.huashun" />
       </intent-filter>
       <intent-filter>
@@ -484,9 +514,14 @@
     <activity
       android:name=".ui.activity.ActResearchActivity"
       android:windowSoftInputMode="adjustPan|stateHidden" />
+<<<<<<< HEAD
     <!-- 视频拍摄 -->
     <activity android:name="mabeijianxi.camera.MediaRecorderActivity" />
 
+=======
+    <!--视频拍摄-->
+    <activity android:name="mabeijianxi.camera.MediaRecorderActivity" />
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     <service
       android:exported="false"
       android:name=".service.DownloadService" />
@@ -503,6 +538,7 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
       android:name=".ui.activity.LeaveDetailActivity"
       android:windowSoftInputMode="stateHidden|adjustPan" />
     <activity android:name=".ui.activity.EntPkListActivity" />
+<<<<<<< HEAD
     <activity
       android:launchMode="singleTask"
       android:name=".ui.activity.VedioPlayActivity" />
@@ -522,6 +558,26 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
     <activity android:name=".ui.activity.EntOrganizationActivity" />
     <activity android:name=".ui.activity.DownloadManageActivity" />
     <activity android:name=".ui.activity.EntCommunicateActivity"></activity>
+=======
+    
+    <activity android:name=".ui.activity.VedioPlayActivity"
+      android:launchMode="singleTask"/>
+
+    <activity android:name=".ui.activity.TestActivity" />
+    <activity android:name=".ui.activity.EntTesstActivity"></activity>
+    <!--录制视频的界面-->
+    <activity android:name=".ui.activity.SendSmallVideoActivity" />
+    <!--小视频播放界面-->
+    <activity android:name=".ui.activity.VideoPlayerActivity" />
+    <!--视频选择界面-->
+    <activity android:name=".ui.activity.VideoPickActivity" />
+    <!--我的课程一级界面-->
+    <activity android:name=".ui.activity.EntMyCourseActivity" />
+    <!--企业文化界面-->
+    <activity android:name=".ui.activity.EnterpriseCulture" />
+    <!--企业组织架构界面-->
+    <activity android:name=".ui.activity.EntOrganizationActivity" />
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   </application>
 
 </manifest>

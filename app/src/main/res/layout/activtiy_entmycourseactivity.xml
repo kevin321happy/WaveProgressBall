@@ -184,11 +184,19 @@
         <ImageView
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
+<<<<<<< HEAD
           android:src="@drawable/icon_download" />
         <LinearLayout style="@style/ent_mycourse_ll_inner">
           <TextView
             style="@style/ent_mycourse_tv_state"
             android:text="下载管理" />
+=======
+          android:src="@drawable/icon_allcourse" />
+        <LinearLayout style="@style/ent_mycourse_ll_inner">
+          <TextView
+            style="@style/ent_mycourse_tv_state"
+            android:text="已下载" />
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
           <TextView
             android:id="@+id/tv_has_download"
             style="@style/ent_mycourse_tv_count"

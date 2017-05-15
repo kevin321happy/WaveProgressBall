@@ -3,6 +3,7 @@
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:orientation="vertical">
+<<<<<<< HEAD
   <LinearLayout
     android:id="@+id/ll_download_manage"
     android:layout_width="match_parent"
@@ -43,4 +44,11 @@
     android:layout_height="match_parent"
     android:listSelector="@color/transparent"
     android:childDivider="@color/transparent"/>
+=======
+  <ListView
+    android:id="@+id/lv_list"
+    android:layout_width="match_parent"
+    android:listSelector="@color/transparent"
+    android:layout_height="wrap_content"></ListView>
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 </LinearLayout>

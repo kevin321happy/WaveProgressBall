@@ -8,15 +8,24 @@
   <LinearLayout style="@style/ent_organization_ll_allmember">
     <CheckBox
       android:id="@+id/cb_check_dep"
+<<<<<<< HEAD
       style="@style/CustomCheckboxTheme"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:visibility="visible" />
+=======
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:visibility="gone" />
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     <TextView
       android:id="@+id/tv_dep_name"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+<<<<<<< HEAD
       android:layout_marginLeft="@dimen/space_10"
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
       android:text="人力资源部"
       android:textColor="@color/enterprise_act__defaulttext"
       android:textSize="@dimen/text_size_16" />

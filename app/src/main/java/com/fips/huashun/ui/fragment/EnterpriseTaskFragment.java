@@ -90,6 +90,10 @@ public class EnterpriseTaskFragment extends Fragment
                 intent.putExtra("sessoinid", questionAdapter.getItem(position-1).getId()+"");
                 intent.putExtra("type", ConstantsCode.STRING_ONE);
                 intent.putExtra("key", 16);
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
                 startActivity(intent);
             }
         });

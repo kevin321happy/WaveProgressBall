@@ -4,8 +4,13 @@
   android:layout_height="wrap_content"
   android:paddingLeft="@dimen/space_10"
   android:paddingRight="@dimen/space_10"
+<<<<<<< HEAD
   android:gravity="center_vertical"
   android:background="@color/line_hui"
+=======
+  android:background="@color/green_dan"
+  android:gravity="center_vertical"
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   android:orientation="vertical">
   <LinearLayout
     android:layout_width="match_parent"
@@ -20,7 +25,11 @@
     android:gravity="center_vertical"
     android:text="裘马草堂简介"
     android:textColor="@color/enterprise_act__defaulttext"
+<<<<<<< HEAD
     android:textSize="@dimen/text_size_17" />
+=======
+    android:textSize="@dimen/text_size_16" />
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   <ImageView
     android:id="@+id/iv_parent_open"
     android:layout_width="wrap_content"

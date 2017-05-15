@@ -23,7 +23,10 @@ public class Constants {
   //public static final String H5_URL = "http://172.16.3.14:8080/H5/app/template/";
   public static final String H5_URL = "http://admin.52qmct.com/H5/app/template/";
 /* * ---*******************************新服务器IP《正式》************************************---*/
+<<<<<<< HEAD
 
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   /**
    * 测试服务器
    */
@@ -396,6 +399,10 @@ public class Constants {
   public static Typeface TF_HKHB_FONT = null;
   public static Typeface TC_HKWW_FONT = null;
   public static Typeface TF_HANYI_FONT = null;
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   /** 接口改造 **/
   /**
    * 企业中 我的课程
@@ -447,6 +454,7 @@ public class Constants {
   /**
    * 登录接口
    */
+<<<<<<< HEAD
   public static final String LOGIN_URL =IP1+ "LoginCommon/login";
   /**
    * 忘记密码获取验证码
@@ -464,4 +472,24 @@ public class Constants {
    * 忘记密码重置
    */
   public static final String FORGOTPWD_URL = IP1+"LoginCommon/forgotPassword";
+=======
+  public static final String LOGIN_URL = "http://admin.52qmct.com/Api/LoginCommon/login";
+  /**
+   * 忘记密码获取验证码
+   */
+  public static final String FORGOTPWD_VERIFICATIONCODE_URL = "http://admin.52qmct.com/Api/LoginCommon/yesbtainvalidate";
+  /**
+   * 注册获取验证码
+   */
+  public static final String REGISTER_VERIFICATIONCODE_URL = "http://admin.52qmct.com/Api/LoginCommon/notobtainvalidate";
+  /**
+   * 注册的URl
+   */
+  public static final String REGISTER_URL = "http://admin.52qmct.com/Api/LoginCommon/regist";
+  /**
+   * 忘记密码重置
+   */
+  public static final String FORGOTPWD_URL = "http://admin.52qmct.com/Api/LoginCommon/forgotPassword";
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 }

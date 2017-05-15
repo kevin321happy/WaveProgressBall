@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
   <!--搜索框-->
+<<<<<<< HEAD
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="match_parent"
   android:layout_height="@dimen/space_50"
   >
+=======
+  <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_50">
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     <com.fips.huashun.widgets.CustomEditText
       android:id="@+id/et_search_friend"
       android:layout_width="match_parent"

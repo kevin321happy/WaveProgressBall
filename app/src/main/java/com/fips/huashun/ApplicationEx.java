@@ -18,6 +18,10 @@ import com.baidu.mapapi.SDKInitializer;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.fips.huashun.common.Constants;
 import com.fips.huashun.modle.bean.UserInfo;
+<<<<<<< HEAD
+=======
+import com.fips.huashun.ui.utils.CrashHandler;
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 import com.fips.huashun.ui.utils.PreferenceUtils;
 import com.fips.huashun.ui.utils.SPUtils;
 import com.fips.huashun.ui.utils.SharePreferenceUtil;
@@ -70,7 +74,11 @@ public class ApplicationEx extends Application {
     super.onCreate();
     mApplicationEx = this;
     handler = new Handler();
+<<<<<<< HEAD
 //    CrashHandler.getInstance().init(this);//初始化全局异常管理
+=======
+    CrashHandler.getInstance().init(this);//初始化全局异常管理
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     mInstance = this;
     UMShareAPI.get(this);
     isFirstRun();
@@ -81,7 +89,11 @@ public class ApplicationEx extends Application {
     SDKInitializer.initialize(this);//百度初始化
     initUmeng();
     initJPush();
+<<<<<<< HEAD
 //    initRecord();
+=======
+    initRecord();
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     // initText();//加载字体
   }
 

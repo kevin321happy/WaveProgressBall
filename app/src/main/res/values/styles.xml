@@ -196,6 +196,7 @@
 
   <style name="radio_style">
     <item name="android:layout_width">@dimen/space_90</item>
+<<<<<<< HEAD
      <item name="android:layout_weight">1</item>
     <item name="android:layout_height">wrap_content</item>
     <item name="android:button">@null</item>
@@ -208,6 +209,9 @@
   <style name="task_radio_style">
     <item name="android:layout_width">180dp</item>
     <item name="android:layout_weight">1</item>
+=======
+    <!-- <item name="android:layout_weight">1</item>-->
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     <item name="android:layout_height">wrap_content</item>
     <item name="android:button">@null</item>
     <item name="android:textColor">@drawable/selector_tittle_color</item>
@@ -513,6 +517,7 @@
     <item name="android:background">@drawable/video_bg</item>
   </style>
 
+<<<<<<< HEAD
   <!--自定义checkbox样式-->
 
   <style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
@@ -541,5 +546,7 @@
     <item name="android:textSize">@dimen/text_size_big</item>
   </style>
 
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 
 </resources>

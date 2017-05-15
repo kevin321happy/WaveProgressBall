@@ -27,11 +27,25 @@
       android:text="必修课程" />
     <RadioButton
       android:id="@+id/rb_right_enterprise_mycourse"
+<<<<<<< HEAD
       style="@style/mycourse_tittle_group_item_right"
+=======
+      style="@style/mycourse_tittle_group_item_mid"
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
       android:layout_width="0dp"
       android:layout_height="match_parent"
       android:layout_weight="1"
       android:text="选修课程" />
+<<<<<<< HEAD
+=======
+    <RadioButton
+      android:id="@+id/rb_enterprise_mycourse_finishdownload"
+      style="@style/mycourse_tittle_group_item_right"
+      android:layout_width="0dp"
+      android:layout_height="match_parent"
+      android:layout_weight="1"
+      android:text="已下载课程" />
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   </RadioGroup>
   <RelativeLayout
     android:layout_width="match_parent"
@@ -48,5 +62,16 @@
       android:dividerHeight="@dimen/space_8"
       android:listSelector="@android:color/transparent"
       android:scrollbars="none"></com.handmark.pulltorefresh.library.PullToRefreshListView>
+<<<<<<< HEAD
+=======
+    <ExpandableListView
+      android:id="@+id/ex_listview"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@color/green_dan"
+      android:childDivider="@android:color/transparent"
+      android:visibility="gone">
+    </ExpandableListView>
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   </RelativeLayout>
 </LinearLayout>

@@ -21,6 +21,8 @@ import com.fips.huashun.widgets.CustomEditText;
 
 public class EntMyCourseActivity extends BaseActivity implements TextWatcher {
 
+
+
   @Bind(R.id.tv_unpass_counts)
   TextView mTvUnpassCounts;
   @Bind(R.id.tv_unfinish_points)
@@ -57,10 +59,12 @@ public class EntMyCourseActivity extends BaseActivity implements TextWatcher {
   CustomEditText mEtSearchCourse;
   @Bind(R.id.ll_search)
   LinearLayout mLlSearch;
+
   @Bind(R.id.tv_has_download)
   TextView mTvHasDownload;
   @Bind(R.id.iv_more_download)
   ImageView mIvMoreDownload;
+
   private String enterpriseId;
 
   @Override
@@ -82,10 +86,15 @@ public class EntMyCourseActivity extends BaseActivity implements TextWatcher {
     return false;
   }
 
+
   //点击跳转不同的课程列表
 
+
+
+  //点击跳转不同的课程列表
   @OnClick({R.id.iv_more_unfinish, R.id.iv_more_unpass, R.id.iv_more_finish, R.id.iv_more_pass,
-      R.id.iv_more_all, R.id.iv_more_download, R.id.iv_back})
+      R.id.iv_more_all,R.id.iv_back})
+
   public void onClick(View view) {
     switch (view.getId()) {
       case R.id.iv_more_unfinish:
@@ -101,8 +110,10 @@ public class EntMyCourseActivity extends BaseActivity implements TextWatcher {
         break;
       case R.id.iv_more_all:
         break;
+
       case R.id.iv_more_download:
         startActivity(new Intent(this, DownloadManageActivity.class));
+
       case R.id.iv_back:
         finish();
         break;

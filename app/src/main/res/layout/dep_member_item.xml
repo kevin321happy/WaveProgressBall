@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:fresco="http://schemas.android.com/apk/res-auto"
   android:layout_width="match_parent"
+<<<<<<< HEAD
   android:layout_height="wrap_content"
   android:orientation="vertical">
 
@@ -9,6 +10,13 @@
     <CheckBox
       android:id="@+id/cb_check_dep"
       style="@style/CustomCheckboxTheme"
+=======
+  android:layout_height="match_parent"
+  android:orientation="vertical">
+  <LinearLayout style="@style/ent_organization_ll_memberitem">
+    <CheckBox
+      android:id="@+id/cb_check_dep"
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:visibility="visible" />
@@ -17,16 +25,26 @@
       android:id="@+id/dep_member_icon"
       android:layout_width="@dimen/space_40"
       android:layout_height="@dimen/space_40"
+<<<<<<< HEAD
       android:layout_marginLeft="@dimen/space_15"
       android:layout_gravity="center"
       android:src="@drawable/ic_launcher"
       fresco:roundAsCircle="true" />
+=======
+      android:layout_gravity="center"
+      android:src="@drawable/ic_launcher"
+      fresco:roundAsCircle="true" />
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     <LinearLayout
       android:layout_width="0dp"
       android:layout_height="match_parent"
       android:layout_weight="1"
       android:layout_marginLeft="@dimen/space_10"
+<<<<<<< HEAD
       android:gravity="center_vertical"
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
       android:orientation="vertical">
       <TextView
         android:id="@+id/tv_dep_member_name"
@@ -39,6 +57,7 @@
         android:id="@+id/tv_dep_member_station"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_marginTop="@dimen/space_5"
         android:text="加菲猫"
         android:textColor="@color/text_hui"
@@ -46,4 +65,11 @@
     </LinearLayout>
   </LinearLayout>
 
+=======
+        android:text="加菲猫"
+        android:textColor="@color/enterprise_act__defaulttext"
+        android:textSize="@dimen/text_size_14" />
+    </LinearLayout>
+  </LinearLayout>
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 </LinearLayout>

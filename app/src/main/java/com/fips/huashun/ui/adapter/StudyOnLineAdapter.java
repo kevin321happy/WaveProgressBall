@@ -210,6 +210,10 @@ public class StudyOnLineAdapter extends BaseAdapter {
     });
     return viewHolder.convertView;
   }
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   //将条目信息保存到数据库中
   private void addToDb(RowBean courseModel) {
     DataDownloadInfo dataDownloadInfo = new DataDownloadInfo();
@@ -251,7 +255,11 @@ public class StudyOnLineAdapter extends BaseAdapter {
   //开始下载
   public void addToDownloadQueue(String pid, String url, String name) {
     DownloadRequest downloadRequest = NoHttp
+<<<<<<< HEAD
         .createDownloadRequest(url, directory, name, true, false);
+=======
+        .createDownloadRequest(url, directory, name, true, true);
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     //设置取消请求的标识
     downloadRequest.setCancelSign(pid);
     mDownloadRequests.put(pid, downloadRequest);

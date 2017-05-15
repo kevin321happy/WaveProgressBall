@@ -1,5 +1,6 @@
 package com.fips.huashun.ui.adapter;
 
+<<<<<<< HEAD
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -12,6 +13,15 @@ import com.fips.huashun.ui.utils.CommonViewHolder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+=======
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.TextView;
+import com.fips.huashun.R;
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 
 /**
  * description: 部门列表的Adapter
@@ -23,6 +33,7 @@ import java.util.List;
  * 站在峰顶 看世界
  * 落在谷底 思人生
  */
+<<<<<<< HEAD
 public class DepListAdapter extends BaseAdapter {
 
 
@@ -118,3 +129,39 @@ public class DepListAdapter extends BaseAdapter {
 
 
 
+=======
+public class DepListAdapter extends RecyclerView.Adapter {
+
+  @Override
+  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    View view = View.inflate(parent.getContext(), R.layout.deplist_item, null);
+    DepListViewHolder viewHolder = new DepListViewHolder(view);
+    return viewHolder;
+  }
+  @Override
+  public void onBindViewHolder(ViewHolder holder, int position) {
+    DepListViewHolder viewHolder = (DepListViewHolder) holder;
+    //绑定数据
+
+  }
+
+  @Override
+  public int getItemCount() {
+    return 0;
+  }
+
+  class DepListViewHolder extends ViewHolder {
+
+    private CheckBox mCheckBox;
+    private TextView mDepName;
+    private TextView mDepMemberNum;
+
+    public DepListViewHolder(View itemView) {
+      super(itemView);
+      mCheckBox = (CheckBox) itemView.findViewById(R.id.cb_check_dep);
+      mDepName = (TextView) itemView.findViewById(R.id.tv_dep_name);
+      mDepMemberNum = (TextView) itemView.findViewById(R.id.tv_dep_member_count);
+    }
+  }
+}
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8

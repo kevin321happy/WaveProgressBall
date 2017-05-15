@@ -11,6 +11,10 @@
         android:layout_width="@dimen/navigation_bar_height"
         android:layout_height="@dimen/navigation_bar_height"
         android:layout_alignParentLeft="true"
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
         android:background="@null"
         android:padding="5dp" />
 
@@ -27,8 +31,21 @@
         android:visibility="gone" />
 
     <TextView
+<<<<<<< HEAD
       android:id="@+id/tv_navigation_title"
       style="@style/navigation_title_style" />
+=======
+        android:id="@+id/tv_navigation_title"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="2"
+        android:maxWidth="180dp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_big" />
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 
     <ImageButton
         android:id="@+id/img_btn_navigation_right"

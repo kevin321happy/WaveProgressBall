@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<<<<<<< HEAD
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+=======
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   android:layout_width="match_parent"
   android:layout_height="match_parent"
   android:fitsSystemWindows="true"
   android:orientation="vertical">
   <LinearLayout
     android:layout_width="match_parent"
+<<<<<<< HEAD
     android:layout_height="0dp"
     android:layout_weight="1"
+=======
+    android:layout_height="match_parent"
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     android:orientation="vertical">
     <com.fips.huashun.ui.utils.NavigationBar
       android:id="@+id/nb_orgainization"
       style="@style/native_bar_style"></com.fips.huashun.ui.utils.NavigationBar>
     <include layout="@layout/search_box_layout" />
+<<<<<<< HEAD
     <com.fips.huashun.widgets.SpringScrollview
       android:layout_width="match_parent"
       android:layout_height="wrap_content">
@@ -78,6 +87,58 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:visibility="visible">
+=======
+
+    <LinearLayout style="@style/ent_organization_ll_allmember">
+      <CheckBox
+        android:id="@+id/cb_check_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+      <TextView
+        style="@style/ent_organization_tv_allmember"
+        android:text="全体成员" />
+    </LinearLayout>
+    <LinearLayout
+      android:id="@+id/ll_member"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+      <TextView
+        style="@style/ent_organization_member_title"
+        android:text="成员" />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+      android:id="@+id/rcv_member"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    <LinearLayout
+      android:id="@+id/ll_department"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+      <TextView
+        style="@style/ent_organization_member_title"
+        android:text="部门" />
+
+      <android.support.v7.widget.RecyclerView
+        android:id="@+id/rcv_department"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+      </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+  </LinearLayout>
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/space_50"
+    android:layout_alignParentBottom="true"
+    android:background="@color/line_hui"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:visibility="gone">
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     <TextView
       android:id="@+id/tv_choosed"
       android:layout_width="0dp"
@@ -86,6 +147,10 @@
       android:layout_marginLeft="@dimen/space_10"
       android:text="已选择"
       android:textColor="@color/enterprise_act__defaulttext" />
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     <Button
       android:id="@+id/btn_confirm_choose"
       android:layout_width="@dimen/space_60"
@@ -95,5 +160,9 @@
       android:text="确定"
       android:textColor="@color/white" />
   </LinearLayout>
+<<<<<<< HEAD
 
 </LinearLayout>
+=======
+</RelativeLayout>
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8

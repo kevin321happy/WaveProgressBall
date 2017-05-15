@@ -2,7 +2,10 @@ package com.fips.huashun.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+<<<<<<< HEAD
 import android.content.pm.ActivityInfo;
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,12 +30,18 @@ import com.shuyu.gsyvideoplayer.GSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.listener.StandardVideoAllCallBack;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.CustomGSYVideoPlayer;
+<<<<<<< HEAD
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 import org.json.JSONObject;
 
 //视频音频播放
 public class VedioPlayActivity extends Activity implements OnClickListener {
+<<<<<<< HEAD
 
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   private CustomGSYVideoPlayer mPlayer;
   private OrientationUtils mOrientationUtils;
   private String url;
@@ -43,9 +52,12 @@ public class VedioPlayActivity extends Activity implements OnClickListener {
   private long mStudyTime;//学习时间
   private long mTotleTime;//总的学习时间
   private String courseid;
+<<<<<<< HEAD
   private boolean isPlay;//是否正在播放
   private boolean isPause;//是否暂停
 
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -79,15 +91,23 @@ public class VedioPlayActivity extends Activity implements OnClickListener {
       ImageView backButton = mPlayer.getBackButton();
       backButton.setVisibility(View.VISIBLE);
       backButton.setOnClickListener(this);
+<<<<<<< HEAD
       if (isPause==false) {
         mPlayer.startPlayLogic();
       }
+=======
+      mPlayer.startPlayLogic();
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     } catch (Exception e) {
     }
     //播放器的监听
     mPlayer.setStandardVideoAllCallBack(new StandardVideoAllCallBack() {
       @Override
       public void onClickStartThumb(String url, Object... objects) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
       }
 
       @Override
@@ -104,7 +124,10 @@ public class VedioPlayActivity extends Activity implements OnClickListener {
       public void onPrepared(String url, Object... objects) {
         //当前时间为开始播放时间
         mStartTime = System.currentTimeMillis();
+<<<<<<< HEAD
         isPlay = true;
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
         Log.i("test", "开始播放，当前时间： " + mStartTime / 100);
       }
 
@@ -120,7 +143,10 @@ public class VedioPlayActivity extends Activity implements OnClickListener {
 
       @Override
       public void onClickStop(String url, Object... objects) {
+<<<<<<< HEAD
         isPause = true;
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
         //点击了暂挺当前时间为结束时间
         mEndTime = System.currentTimeMillis();
         //学习时间
@@ -149,7 +175,10 @@ public class VedioPlayActivity extends Activity implements OnClickListener {
 
       @Override
       public void onClickResume(String url, Object... objects) {
+<<<<<<< HEAD
         isPause = false;
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
         //重新取开始时间
         mStartTime = System.currentTimeMillis();
         Log.i("test", "重新播放开始时间：  " + mStartTime / 100);
@@ -188,7 +217,10 @@ public class VedioPlayActivity extends Activity implements OnClickListener {
       public void onEnterFullscreen(String url, Object... objects) {
 
       }
+<<<<<<< HEAD
 
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
       @Override
       public void onQuitFullscreen(String url, Object... objects) {
         if (mOrientationUtils != null) {
@@ -222,17 +254,34 @@ public class VedioPlayActivity extends Activity implements OnClickListener {
       }
     });
   }
+<<<<<<< HEAD
 
   @Override
   protected void onPause() {
     mPlayer.onVideoPause();
     isPause = true;//当前播放暂停了
     super.onPause();
+=======
+  @Override
+  protected void onPause() {
+
+    mPlayer.release();
+    GSYVideoPlayer.releaseAllVideos();
+    GSYPreViewManager.instance().releaseMediaPlayer();
+    if (mOrientationUtils != null) {
+      mOrientationUtils.releaseListener();
+    }
+   super.onPause();
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   }
 
   @Override
   protected void onStop() {
     super.onStop();
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   }
 
   @Override
@@ -250,6 +299,7 @@ public class VedioPlayActivity extends Activity implements OnClickListener {
     if (mTotleTime > 1000 * 30) {
       studyTimeSend(String.valueOf(mTotleTime / 60000));
     }
+<<<<<<< HEAD
     //注销播放器
     isPause=false;
     mPlayer.release();
@@ -271,12 +321,15 @@ public class VedioPlayActivity extends Activity implements OnClickListener {
     }
     isPause=false;
     super.onBackPressed();
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   }
 
   @Override
   public void onConfigurationChanged(Configuration newConfig) {
     super.onConfigurationChanged(newConfig);
     //如果旋转了就全屏
+<<<<<<< HEAD
     if (isPlay && !isPause) {
       if (newConfig.orientation == ActivityInfo.SCREEN_ORIENTATION_USER) {
         if (!mPlayer.isIfCurrentIsFullscreen()) {
@@ -292,6 +345,23 @@ public class VedioPlayActivity extends Activity implements OnClickListener {
         }
       }
     }
+=======
+//    if (isPlay && !isPause) {
+//      if (newConfig.orientation == ActivityInfo.SCREEN_ORIENTATION_USER) {
+//        if (!danmakuVideoPlayer.isIfCurrentIsFullscreen()) {
+//          danmakuVideoPlayer.startWindowFullscreen(DanmkuVideoActivity.this, true, true);
+//        }
+//      } else {
+//        //新版本isIfCurrentIsFullscreen的标志位内部提前设置了，所以不会和手动点击冲突
+//        if (danmakuVideoPlayer.isIfCurrentIsFullscreen()) {
+//          StandardGSYVideoPlayer.backFromWindowFull(this);
+//        }
+//        if (orientationUtils != null) {
+//          orientationUtils.setEnable(true);
+//        }
+//      }
+//    }
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   }
 
   //发送学习时长

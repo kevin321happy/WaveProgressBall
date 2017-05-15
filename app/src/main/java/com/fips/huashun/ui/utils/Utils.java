@@ -1,8 +1,11 @@
 package com.fips.huashun.ui.utils;
 
 import android.app.Activity;
+<<<<<<< HEAD
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
@@ -10,15 +13,25 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Environment;
+<<<<<<< HEAD
 import android.os.StatFs;
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+<<<<<<< HEAD
 import android.text.format.Formatter;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
+=======
+import android.util.Log;
+import android.view.Display;
+import android.view.WindowManager;
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -29,7 +42,10 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+<<<<<<< HEAD
 import java.util.List;
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -73,6 +89,7 @@ public class Utils {
     }
     return false;
   }
+<<<<<<< HEAD
   /**
    * 判断服务是否开启
    */
@@ -93,6 +110,8 @@ public class Utils {
     }
     return isWork;
   }
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 
   /**
    * 检查设备是否存在SDCard的工具方法

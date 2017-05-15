@@ -30,11 +30,17 @@ import com.fips.huashun.net.HttpUtil;
 import com.fips.huashun.net.LoadDatahandler;
 import com.fips.huashun.net.LoadJsonHttpResponseHandler;
 import com.fips.huashun.ui.activity.CourseDetailActivity;
+<<<<<<< HEAD
 import com.fips.huashun.ui.activity.EntCommunicateActivity;
 import com.fips.huashun.ui.activity.EntMyCourseActivity;
 import com.fips.huashun.ui.activity.EntOrganizationActivity;
 import com.fips.huashun.ui.activity.EnterpriseActList;
 import com.fips.huashun.ui.activity.EnterpriseCourseActivity;
+=======
+import com.fips.huashun.ui.activity.EnterpriseActList;
+import com.fips.huashun.ui.activity.EnterpriseCourseActivity;
+import com.fips.huashun.ui.activity.EnterpriseMycourseActivity;
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 import com.fips.huashun.ui.activity.EnterpriseNoticeActivity;
 import com.fips.huashun.ui.activity.EnterprisePkActivity;
 import com.fips.huashun.ui.activity.TaskActivity;
@@ -81,7 +87,11 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
   private NoScrollListView mListView;
   private GridViewBean[] mGridViewBeans = {new GridViewBean(R.drawable.coggage_one, "企业文化")
       , new GridViewBean(R.drawable.coggage_two, "组织架构"),
+<<<<<<< HEAD
       new GridViewBean(R.drawable.coggage_three, "企业通讯")
+=======
+      new GridViewBean(R.drawable.coggage_three, "企业部门")
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
       , new GridViewBean(R.drawable.coggage_four, "PK榜"),
       new GridViewBean(R.drawable.coggage_five, "我的课程")
       , new GridViewBean(R.drawable.coggage_six, "企业活动"),
@@ -202,6 +212,7 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
             break;
           case 1:
             // 组织架构
+<<<<<<< HEAD
 //            intent = new Intent(getActivity(), WebviewActivity.class);
 //            intent.putExtra("key", 1);
 //            intent.putExtra("entid", enterpriseId);
@@ -217,6 +228,20 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
 //            intent.putExtra("key", 2);
 //            intent.putExtra("entid", enterpriseId);
 //            intent.putExtra("activityId", entinfo.getDeptid());//depid
+=======
+            intent = new Intent(getActivity(), WebviewActivity.class);
+            intent.putExtra("key", 1);
+            intent.putExtra("entid", enterpriseId);
+            startActivity(intent);
+//            startActivity(new Intent(getActivity(), EntOrganizationActivity.class));
+            break;
+          case 2:
+            // 企业部门
+            intent = new Intent(getActivity(), WebviewActivity.class);
+            intent.putExtra("key", 2);
+            intent.putExtra("entid", enterpriseId);
+            intent.putExtra("activityId", entinfo.getDeptid());//depid
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
             startActivity(intent);
             break;
           case 3:
@@ -227,7 +252,11 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
             break;
           case 4:
             // 我的课程
+<<<<<<< HEAD
             intent = new Intent(getActivity(), EntMyCourseActivity.class);
+=======
+            intent = new Intent(getActivity(), EnterpriseMycourseActivity.class);
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
             intent.putExtra("enterpriseId", enterpriseId);
             startActivity(intent);
             break;
@@ -281,10 +310,17 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
               showOwnEnterprise(mACacheAsJSONObject);
             }
           }
+<<<<<<< HEAD
 
           @Override
           public void onSuccess(JSONObject data) {
             super.onSuccess(data);
+=======
+          @Override
+          public void onSuccess(JSONObject data) {
+            super.onSuccess(data);
+            //保存jsonObject数据,保存10天
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
             mACache.put(CacheConstans.OWNENTERPISE_INFO_JSON, data, ACache.TIME_DAY * 2);
             showOwnEnterprise(data);
           }

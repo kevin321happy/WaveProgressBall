@@ -15,12 +15,21 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+<<<<<<< HEAD
+=======
+import android.widget.TextView;
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 import com.fips.huashun.R;
 import com.fips.huashun.ui.fragment.EnterpriseTaskFragment;
 import com.fips.huashun.ui.fragment.ExamTaskFragment;
 import com.fips.huashun.ui.fragment.VoteTaskFragment;
 import com.fips.huashun.ui.utils.NavigationBar;
 import com.umeng.analytics.MobclickAgent;
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 import java.util.ArrayList;
 
 /**
@@ -33,7 +42,11 @@ public class TaskActivity extends BaseActivity
     private RadioButton view2;
     private RadioButton view3;
     private RadioButton view4;
+<<<<<<< HEAD
     private LinearLayout tv_indicator;
+=======
+    private TextView tv_indicator;
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     private HorizontalScrollView scrollview;
     private RadioGroup rg;
     private ViewPager mPager;
@@ -74,7 +87,11 @@ public class TaskActivity extends BaseActivity
         scrollview = (HorizontalScrollView) findViewById(R.id.scrollview);
         rg = (RadioGroup) findViewById(R.id.rg);
         mPager = (ViewPager) findViewById(R.id.vp_enterprise_pkpage);
+<<<<<<< HEAD
         tv_indicator = (LinearLayout) findViewById(R.id.tv_indicator);
+=======
+        tv_indicator = (TextView) findViewById(R.id.tv_indicator);
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
         fragmentList = new ArrayList<Fragment>();
 //        TodayTaskFragment todayTaskFragment = new TodayTaskFragment();
         VoteTaskFragment voteTaskFragment = new VoteTaskFragment();
@@ -85,20 +102,35 @@ public class TaskActivity extends BaseActivity
 //        fragmentList.add(todayTaskFragment);
         fragmentList.add(voteTaskFragment);
         fragmentList.add(enterpriseTaskFragment);
+<<<<<<< HEAD
 //        fragmentList.add(examTaskFragment);
 
 //        view1 = (RadioButton) findViewById(R.id.rb1);
 //        view2 = (RadioButton) findViewById(R.id.rb2);
+=======
+        fragmentList.add(examTaskFragment);
+
+//        view1 = (RadioButton) findViewById(R.id.rb1);
+        view2 = (RadioButton) findViewById(R.id.rb2);
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
         view3 = (RadioButton) findViewById(R.id.rb3);
         view4 = (RadioButton) findViewById(R.id.rb4);
 
 //        view1.setOnClickListener(new txListener(0));
+<<<<<<< HEAD
 //        view2.setOnClickListener(new txListener(0));
+=======
+        view2.setOnClickListener(new txListener(0));
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
         view3.setOnClickListener(new txListener(1));
         view4.setOnClickListener(new txListener(2));
         rb = new ArrayList<RadioButton>();
 //        rb.add(view1);
+<<<<<<< HEAD
 //        rb.add(view2);
+=======
+        rb.add(view2);
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
         rb.add(view3);
         rb.add(view4);
         mPager.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentList));

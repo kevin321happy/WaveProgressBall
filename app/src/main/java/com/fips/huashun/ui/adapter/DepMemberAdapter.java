@@ -1,5 +1,6 @@
 package com.fips.huashun.ui.adapter;
 
+<<<<<<< HEAD
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -14,6 +15,13 @@ import com.fips.huashun.ui.utils.ToastUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+=======
+import android.support.v7.widget.RecyclerView.Adapter;
+import android.support.v7.widget.RecyclerView.ViewHolder;
+import android.view.View;
+import android.view.ViewGroup;
+import com.fips.huashun.R;
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 
 /**
  * description: 企业部门成员的Adapter
@@ -24,6 +32,7 @@ import java.util.List;
  * version: 1.21
  * 站在峰顶 看世界
  * 落在谷底 思人生
+<<<<<<< HEAD
  */
 public class DepMemberAdapter extends BaseAdapter {
 
@@ -118,5 +127,24 @@ public class DepMemberAdapter extends BaseAdapter {
   public interface onMemberSelectedListener {
 
     void onMembersSelected(List<DepMember> list);
+=======
+*/
+public class DepMemberAdapter extends Adapter{
+
+  @Override
+  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    View view=View.inflate(parent.getContext(), R.layout.dep_member_item,null);
+    return null;
+  }
+
+  @Override
+  public void onBindViewHolder(ViewHolder holder, int position) {
+
+  }
+
+  @Override
+  public int getItemCount() {
+    return 0;
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   }
 }

@@ -67,7 +67,11 @@
         android:id="@+id/tv_download"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:visibility="gone"
+=======
+        android:visibility="visible"
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
         android:text="下载中"/>
 
     </RelativeLayout>

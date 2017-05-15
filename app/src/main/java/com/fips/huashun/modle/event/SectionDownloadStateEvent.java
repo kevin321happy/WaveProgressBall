@@ -11,6 +11,7 @@ package com.fips.huashun.modle.event;
  * 落在谷底 思人生
 */
 public class SectionDownloadStateEvent {
+<<<<<<< HEAD
 
   /**
    * 下载的时候的状态
@@ -26,6 +27,9 @@ public class SectionDownloadStateEvent {
   public void setWhat(String what) {
     this.what = what;
   }
+=======
+  private int state;
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 
   public SectionDownloadStateEvent(int state) {
     this.state = state;

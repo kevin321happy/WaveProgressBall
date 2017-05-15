@@ -1,8 +1,12 @@
 package com.fips.huashun.ui.activity;
 
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.util.Log;
 import android.view.WindowManager;
+=======
+import android.support.v7.widget.RecyclerView;
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
@@ -10,6 +14,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.fips.huashun.R;
+<<<<<<< HEAD
 import com.fips.huashun.modle.testbean.DepList;
 import com.fips.huashun.modle.testbean.DepMember;
 import com.fips.huashun.ui.adapter.DepListAdapter;
@@ -23,6 +28,11 @@ import com.fips.huashun.widgets.CustomEditText;
 import com.fips.huashun.widgets.NoScrollListView;
 import java.util.ArrayList;
 import java.util.List;
+=======
+import com.fips.huashun.ui.utils.NavigationBar;
+import com.fips.huashun.ui.utils.NavigationBar.NavigationListener;
+import com.fips.huashun.widgets.CustomEditText;
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 
 /**
  * description: 企业组织架构 autour: Kevin company:锦绣氘(武汉)科技有限公司 date: 2017/4/20 18:53 update: 2017/4/20
@@ -39,18 +49,26 @@ public class EntOrganizationActivity extends BaseActivity {
   CheckBox mCbCheckAll;
   @Bind(R.id.ll_member)
   LinearLayout mLlMember;
+<<<<<<< HEAD
 
 //  @Bind(R.id.rcv_member)
 //  RecyclerView mRcvMember;
 //  @Bind(R.id.rcv_department)
 //  RecyclerView mRcvDepartment;
 
+=======
+  @Bind(R.id.rcv_member)
+  RecyclerView mRcvMember;
+  @Bind(R.id.rcv_department)
+  RecyclerView mRcvDepartment;
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   @Bind(R.id.ll_department)
   LinearLayout mLlDepartment;
   @Bind(R.id.tv_choosed)
   TextView mTvChoosed;
   @Bind(R.id.btn_confirm_choose)
   Button mBtnConfirmChoose;
+<<<<<<< HEAD
   @Bind(R.id.lv_dep_list)
   NoScrollListView mLvDepList;
   @Bind(R.id.lv_dep_member)
@@ -64,11 +82,14 @@ public class EntOrganizationActivity extends BaseActivity {
 
   private List<DepList> mDepselected = new ArrayList<>();
   private List<DepMember> mMemberselected = new ArrayList<>();
+=======
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_ent_organization);
+<<<<<<< HEAD
     getWindow().setSoftInputMode(
         WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     ButterKnife.bind(this);
@@ -148,6 +169,17 @@ public class EntOrganizationActivity extends BaseActivity {
     mMemberAdapter.setData(mDepMembers);
 
     mDepListAdapter.setData(mDepLists);
+=======
+    ButterKnife.bind(this);
+    initData();
+
+
+  }
+
+  private void initData() {
+
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
 
   }
 
@@ -162,6 +194,11 @@ public class EntOrganizationActivity extends BaseActivity {
         }
       }
     });
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   }
 
   @Override

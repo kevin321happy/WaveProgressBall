@@ -44,6 +44,10 @@ public class DataDownloadHelp extends OrmLiteSqliteOpenHelper {
   @Override
   public void onUpgrade(SQLiteDatabase database, ConnectionSource connectionSource, int oldVersion,
       int newVersion) {
+<<<<<<< HEAD
+=======
+//    onUpgrade
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     //更新表
     try {
       TableUtils.dropTable(connectionSource, DataDownloadInfo.class, true);
@@ -55,6 +59,10 @@ public class DataDownloadHelp extends OrmLiteSqliteOpenHelper {
     }
   }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
   //单例获取该实例
   public static synchronized DataDownloadHelp getHelper(Context context) {
     context = context.getApplicationContext();

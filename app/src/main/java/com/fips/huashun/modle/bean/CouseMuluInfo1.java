@@ -10,6 +10,10 @@ public class CouseMuluInfo1{
      * buytype : 1
      * data : [{"addtime":"","collection":"","commquality":"","courseId":"","courseImage":"","courseInfo":"","courseName":"","coursePrice":"","coursedoc":"","courseintro":"","coursevideo":"","docUrl":"","easyquality":"","filenamemark":"","highquality":"","imageUrl":"","integral":"","mediaid":"","pricetype":"","riokin":"","sectionname":"公司失败的两个原因要如何避免","sessionfile":"","sessioninfo":"","sessiontime":"","sessiontype":"2","sessonid":"329","stanquality":"http://v1.52qmct.com/test/2016120613211510.mp4","superquality":"","teacherid":"","thumbnail":"","tip":"","updatetime":"","videoUrl":"99719057","viewnum":""}]
      */
+<<<<<<< HEAD
+=======
+
+>>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
     private DataBean data;
     /**
      * data : {"buytype":"1","data":[{"addtime":"","collection":"","commquality":"","courseId":"","courseImage":"","courseInfo":"","courseName":"","coursePrice":"","coursedoc":"","courseintro":"","coursevideo":"","docUrl":"","easyquality":"","filenamemark":"","highquality":"","imageUrl":"","integral":"","mediaid":"","pricetype":"","riokin":"","sectionname":"公司失败的两个原因要如何避免","sessionfile":"","sessioninfo":"","sessiontime":"","sessiontype":"2","sessonid":"329","stanquality":"http://v1.52qmct.com/test/2016120613211510.mp4","superquality":"","teacherid":"","thumbnail":"","tip":"","updatetime":"","videoUrl":"99719057","viewnum":""}]}
