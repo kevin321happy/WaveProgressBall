@@ -58,10 +58,9 @@ public class Utils {
     NetworkInfo info = manager.getActiveNetworkInfo();
     return info != null;
   }
+
   /**
    * make true current connect service is wifi
-   * @param mContext
-   * @return
    */
   public static boolean isWifi(Context mContext) {
     ConnectivityManager connectivityManager = (ConnectivityManager) mContext
@@ -73,6 +72,7 @@ public class Utils {
     }
     return false;
   }
+
   /**
    * 判断服务是否开启
    */
@@ -248,6 +248,7 @@ public class Utils {
     int val = (int) (Math.random() * a + 1);
     return val; //第一种
   }
+
   //获取文件的拓展名
   public static String getFileExt(String fileName) {
     String prefix = fileName.substring(fileName.lastIndexOf(".") + 1);
@@ -256,7 +257,7 @@ public class Utils {
 
   /**
    * 转换文件大小
-   * */
+   */
   public static String FormentFileSize(long fileS) {
     DecimalFormat df = new DecimalFormat("#.00");
     String fileSizeString = "";
@@ -275,8 +276,6 @@ public class Utils {
   /**
    * 加载本地图片
    * http://bbs.3gstdy.com
-   * @param url
-   * @return
    */
   public static Bitmap getLoacalBitmap(String url) {
     try {
@@ -286,5 +285,14 @@ public class Utils {
       e.printStackTrace();
       return null;
     }
+  }
+
+  /**
+   * 获取当前时间戳的秒值,String类型的
+   */
+  public static String getCurrentTimestamp() {
+    long time = System.currentTimeMillis() / 1000;
+    String timestamp = String.valueOf(time);
+    return timestamp;
   }
 }

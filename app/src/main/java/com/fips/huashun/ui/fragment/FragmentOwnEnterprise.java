@@ -108,8 +108,6 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
   private ImageView iv_imaeBG;
   private ACache mACache;
   private String mMember_name;
-
-
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
@@ -359,7 +357,6 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
               showOwnEnterprise(mACacheAsJSONObject);
             }
           }
-
           @Override
           public void onSuccess(JSONObject data) {
             super.onSuccess(data);

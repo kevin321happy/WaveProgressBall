@@ -20,10 +20,12 @@ public class PreferenceUtils {
   public static final String CITY_Name = "city";
   public static final String readstatus = "readstatus";
   public static final String Registerid_ID = "registerid";
+  public static final String Company_ID = "companyid";
 
   public static final String RY_TOKEN = "ry_token";
   public static final String QMCT_TOKEN = "qmct_token";
-  public static final String APP_SECRET="app_secret";
+  public static final String APP_SECRET = "app_secret";
+  private static String companyId;
 
   public static SharedPreferences getSharedPreferences(Context ctx) {
     return ctx.getSharedPreferences("easycode", Context.MODE_PRIVATE);
@@ -203,5 +205,16 @@ public class PreferenceUtils {
 
   public static String getRegisterid_ID() {
     return getSharedPreferences(ApplicationEx.getInstance()).getString(Registerid_ID, "");
+  }
+
+  //保存企业ID
+  public static void setCompanyId(String companyId) {
+    getSharedPreferences(ApplicationEx.getInstance()).edit().putString(Company_ID, companyId)
+        .apply();
+  }
+
+  //获取企业ID
+  public static String getCompanyId() {
+    return getSharedPreferences(ApplicationEx.getInstance()).getString(Company_ID, "");
   }
 }

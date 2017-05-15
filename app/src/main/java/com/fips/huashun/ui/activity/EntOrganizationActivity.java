@@ -34,7 +34,10 @@ import com.fips.huashun.ui.utils.AlertDialogUtils.DialogInputInter;
 import com.fips.huashun.ui.utils.CharacterParser;
 import com.fips.huashun.ui.utils.NavigationBar;
 import com.fips.huashun.ui.utils.NavigationBar.NavigationListener;
+import com.fips.huashun.ui.utils.PreferenceUtils;
+import com.fips.huashun.ui.utils.RuleTool;
 import com.fips.huashun.ui.utils.ToastUtil;
+import com.fips.huashun.ui.utils.Utils;
 import com.fips.huashun.widgets.CustomEditText;
 import com.google.gson.Gson;
 import com.lzy.okgo.OkGo;
@@ -46,6 +49,7 @@ import io.rong.imlib.RongIMClient;
 import io.rong.imlib.RongIMClient.CreateDiscussionCallback;
 import io.rong.imlib.RongIMClient.ErrorCode;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import okhttp3.Call;
 import okhttp3.Response;
@@ -468,9 +472,21 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
 
   //网络获取数据
   public void getDataFormNet() {
+    //获取组织架构的所有人
+    HashMap<String, String> signdata = new HashMap<>();
+    String timestamp= Utils.getCurrentTimestamp();
+    signdata.put("company_id", PreferenceUtils.getCompanyId());
+    signdata.put("timestamp",timestamp);
+    signdata.put("userid", PreferenceUtils.getUserId());
+    String[] signData = RuleTool.getSignData(this, signdata);
     //获取网络的数据
     OkGo.post(Constants.GETORGANIZATIONLIST_URL)
-        .params("company_id", "8")
+        .params("userid", PreferenceUtils.getUserId())
+        .params("company_id", PreferenceUtils.getCompanyId())
+        .params("timestamp",timestamp)
+        .params("str",signData[1])
+        .params("sign",signData[0])
+        .params("qmct_token",PreferenceUtils.getQM_Token())
         .execute(new StringCallback() {
           @Override
           public void onBefore(BaseRequest request) {
@@ -487,13 +503,11 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
           }
         });
   }
-
   //搜索框的监听
   @Override
   public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
   }
-
   @Override
   public void onTextChanged(CharSequence s, int start, int before, int count) {
     // 当输入框里面的值为空，更新为原来的列表，否则为过滤数据列表

@@ -257,12 +257,9 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
    * @author 张柳 时间：2016年8月18日16:36:15
    */
   private void login(String phone, String password) {
-////    String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
-////    String str=phone+"|"+password+"|"+timestamp;
-////    //签名数据
+    //签名数据
     HashMap<String, String> signdata = new HashMap<>();
-    long time = System.currentTimeMillis() / 1000;
-    String timestamp = String.valueOf(time);
+    String timestamp = Utils.getCurrentTimestamp();
     signdata.put("phone", phone);
     signdata.put("password", password);
     signdata.put("timestamp", timestamp);
@@ -281,6 +278,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
             super.onStart();
             showLoadingDialog();
           }
+
           @Override
           public void onSuccess(JSONObject data) {
             super.onSuccess(data);
@@ -294,6 +292,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                 ApplicationEx.getInstance().setUserInfo(userinfo);
                 String userid = userinfo.getUserid();
                 PreferenceUtils.setUserId(userid);
+                PreferenceUtils.setCompanyId(userinfo.getCompany_id());
                 PreferenceUtils.setQM_Token(userinfo.getQmct_token());
                 PreferenceUtils.setRY_Token(userinfo.getRy_token());
                 long time = System.currentTimeMillis();
@@ -348,7 +347,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
         .params("timestamp", timestamp)
         .params("str", Data[1])
         .params("sign", Data[0])
-        .params("qmct_token",PreferenceUtils.getQM_Token())
+        .params("qmct_token", PreferenceUtils.getQM_Token())
         .execute(new StringCallback() {
           @Override
           public void onSuccess(String s, Call call, Response response) {

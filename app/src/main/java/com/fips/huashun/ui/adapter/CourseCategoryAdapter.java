@@ -1,4 +1,4 @@
-package com.example.mycoursemodel;
+package com.fips.huashun.ui.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import com.fips.huashun.R;
+import com.fips.huashun.ui.activity.EntMyCourseActivity;
 
 /**
  * description: 课程分类的Adapter
@@ -50,8 +52,8 @@ public class CourseCategoryAdapter extends BaseAdapter {
     TextView tv_category_name = (TextView) convertView.findViewById(R.id.tv_category_name);
     mPosition=position;
     tv_category_name.setText(strings[position]);
-    if (position==MainActivity.mPosition){
-      convertView.setBackgroundResource(R.drawable.xxx);
+    if (position== EntMyCourseActivity.mPosition){
+      convertView.setBackgroundResource(R.drawable.bg_course_category);
     }else {
       convertView.setBackgroundColor(Color.parseColor("#f4f4f4"));
     }

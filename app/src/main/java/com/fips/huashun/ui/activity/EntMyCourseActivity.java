@@ -2,14 +2,17 @@ package com.fips.huashun.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.FrameLayout;
+import android.widget.ListView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import com.fips.huashun.R;
+import com.fips.huashun.ui.adapter.CourseCategoryAdapter;
+import com.fips.huashun.ui.fragment.MyCourseFragment;
 import com.fips.huashun.ui.utils.NavigationBar;
 import com.fips.huashun.ui.utils.NavigationBar.NavigationListener;
 
@@ -18,62 +21,25 @@ import com.fips.huashun.ui.utils.NavigationBar.NavigationListener;
  * version: 1.21 站在峰顶 看世界 落在谷底 思人生
  */
 
-public class EntMyCourseActivity extends BaseActivity {
+public class EntMyCourseActivity extends BaseActivity implements OnItemClickListener {
 
-  @Bind(R.id.tv_unpass_counts)
-  TextView mTvUnpassCounts;
-  @Bind(R.id.tv_unfinish_points)
-  TextView mTvUnfinishPoints;
-  @Bind(R.id.iv_more_unfinish)
-  ImageView mIvMoreUnfinish;
-  @Bind(R.id.cd_unfinish)
-  CardView mCdUnfinish;
-  @Bind(R.id.tv_unfinish_counts)
-  TextView mTvUnfinishCounts;
-  @Bind(R.id.tv_unpass_points)
-  TextView mTvUnpassPoints;
-  @Bind(R.id.iv_more_unpass)
-  ImageView mIvMoreUnpass;
-  @Bind(R.id.cd_unpass)
-  CardView mCdUnpass;
-  @Bind(R.id.tv_finish_counts)
-  TextView mTvFinishCounts;
-  @Bind(R.id.tv_finish_points)
-  TextView mTvFinishPoints;
-  @Bind(R.id.iv_more_finish)
-  ImageView mIvMoreFinish;
-  @Bind(R.id.cd_finish)
-  CardView mCdFinish;
-  @Bind(R.id.tv_pass_counts)
-  TextView mTvPassCounts;
-  @Bind(R.id.tv_pass_points)
-  TextView mTvPassPoints;
-  @Bind(R.id.iv_more_pass)
-  ImageView mIvMorePass;
-  @Bind(R.id.cd_pass)
-  CardView mCdPass;
-  @Bind(R.id.tv_all_counts)
-  TextView mTvAllCounts;
-  @Bind(R.id.tv_all_points)
-  TextView mTvAllPoints;
-  @Bind(R.id.iv_more_all)
-  ImageView mIvMoreAll;
-  @Bind(R.id.tv_has_download)
-  TextView mTvHasDownload;
-  @Bind(R.id.iv_more_download)
-  ImageView mIvMoreDownload;
-  @Bind(R.id.cd_download)
-  CardView mCdDownload;
+  private String[] strs = {"待学习","待考试", "全部课程", "下载管理"};
   @Bind(R.id.NavigationBar)
   NavigationBar mNavigationBar;
-  private String enterpriseId;
+  @Bind(R.id.listview)
+  ListView mListview;
+  @Bind(R.id.fragment_container)
+  FrameLayout mFragmentContainer;
+  public static int mPosition;
+  private CourseCategoryAdapter mCategoryAdapter;
+  private MyCourseFragment myFragment;//我的课程的Fragment
+  private String study_type = "0";
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activtiy_entmycourseactivity);
     ButterKnife.bind(this);
-    enterpriseId = getIntent().getStringExtra("enterpriseId");
     initView();
   }
 
@@ -88,6 +54,9 @@ public class EntMyCourseActivity extends BaseActivity {
         }
       }
     });
+    mCategoryAdapter = new CourseCategoryAdapter(this, strs);
+    mListview.setAdapter(mCategoryAdapter);
+    mListview.setOnItemClickListener(this);
   }
 
   @Override
@@ -95,31 +64,43 @@ public class EntMyCourseActivity extends BaseActivity {
     return false;
   }
 
-  //点击跳转不同的课程列表
-
-  @OnClick({R.id.cd_unfinish, R.id.cd_unpass, R.id.cd_finish, R.id.cd_pass,
-      R.id.iv_more_all, R.id.cd_download})
-  public void onClick(View view) {
-    switch (view.getId()) {
-      case R.id.cd_unfinish:
-        Intent intent = new Intent(this, EntMyCourseActivity.class);
-        intent.putExtra("enterpriseId", enterpriseId);
-        startActivity(new Intent(this, EnterpriseMycourseActivity.class));
-        break;
-      case R.id.cd_unpass:
-        break;
-      case R.id.cd_finish:
-        break;
-      case R.id.cd_pass:
-        break;
-      case R.id.iv_more_all:
-        break;
-      case R.id.cd_download:
-        startActivity(new Intent(this, DownloadManageActivity.class));
-
-        break;
+  //当点击左侧的导航条目
+  @Override
+  public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    //拿到当前的位置刷新列表
+    mPosition = position;
+    mCategoryAdapter.notifyDataSetChanged();
+    showCourseFragment(mPosition);
+  }
+//显示课程的fragment
+  private void showCourseFragment(int position) {
+    myFragment = new MyCourseFragment();
+    FragmentTransaction fragmentTransaction = getSupportFragmentManager()
+        .beginTransaction();
+    fragmentTransaction.replace(R.id.fragment_container, myFragment);
+    Bundle bundle = new Bundle();
+    if (position == 0) {
+      //待学习
+      bundle.putString("course_type", "1");
+//      bundle.putString("study_type", study_type);
+      myFragment.setArguments(bundle);
+      fragmentTransaction.commit();
+    } else if (position == 1) {
+      //待考试
+      bundle.putString("course_type", "2");
+//      bundle.putString("study_type", study_type);
+      myFragment.setArguments(bundle);
+      fragmentTransaction.commit();
+    } else if (position == 2) {
+      //全部
+      bundle.putString("course_type", "3");
+//      bundle.putString("study_type", study_type);
+      myFragment.setArguments(bundle);
+      fragmentTransaction.commit();
+    } else if (position == 3) {
+      //下载管理,跳转到下载管理界面
+      Intent intent = new Intent(this, DownloadManageActivity.class);
+      startActivity(intent);
     }
   }
-
-
 }
