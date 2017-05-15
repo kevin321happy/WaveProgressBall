@@ -10,7 +10,6 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.fips.huashun.R;
-import com.fips.huashun.common.CacheConstans;
 import com.fips.huashun.modle.dbbean.DepartmentEntity;
 import com.fips.huashun.modle.dbbean.MemberEntity;
 import java.util.ArrayList;
@@ -33,9 +32,7 @@ public class OrganizationAdapter extends BaseAdapter {
   private Context mContext;
   private OnOrganizationItemClickListener mOnOrganizationItemClickListener;
   private HashMap<Integer, Boolean> mSelected = new HashMap<>();
-
   private List mChooseedItems = new ArrayList();//被选中的集合
-  private final List mChooseMember;
   private String chatType;
 
   public HashMap<Integer, Boolean> getSelected() {
@@ -54,7 +51,6 @@ public class OrganizationAdapter extends BaseAdapter {
   public OrganizationAdapter(Context context, String type) {
     mContext = context;
     this.chatType = type;
-    mChooseMember = CacheConstans.getChooseMember();
   }
 
   @Override
@@ -140,17 +136,11 @@ public class OrganizationAdapter extends BaseAdapter {
             if (mSelected.get(position)) {
               mSelected.put(position, false);
               setSelected(mSelected);
-              mChooseedItems.remove(dep);
-              mOnOrganizationItemClickListener.OnItemChoosed(mChooseedItems);
-              //从单例集合中移除
-              mChooseMember.remove(dep);
+              mOnOrganizationItemClickListener.OnDepartmentCancle(dep.getDep_id());
             } else {
               mSelected.put(position, true);
               setSelected(mSelected);
-              mChooseedItems.add(dep);
-              mOnOrganizationItemClickListener.OnItemChoosed(mChooseedItems);
-              //添加到单例集合
-              mChooseMember.add(dep);
+              mOnOrganizationItemClickListener.OnDepartmentChoosed(dep.getDep_id());
             }
           }
         });
@@ -177,17 +167,11 @@ public class OrganizationAdapter extends BaseAdapter {
             if (mSelected.get(position)) {
               mSelected.put(position, false);
               setSelected(mSelected);
-              mChooseedItems.remove(memberEntity);
-              mOnOrganizationItemClickListener.OnItemChoosed(mChooseedItems);
-              //从单例集合中移除
-              mChooseMember.remove(memberEntity);
+              mOnOrganizationItemClickListener.OnMemberCancle(memberEntity.getUid());
             } else {
               mSelected.put(position, true);
               setSelected(mSelected);
-              mChooseedItems.add(memberEntity);
-              mOnOrganizationItemClickListener.OnItemChoosed(mChooseedItems);
-              //从单例集合中添加
-              mChooseMember.add(memberEntity);
+              mOnOrganizationItemClickListener.OnMemberChoosed(memberEntity.getUid());
             }
           }
         });
@@ -200,16 +184,19 @@ public class OrganizationAdapter extends BaseAdapter {
           return;
         }
         if (type == 0) {
-          //跳转部门,回调数据出去
-          DepartmentEntity departmentEntity = (com.fips.huashun.modle.dbbean.DepartmentEntity) mData
+          DepartmentEntity departmentEntity = (DepartmentEntity) mData
               .get(position);
           String dep_id = departmentEntity.getDep_id();
           mOnOrganizationItemClickListener
               .OnDepartmentItemClick(dep_id, mChooseedItems, mSelected.get(position));
         } else if (type == 2) {
+          if (!chatType.equals("0")) {
+            return;
+          }
           MemberEntity memberEntity = (MemberEntity) mData.get(position);
           //点击人员跳转聊天
-              mOnOrganizationItemClickListener.OnMemberItemClick(memberEntity.getUid(),memberEntity.getMember_name());
+          mOnOrganizationItemClickListener
+              .OnMemberItemClick(memberEntity.getUid(), memberEntity.getMember_name());
         } else {
           return;
         }
@@ -245,7 +232,13 @@ public class OrganizationAdapter extends BaseAdapter {
 
     void OnMemberItemClick(String uid, String member_name);
 
-    void OnItemChoosed(List data);
+    void OnMemberChoosed(String uid);
+
+    void OnMemberCancle(String uid);
+
+    void OnDepartmentChoosed(String dep_id);
+
+    void OnDepartmentCancle(String dep_id);
 
 
   }

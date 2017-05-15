@@ -73,7 +73,6 @@ public class EntMyCourseActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activtiy_entmycourseactivity);
     ButterKnife.bind(this);
-
     enterpriseId = getIntent().getStringExtra("enterpriseId");
     initView();
   }

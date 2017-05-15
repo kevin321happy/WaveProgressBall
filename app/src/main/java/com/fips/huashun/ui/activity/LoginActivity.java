@@ -17,25 +17,30 @@ import android.widget.TextView;
 import com.fips.huashun.ApplicationEx;
 import com.fips.huashun.R;
 import com.fips.huashun.common.Constants;
+import com.fips.huashun.common.URLConstants;
 import com.fips.huashun.modle.bean.UserInfo;
 import com.fips.huashun.net.HttpUtil;
 import com.fips.huashun.net.LoadDatahandler;
 import com.fips.huashun.net.LoadJsonHttpResponseHandler;
 import com.fips.huashun.ui.fragment.MainActivity2;
 import com.fips.huashun.ui.utils.AlertDialogUtils;
+import com.fips.huashun.ui.utils.DeviceUtil;
 import com.fips.huashun.ui.utils.Md5Utils;
 import com.fips.huashun.ui.utils.PreferenceUtils;
+import com.fips.huashun.ui.utils.RuleTool;
 import com.fips.huashun.ui.utils.SPUtils;
 import com.fips.huashun.ui.utils.SystemBarTintManager;
 import com.fips.huashun.ui.utils.ToastUtil;
 import com.fips.huashun.ui.utils.Utils;
 import com.loopj.android.http.RequestParams;
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.StringCallback;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
+import java.util.HashMap;
 import java.util.Map;
 import okhttp3.Call;
 import okhttp3.Response;
@@ -224,6 +229,7 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
       //Toast.makeText( getApplicationContext(), "Authorize succeed", Toast.LENGTH_SHORT).show();
       toastUtil.show("Authorize succeed");
     }
+
     @Override
     public void onError(SHARE_MEDIA platform, int action, Throwable t) {
       //Toast.makeText( getApplicationContext(), "Authorize fail", Toast.LENGTH_SHORT).show();
@@ -251,32 +257,45 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
    * @author 张柳 时间：2016年8月18日16:36:15
    */
   private void login(String phone, String password) {
+////    String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+////    String str=phone+"|"+password+"|"+timestamp;
+////    //签名数据
+    HashMap<String, String> signdata = new HashMap<>();
+    long time = System.currentTimeMillis() / 1000;
+    String timestamp = String.valueOf(time);
+    signdata.put("phone", phone);
+    signdata.put("password", password);
+    signdata.put("timestamp", timestamp);
+    String[] Data = RuleTool.getSignData(this, signdata);
     RequestParams requestParams = new RequestParams();
     requestParams.put("phone", phone);
     requestParams.put("password", password);
-    HttpUtil.post(Constants.LOGIN_URL, requestParams,
+    requestParams.put("timestamp", timestamp);
+    requestParams.put("str", Data[1]);
+    requestParams.put("sign", Data[0]);
+    requestParams.put("app_id", "qmct");
+    HttpUtil.post(URLConstants.USER_LOGIN, requestParams,
         new LoadJsonHttpResponseHandler(this, new LoadDatahandler() {
           @Override
           public void onStart() {
             super.onStart();
             showLoadingDialog();
           }
-
           @Override
           public void onSuccess(JSONObject data) {
             super.onSuccess(data);
             dimissLoadingDialog();
             try {
               String suc = data.get("suc").toString();
-              String msg = data.get("msg").toString();
+              String msg = data.get("info").toString();
               if ("y".equals(suc)) {
                 UserInfo userinfo = gson
-                    .fromJson(data.getString("userinfo").toString(), UserInfo.class);
-//                ToastUtil.getInstant().show(userinfo.getStatus());
-                //保存userinfo
+                    .fromJson(data.getString("data").toString(), UserInfo.class);
                 ApplicationEx.getInstance().setUserInfo(userinfo);
                 String userid = userinfo.getUserid();
                 PreferenceUtils.setUserId(userid);
+                PreferenceUtils.setQM_Token(userinfo.getQmct_token());
+                PreferenceUtils.setRY_Token(userinfo.getRy_token());
                 long time = System.currentTimeMillis();
                 PreferenceUtils.setLoginTime(String.valueOf(time));
                 PreferenceUtils.setReadstatus(userinfo.getReadstatus());
@@ -290,11 +309,10 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
                   } else if (page.equals("1")) {
                     MainActivity2.index = 1;
                   }
-                } else {
-//                            Intent intentToHome = new Intent(LoginActivity.this, MainActivity2.class);
-//                            startActivity(intentToHome);
                 }
+                upLoadDeviceInfo();
                 finish();
+
               } else {
                 ToastUtil.getInstant().show(msg);
               }
@@ -306,9 +324,39 @@ public class LoginActivity extends BaseActivity implements OnClickListener {
           @Override
           public void onFailure(String error, String message) {
             super.onFailure(error, message);
-            dimissLoadingDialog();
+//            dimissLoadingDialog();
           }
         }));
+  }
+
+  //上传设备信息
+  private void upLoadDeviceInfo() {
+    HashMap<String, String> signdata = new HashMap<>();
+    long time = System.currentTimeMillis() / 1000;
+    String timestamp = String.valueOf(time);
+    signdata.put("userid", PreferenceUtils.getUserId());
+    signdata.put("app_version", DeviceUtil.getVersionName(this));
+    signdata.put("os_version", DeviceUtil.getBuildVersion());
+    signdata.put("machine_type", DeviceUtil.getPhoneModel());
+    signdata.put("timestamp", timestamp);
+    String[] Data = RuleTool.getSignData(this, signdata);
+    OkGo.post(URLConstants.UPLOAD_USER_VERSION)
+        .params("userid", PreferenceUtils.getUserId())
+        .params("app_version", DeviceUtil.getVersionName(this))
+        .params("os_version", DeviceUtil.getBuildVersion())
+        .params("machine_type", DeviceUtil.getPhoneModel())
+        .params("timestamp", timestamp)
+        .params("str", Data[1])
+        .params("sign", Data[0])
+        .params("qmct_token",PreferenceUtils.getQM_Token())
+        .execute(new StringCallback() {
+          @Override
+          public void onSuccess(String s, Call call, Response response) {
+            ToastUtil.getInstant().show("上传成功");
+          }
+        });
+
+
   }
 
   //极光

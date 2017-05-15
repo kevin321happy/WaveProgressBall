@@ -134,6 +134,7 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
         MemberDao memberDao = new MemberDao(getActivity());
         MemberEntity memberEntity = memberDao.querMemmberByUid(PreferenceUtils.getUserId());
         mMember_name = memberEntity.getMember_name();
+        SPUtils.put(getActivity(),"token",memberEntity.getRy_token());
         subscriber.onNext(memberEntity.getRy_token());
       }
     }).subscribeOn(Schedulers.newThread())
@@ -285,10 +286,6 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
             break;
           case 1:
             // 组织架构
-//            intent = new Intent(getActivity(), WebviewActivity.class);
-//            intent.putExtra("key", 1);
-//            intent.putExtra("entid", enterpriseId);
-//            startActivity(intent);
             Intent intent1 = new Intent(getActivity(), EntOrganizationActivity.class);
             startActivity(intent1);
             break;
@@ -296,14 +293,9 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
             //Pk榜
             // 企业部门
             //跳转到企业通讯界面
-            RongIM.getInstance().startConversationList(getActivity(),null);
-//            RongIM.getInstance().startSubConversationList(getActivity(), Conversation.ConversationType.GROUP);
-//            intent = new Intent(getActivity(), ConversationListActivity.class);
-//            intent = new Intent(getActivity(), WebviewActivity.class);
-//            intent.putExtra("key", 2);
-//            intent.putExtra("entid", enterpriseId);
-//            intent.putExtra("activityId", entinfo.getDeptid());//depid
-//            startActivity(intent);
+            RongIM.getInstance().startConversationList(getActivity());
+//            RongIM.getInstance().s
+//
             break;
           case 3:
             // PK榜
@@ -352,9 +344,7 @@ public class FragmentOwnEnterprise extends Fragment implements OnClickListener {
    * 功能：获取企业信息
    */
   private void initData() {
-
     RequestParams requestParams = new RequestParams();
-
     requestParams.put("type", type);
     requestParams.put("userid", PreferenceUtils.getUserId());
     HttpUtil.getClient().setTimeout(2000);

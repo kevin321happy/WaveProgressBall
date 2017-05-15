@@ -1,23 +1,23 @@
 package com.fips.huashun.ui.activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager.LayoutParams;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import com.fips.huashun.R;
-import com.fips.huashun.common.CacheConstans;
 import com.fips.huashun.common.Constants;
 import com.fips.huashun.db.dao.DepartmentDao;
 import com.fips.huashun.db.dao.MemberDao;
@@ -29,6 +29,8 @@ import com.fips.huashun.modle.dbbean.DepartmentEntity;
 import com.fips.huashun.modle.dbbean.MemberEntity;
 import com.fips.huashun.ui.adapter.OrganizationAdapter;
 import com.fips.huashun.ui.adapter.OrganizationAdapter.OnOrganizationItemClickListener;
+import com.fips.huashun.ui.utils.AlertDialogUtils;
+import com.fips.huashun.ui.utils.AlertDialogUtils.DialogInputInter;
 import com.fips.huashun.ui.utils.CharacterParser;
 import com.fips.huashun.ui.utils.NavigationBar;
 import com.fips.huashun.ui.utils.NavigationBar.NavigationListener;
@@ -40,6 +42,9 @@ import com.lzy.okgo.callback.StringCallback;
 import com.lzy.okgo.request.BaseRequest;
 import io.rong.imkit.RongIM;
 import io.rong.imkit.mention.MemberMentionedActivity.PinyinComparator;
+import io.rong.imlib.RongIMClient;
+import io.rong.imlib.RongIMClient.CreateDiscussionCallback;
+import io.rong.imlib.RongIMClient.ErrorCode;
 import java.util.ArrayList;
 import java.util.List;
 import okhttp3.Call;
@@ -56,7 +61,6 @@ import rx.schedulers.Schedulers;
  */
 
 public class EntOrganizationActivity extends BaseActivity implements OnClickListener, TextWatcher {
-
   @Bind(R.id.nb_orgainization)
   NavigationBar mNbOrgainization;
   @Bind(R.id.et_search_friend)
@@ -65,8 +69,6 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
   TextView mTvChoosed;
   @Bind(R.id.btn_confirm_choose)
   Button mBtnConfirmChoose;
-  //  @Bind(R.id.lv_dep_list)
-//  NoScrollListView mLvDepList;
   List<Integer> list = new ArrayList<>();
   @Bind(R.id.cb_check_all)
   CheckBox mCbCheckAll;
@@ -76,6 +78,9 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
   LinearLayout mLlMember;
   @Bind(R.id.ll_have_choose_count)
   LinearLayout mLlHaveChooseCount;
+  @Bind(R.id.ll_all_members)
+  LinearLayout mLlAllMembers;
+
 
   private Gson mGson;
   private DepartmentDao mDepartmentDao;
@@ -85,19 +90,17 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
   private String pid = "0";//根据父部门的pid来获取部门下面的人员和部门数据
   private List dataList = new ArrayList();
   private OrganizationAdapter mOrganizationAdapter;
-  private int mCount = 0;
   private boolean mIsChecked;//是否已经勾选
-  private int mChooseCount;
   int mTotleCount;//选中的总数
-  int mCurrentCount;//当前页面的总人数
-  private List mChooseMembers;
   private String type = "0";//单聊的标识
-  private Object mDataFormNet;
   private List<MemberEntity> mMemberEntityList;
   private List<DepartmentEntity> mDepartmentEntities;
   private CharacterParser characterParser;// 汉字转拼音
   private PinyinComparator pinyinComparator;// 根据拼音来排列ListView里面的数据类
   private List<MemberEntity> mAllmemberEntityList;
+  private long mChoosedCounts;
+  private String mTargetId;
+
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -108,15 +111,11 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
     ButterKnife.bind(this);
     Intent intent = getIntent();
     String dep_id = intent.getStringExtra("pid");
-    mCount = intent.getIntExtra("chooseCount", 0);
+     mTargetId=intent.getStringExtra("targetId");
     //类型
     if (intent.getStringExtra("type") != null) {
       type = intent.getStringExtra("type");
     }
-    //已选择的总人数
-    mChooseMembers = CacheConstans.getChooseMember();
-    //显示选中个数
-    showCount(mCount);
     String isChecked = intent.getStringExtra("isChecked");
     if (isChecked != null) {
       mIsChecked = isChecked.equals("1") ? true : false;
@@ -126,13 +125,37 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
     }
     mGson = new Gson();
     initView();
+    //显示选中个数
+    showCount();
     initData();
   }
 
-
   //显示当前的选中的个数
-  private void showCount(int count) {
-    mTvChoosed.setText("当前已经选中人数 ：" + count + "人");
+  private void showCount() {
+    Observable.create(new OnSubscribe<Long>() {
+      @Override
+      public void call(Subscriber<? super Long> subscriber) {
+        mChoosedCounts = mMemberDao.getChoosedCounts("1");
+        subscriber.onNext(mChoosedCounts);
+      }
+    }).subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<Long>() {
+          @Override
+          public void onCompleted() {
+
+          }
+
+          @Override
+          public void onError(Throwable e) {
+
+          }
+
+          @Override
+          public void onNext(Long o) {
+            mTvChoosed.setText("当前已经选中人数 ：" + o + "人");
+          }
+        });
   }
 
   private void initData() {
@@ -157,7 +180,6 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
             dataList.add("部门");
             dataList.addAll(mDepartmentEntities);
           }
-
           subscriber.onNext(dataList);
         }
       }
@@ -166,12 +188,10 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
         .subscribe(new Subscriber<List>() {
           @Override
           public void onCompleted() {
-
           }
 
           @Override
           public void onError(Throwable e) {
-
           }
 
           @Override
@@ -182,29 +202,9 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
             } else {
               mOrganizationAdapter.setData(list, mIsChecked);
               mLvDepMember.setAdapter(mOrganizationAdapter);
-              //遍历获得当前的页面的总人数
-              for (int i = 0; i < list.size(); i++) {
-                if (list.get(i) instanceof DepartmentEntity) {
-                  DepartmentEntity departmentEntity = (DepartmentEntity) list.get(i);
-                  int people_num = Integer.valueOf(departmentEntity.getPeople_num());
-                  //部门
-                  mCurrentCount = mCurrentCount + people_num;
-                } else if (list.get(i) instanceof MemberEntity) {
-                  //成员
-                  mCurrentCount++;
-                }
-              }
             }
           }
         });
-  }
-
-  //加入集合里面
-  private void addToChooesed(List chooseedItems) {
-    for (int i = 0; i < chooseedItems.size(); i++) {
-      //添加到选中的临时集合
-      mChooseMembers.add(chooseedItems.get(i));
-    }
   }
 
   //保存数据到数据库
@@ -236,6 +236,8 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
       memberEntity.setMember_name(memberBean.getMember_name());
       memberEntity.setUid(memberBean.getUid() + "");
       memberEntity.setRy_token(memberBean.getRy_token());
+      memberEntity.setName_py(memberBean.getMember_name_pinyin());
+      memberEntity.setIscheck("0");
       mMemberDao.addMemberEntity(memberEntity);
     }
     initData();
@@ -261,22 +263,70 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
     mEtSearchFriend.clearFocus();
     mOrganizationAdapter = new OrganizationAdapter(this, type);
     mLlHaveChooseCount.setVisibility(type.equals("0") ? View.GONE : View.VISIBLE);
+    mLlAllMembers.setVisibility(type.equals("0") ? View.GONE : View.VISIBLE);
     mOrganizationAdapter.setOnOrganizationItemClickListener(mOnOrganizationItemClickListener);
     mBtnConfirmChoose.setOnClickListener(this);
+    //点击全选的监听
+    mCbCheckAll.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+      @Override
+      public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+          mIsChecked = true;
+          showClickAllCounts(pid, true);
+          initData();
+        } else {
+          mIsChecked = false;
+          showClickAllCounts(pid, false);
+          initData();
+        }
+      }
+    });
+  }
+
+  //当点击全选时候显示界面
+  private void showClickAllCounts(String pid, boolean checkAll) {
+    if (checkAll == true) {
+      List<MemberEntity> memberEntityList = mMemberDao.queryAllMemebersByPid(pid);
+      mTvChoosed.setText("已选择人数：" + memberEntityList.size() + "人");
+      mMemberDao.setCourrentChoosed(pid, checkAll);
+    } else {
+      mTvChoosed.setText("已选择人数：" + 0 + "人");
+      mMemberDao.setCourrentChoosed(pid, checkAll);
+    }
+
+
   }
 
   private OnOrganizationItemClickListener mOnOrganizationItemClickListener = new OnOrganizationItemClickListener() {
     @Override
     public void OnDepartmentItemClick(String dep_id, List chooseedItems, Boolean isChecked) {
-      addToChooesed(chooseedItems);
-      //当点击部门条目,跳转
       Intent intent = new Intent(EntOrganizationActivity.this, EntOrganizationActivity.class);
       intent.putExtra("pid", dep_id);
       intent.putExtra("isChecked", isChecked == true ? "1" : "0");
-      intent.putExtra("chooseCount", mTotleCount);
       intent.putExtra("type", type);
-      ToastUtil.getInstant().show("当前选择了总人数 ；" + mTotleCount);
       startActivity(intent);
+    }
+
+    @Override
+    public void OnMemberChoosed(String uid) {
+      upDataMemberState(uid, true);
+
+    }
+
+    @Override
+    public void OnMemberCancle(String uid) {
+      upDataMemberState(uid, false);
+    }
+
+    @Override
+    public void OnDepartmentChoosed(String dep_id) {
+      upDataDepartmentState(dep_id, true);
+
+    }
+
+    @Override
+    public void OnDepartmentCancle(String dep_id) {
+      upDataDepartmentState(dep_id, false);
     }
 
     @Override
@@ -285,31 +335,73 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
       //单聊
       RongIM.getInstance().startPrivateChat(EntOrganizationActivity.this, uid, member_name);
     }
-
-    //当条目被勾选
-    @Override
-    public void OnItemChoosed(List data) {
-      mChooseCount = 0;
-      for (int i = 0; i < data.size(); i++) {
-        if (data.get(i) instanceof DepartmentEntity) {
-          DepartmentEntity departmentEntity = (DepartmentEntity) data.get(i);
-          int people_num = Integer.valueOf(departmentEntity.getPeople_num());
-          //部门
-          mChooseCount = mChooseCount + people_num;
-        } else if (data.get(i) instanceof MemberEntity) {
-          //成员
-          mChooseCount++;
-        }
-      }
-      if (mIsChecked) {
-        //当前页面已经是全选了,再点击是取消
-        mTotleCount = mCount - (mCurrentCount - mChooseCount);
-      } else {
-        mTotleCount = mCount + mChooseCount;
-      }
-      showCount(mTotleCount);
-    }
   };
+
+  //更新部门的状态
+  private void upDataDepartmentState(final String dep_id, final boolean isadd) {
+    Observable.create(new OnSubscribe<Object>() {
+      @Override
+      public void call(Subscriber<? super Object> subscriber) {
+        if (isadd) {
+          mMemberDao.upDataDepartmentsStatesByPid(dep_id, true);
+        } else {
+          mMemberDao.upDataDepartmentsStatesByPid(dep_id, false);
+        }
+        subscriber.onNext(0);
+      }
+    }).subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<Object>() {
+          @Override
+          public void onCompleted() {
+
+          }
+
+          @Override
+          public void onError(Throwable e) {
+
+          }
+
+          @Override
+          public void onNext(Object o) {
+            showCount();
+          }
+        });
+  }
+
+  //更新成员的信息
+  private void upDataMemberState(final String uid, final boolean isadd) {
+    Observable.create(new OnSubscribe<Object>() {
+      @Override
+      public void call(Subscriber<? super Object> subscriber) {
+        MemberEntity memberEntity = mMemberDao.querMemmberByUid(uid);
+        if (isadd) {
+          memberEntity.setIscheck("1");
+        } else {
+          memberEntity.setIscheck("0");
+        }
+        mMemberDao.upDataMember(memberEntity);
+        subscriber.onNext(0);
+      }
+    }).subscribeOn(Schedulers.io())
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(new Subscriber<Object>() {
+          @Override
+          public void onCompleted() {
+
+          }
+
+          @Override
+          public void onError(Throwable e) {
+
+          }
+
+          @Override
+          public void onNext(Object o) {
+            showCount();
+          }
+        });
+  }
 
   @Override
   public boolean isSystemBarTranclucent() {
@@ -319,32 +411,59 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
   //点击了确定，创建群聊
   @Override
   public void onClick(View v) {
-    List<MemberEntity> list = new ArrayList<>();
-    for (int i = 0; i < mChooseMembers.size(); i++) {
-      for (int j = mChooseMembers.size() - 1; j > i; j--)  //内循环是 外循环一次比较的次数
-      {
-        if (mChooseMembers.get(i) == mChooseMembers.get(j)) {
-          mChooseMembers.remove(j);
-        }
-      }
+    List<MemberEntity> memberEntityList = mMemberDao.queryAllChooseMembers();
+    final List<String> userids=new ArrayList<>();
+    for (MemberEntity memberEntity : memberEntityList) {
+      userids.add(memberEntity.getUid());
     }
-    for (int i = 0; i < mChooseMembers.size(); i++) {
-      if (mChooseMembers.get(i) instanceof MemberEntity) {
-        MemberEntity entity = (MemberEntity) mChooseMembers.get(i);
-        list.add(entity);
-        Log.i("test00000",entity.toString());
-      } else if (mChooseMembers.get(i) instanceof DepartmentEntity) {
-        DepartmentEntity departmentEntity = (DepartmentEntity) mChooseMembers.get(i);
-        List<MemberEntity> memberEntityList = mMemberDao
-            .queryMembersByPid(departmentEntity.getDep_id());
-        for (MemberEntity memberEntity : memberEntityList) {
-          list.add(memberEntity);
-          Log.i("test00000",memberEntity.toString());
+    if (type.equals("2")){
+      //添加到讨论组
+      RongIM.getInstance().addMemberToDiscussion(mTargetId, userids, new RongIMClient.OperationCallback() {
+        @Override
+        public void onSuccess() {
+          ToastUtil.getInstant().show("进来了...");
+          RongIM.getInstance().startDiscussionChat(EntOrganizationActivity.this, mTargetId, "标题");
         }
 
-      }
-    }
+        @Override
+        public void onError(RongIMClient.ErrorCode errorCode) {
 
+        }
+      });
+
+    }else {
+      AlertDialogUtils.showTowBtnInputDialog(this, "创建讨论组", "取消", "创建", new DialogInputInter() {
+        @Override
+        public void leftClick(AlertDialog dialog) {
+          dialog.dismiss();
+        }
+
+        @Override
+        public void submit(String inputPwd, AlertDialog dialog) {
+          mMemberDao.setAllMemberUnChoosed("8");
+          startGroupChat(inputPwd, userids);
+          dialog.dismiss();
+        }
+      });
+    }
+  }
+
+  //开始群聊
+  private void startGroupChat(final String dialog, List<String> list) {
+    RongIM.getInstance().createDiscussion(dialog, list, new CreateDiscussionCallback() {
+      @Override
+      public void onSuccess(String s) {
+        //跳转到界面
+        RongIM.getInstance().startDiscussionChat(EntOrganizationActivity.this, s, dialog);
+        finish();
+        ToastUtil.getInstant().show(s);
+      }
+
+      @Override
+      public void onError(ErrorCode errorCode) {
+
+      }
+    });
   }
 
   //网络获取数据
@@ -406,8 +525,11 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
       for (MemberEntity sortModel : memberEntityList) {
         String name = sortModel.getMember_name();
         String suoxie = sortModel.getName_py();
-//        suoxie.indexOf(filterStr.toString()) != -1
-        if (characterParser.getSelling(name).startsWith(filterStr.toString())) {
+        String final_suoxie = suoxie.substring(suoxie.lastIndexOf("-"));
+        if (name.indexOf(filterStr.toString()) != -1 || suoxie.indexOf(filterStr.toString()) != -1
+            ||
+            characterParser.getSelling(name).startsWith(filterStr.toString()) ||
+            final_suoxie.startsWith(filterStr.toLowerCase().toString())) {
           filterDateList.add(sortModel);
         }
       }
@@ -421,9 +543,6 @@ public class EntOrganizationActivity extends BaseActivity implements OnClickList
       mLvDepMember.setAdapter(mOrganizationAdapter);
     }
     // 根据a-z进行排序
-//    Collections.sort(filterDateList, pinyinComparator);
-//    mAdapter.updateListView(filterDateList);
-
   }
 
   @Override

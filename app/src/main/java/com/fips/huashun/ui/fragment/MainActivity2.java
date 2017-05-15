@@ -116,18 +116,6 @@ public class MainActivity2 extends BaseActivity {
     checkNetState();
   }
 
-//    //权限申请的回调
-//    @Override
-//    public void onPermissionsGranted(int requestCode, List<String> perms) {
-//        //成功
-//       // updateApp();
-//    }
-
-//    @Override
-//    public void onPermissionsDenied(int requestCode, List<String> perms) {
-//        ToastUtil.getInstant().show("不具备权限，无法更新");
-//    }
-
 
   @Override
   protected void onResume() {
@@ -188,6 +176,7 @@ public class MainActivity2 extends BaseActivity {
             public void leftClick(android.app.AlertDialog dialog) {
               dialog.cancel();
             }
+
             @Override
             public void rightClick(android.app.AlertDialog dialog) {
               if (android.os.Build.VERSION.SDK_INT > 10) {
@@ -208,16 +197,16 @@ public class MainActivity2 extends BaseActivity {
     new Thread(new Runnable() {
       @Override
       public void run() {
-        Log.i("test","网络可用的1");
-        if (mStudyTimeDao==null){
+        Log.i("test", "网络可用的1");
+        if (mStudyTimeDao == null) {
           mStudyTimeDao = new CacheStudyTimeDao(getApplicationContext());
           List<CacheStudyTimeEntity> cacheStudyTimeEntities = mStudyTimeDao.queryAllRecord();
-          Log.i("test","网络可用的2");
-          if (cacheStudyTimeEntities!=null&&cacheStudyTimeEntities.size()>0){
-            Log.i("test","网络可用的3");
+          Log.i("test", "网络可用的2");
+          if (cacheStudyTimeEntities != null && cacheStudyTimeEntities.size() > 0) {
+            Log.i("test", "网络可用的3");
             for (CacheStudyTimeEntity timeEntity : mStudyTimeDao.queryAllRecord()) {
-              Log.i("test","网络可用的4");
-              Log.i("test",timeEntity.toString());
+              Log.i("test", "网络可用的4");
+              Log.i("test", timeEntity.toString());
             }
           }
         }
@@ -243,7 +232,7 @@ public class MainActivity2 extends BaseActivity {
         .execute(new StringCallback() {
           @Override
           public void onSuccess(String s, Call call, Response response) {
-            Log.i("test","发送缓存数据成功"+timeEntity.toString());
+            Log.i("test", "发送缓存数据成功" + timeEntity.toString());
             //删除缓存记录
             mStudyTimeDao.deleteRecord(timeEntity);
           }
@@ -267,5 +256,11 @@ public class MainActivity2 extends BaseActivity {
       UpdateHelper.getInstance().autoUpdate(packageName, false, intervalMillis);
     }
   }
+
+
+
+
+
+
 }
 

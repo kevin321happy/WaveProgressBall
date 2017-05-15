@@ -15,6 +15,7 @@ import com.j256.ormlite.table.DatabaseTable;
  */
 @DatabaseTable(tableName = "tb_ent_member")
 public class MemberEntity {
+
   @DatabaseField(generatedId = true)
   private long id;//自增ID
   @DatabaseField(canBeNull = false)//非空
@@ -41,6 +42,16 @@ public class MemberEntity {
   private String all_parent_id;//所有部门的ID
   @DatabaseField
   private String introduce;//介绍(预留字段)
+  @DatabaseField
+  private String ischeck;//是否被勾选
+
+  public String getIscheck() {
+    return ischeck;
+  }
+
+  public void setIscheck(String ischeck) {
+    this.ischeck = ischeck;
+  }
 
   public MemberEntity() {
   }

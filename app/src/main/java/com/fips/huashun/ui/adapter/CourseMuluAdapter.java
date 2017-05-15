@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.fips.huashun.R;
@@ -32,7 +33,6 @@ import java.util.List;
 import java.util.Map;
 
 public class CourseMuluAdapter extends BaseExpandableListAdapter {
-
   private LayoutInflater mInflater;
   List<CourseMuluTitle> mGroup = new ArrayList<>();
   Map<String, List<CouseMuluInfo>> mMap = new HashMap<>();
@@ -146,6 +146,7 @@ public class CourseMuluAdapter extends BaseExpandableListAdapter {
         .findViewById(R.id.tv_course_section_name);
     View line = convertView.findViewById(R.id.course_section_line);
     TextView tv_download = (TextView) convertView.findViewById(R.id.tv_course_section_down);
+    FrameLayout frameLayout = (FrameLayout) convertView.findViewById(R.id.fl_download);
     ImageView iv_download = (ImageView) convertView.findViewById(R.id.iv_course_section_down);
     tv_course_section_name.setText(sectionInfo.getSectionname() + "");
     String type = sectionInfo.getSessiontype();
@@ -165,7 +166,7 @@ public class CourseMuluAdapter extends BaseExpandableListAdapter {
     //如果是企业课程,且为视频或pdf课程
     if (!sectionInfo.getEid().equals("-1") && !sectionInfo.getSessiontype().equals("1")) {
       //设置下载按钮可见
-      tv_download.setVisibility(View.VISIBLE);
+     frameLayout.setVisibility(View.VISIBLE);
       //设置下载按钮的状态
       CourseSectionEntity sectionEntity = mSectionDownloadDao
           .querySectionBySectionId(sectionInfo.getSessonid());
@@ -178,7 +179,7 @@ public class CourseMuluAdapter extends BaseExpandableListAdapter {
         tv_download.setVisibility(View.VISIBLE);
       }
     } else {
-      tv_download.setVisibility(View.GONE);
+      frameLayout.setVisibility(View.GONE);
     }
     //点击下载的监听
     iv_download.setOnClickListener(new OnClickListener() {
@@ -249,6 +250,12 @@ public class CourseMuluAdapter extends BaseExpandableListAdapter {
         iv_download.setVisibility(View.GONE);
         tv_download.setVisibility(View.VISIBLE);
         tv_download.setText("下载中");
+        tv_download.setTextColor(mContext.getResources().getColor(R.color.bg_hui));
+        break;
+      case -2:
+        iv_download.setVisibility(View.GONE);
+        tv_download.setVisibility(View.VISIBLE);
+        tv_download.setText("等待中");
         tv_download.setTextColor(mContext.getResources().getColor(R.color.bg_hui));
         break;
       case 3:

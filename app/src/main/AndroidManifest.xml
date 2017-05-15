@@ -207,6 +207,17 @@
         <category android:name="com.fips.huashun" />
       </intent-filter>
     </receiver>
+    <!-- 融云通知栏消息 -->
+    <receiver
+      android:exported="true"
+      android:name=".receiver.RongNotificationReceiver">
+      <intent-filter>
+        <action android:name="io.rong.push.intent.MESSAGE_ARRIVED" />
+        <action android:name="io.rong.push.intent.MI_MESSAGE_ARRIVED" />
+        <action android:name="io.rong.push.intent.MESSAGE_CLICKED" />
+        <action android:name="io.rong.push.intent.MI_MESSAGE_CLICKED" />
+      </intent-filter>
+    </receiver>
     <!-- 融云IM -->
     <provider
       android:authorities="com.fips.huashun"
@@ -552,18 +563,13 @@
       </intent-filter>
     </activity>
     <!--会话列表-->
-
-    <!--会话列表-->
     <activity
       android:name=".ui.activity.ConversationListActivity"
       android:screenOrientation="portrait"
       android:windowSoftInputMode="stateHidden|adjustResize">
-
       <intent-filter>
         <action android:name="android.intent.action.VIEW" />
-
         <category android:name="android.intent.category.DEFAULT" />
-
         <data
           android:host="com.fips.huashun"
           android:pathPrefix="/conversationlist"

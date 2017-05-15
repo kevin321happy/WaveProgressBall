@@ -13,72 +13,37 @@
       android:id="@+id/nb_orgainization"
       style="@style/native_bar_style"></com.fips.huashun.ui.utils.NavigationBar>
     <include layout="@layout/search_box_layout" />
-   <!-- <com.fips.huashun.widgets.SpringScrollview
+    <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content">-->
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
       <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-
-        <LinearLayout style="@style/ent_organization_ll_allmember">
-          <CheckBox
-            android:id="@+id/cb_check_all"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone" />
-          <TextView
-            style="@style/ent_organization_tv_allmember"
-            android:text="全体成员" />
-        </LinearLayout>
-
-      <!--  &lt;!&ndash;部门的&ndash;&gt;
-        <LinearLayout
-          android:id="@+id/ll_department"
-          android:layout_width="match_parent"
+        android:id="@+id/ll_all_members"
+        style="@style/ent_organization_ll_allmember"
+        android:visibility="gone">
+        <CheckBox
+          android:id="@+id/cb_check_all"
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:orientation="vertical">
-          <TextView
-            style="@style/ent_organization_member_title"
-            android:text="部门" />
-          <com.fips.huashun.widgets.NoScrollListView
-            android:id="@+id/lv_dep_list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"></com.fips.huashun.widgets.NoScrollListView>
-        </LinearLayout>-->
-      <!--  &lt;!&ndash;成员的&ndash;&gt;
-        <LinearLayout
-          android:id="@+id/ll_member"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical">
-          <TextView
-            style="@style/ent_organization_member_title"
-            android:text="成员" />
-          <com.fips.huashun.widgets.NoScrollListView
-            android:id="@+id/lv_dep_member"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-          </com.fips.huashun.widgets.NoScrollListView>
-        </LinearLayout>-->
+          style="@style/CustomCheckboxTheme"
+          android:visibility="visible" />
+        <TextView
+          style="@style/ent_organization_tv_allmember"
+          android:text="全体成员" />
       </LinearLayout>
-   <!-- </com.fips.huashun.widgets.SpringScrollview>-->
+
+
+    </LinearLayout>
     <!--成员的-->
     <LinearLayout
       android:id="@+id/ll_member"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical">
-     <!-- <TextView
-        style="@style/ent_organization_member_title"
-        android:text="成员" />-->
       <ListView
         android:id="@+id/lv_dep_member"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-      </ListView>
+        android:layout_height="wrap_content"></ListView>
     </LinearLayout>
   </LinearLayout>
   <!--底部已选择的人员-->

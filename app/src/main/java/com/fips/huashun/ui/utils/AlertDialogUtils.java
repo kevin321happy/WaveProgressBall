@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.view.View;
 import android.view.Window;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.fips.huashun.R;
@@ -141,7 +142,9 @@ public class AlertDialogUtils {
     }
     public interface DialogInputInter{
 
-        void submit(AlertDialog dialog, String inputPwd);
+        void leftClick(AlertDialog dialog);
+
+        void submit(String dialog, AlertDialog inputPwd);
     }
 
     public interface DialogSingleButton{
@@ -194,7 +197,6 @@ public class AlertDialogUtils {
                 } else {
                     dlg.cancel();
                 }
-
             }
         });
         dlg.setCancelable(true);
@@ -202,4 +204,64 @@ public class AlertDialogUtils {
         return dlg;
     }
 
+
+    /**
+     * 显示有两个按钮的输入框
+     * @param context
+     * @param title
+     * @param DialogInputInter
+     */
+    public static AlertDialog showTowBtnInputDialog(Activity context, String title, String leftText, String rightText,
+        final DialogInputInter DialogInputInter) {
+        View view = View.inflate(context, R.layout.dialog_input_alert, null);
+        final AlertDialog dlg = new AlertDialog.Builder(context).create();
+        dlg.setView(view);
+        if(context.isFinishing()) {
+            return null;
+        }
+        dlg.show();
+        Window window = dlg.getWindow();
+        window.setContentView(R.layout.dialog_input_alert);
+        TextView alert_title = (TextView) window.findViewById(R.id.alert_title);
+        //内容
+        final EditText alert_content = (EditText) window.findViewById(R.id.alert_content);
+        alert_title.setText(title);
+        window.findViewById(R.id.alert_cancle).setVisibility(View.VISIBLE);
+        window.findViewById(R.id.alert_space).setVisibility(View.VISIBLE);
+        TextView lBtn = (TextView) window.findViewById(R.id.alert_cancle);
+        TextView rBtn = (TextView) window.findViewById(R.id.alert_ok);
+        lBtn.setText(leftText);
+        rBtn.setText(rightText);
+        lBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (DialogInputInter != null) {
+                    DialogInputInter.leftClick(dlg);
+                } else {
+                    dlg.cancel();
+                }
+
+            }
+        });
+        //点击右键
+        rBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String et_content = alert_content.getText().toString().trim();
+                if (et_content==null){
+                    ToastUtil.getInstant().show("内容不能为空哦！");
+                    return;
+                }
+                if (DialogInputInter != null) {
+                    DialogInputInter.submit(et_content,dlg);
+                } else {
+                    dlg.cancel();
+                }
+
+            }
+        });
+        dlg.setCancelable(true);
+        dlg.setCanceledOnTouchOutside(false);
+        return dlg;
+    }
 }

@@ -141,6 +141,9 @@ public class OnDownloadAdapter extends BaseAdapter {
         //失败
         iv_download.setImageResource(R.drawable.again_d);
         break;
+      case -2:
+        iv_download.setImageResource(R.drawable.waite_d);
+        break;
       case 0:
         iv_download.setImageResource(R.drawable.can_d);
         break;

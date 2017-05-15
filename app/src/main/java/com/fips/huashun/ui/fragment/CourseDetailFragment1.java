@@ -66,7 +66,6 @@ import org.json.JSONObject;
  */
 public class CourseDetailFragment1 extends Fragment implements OnClickListener,
     OnSectionItemClickListener {
-
   private View rootView;
   private Gson gson;
   private CourseMuluAdapter adapter;

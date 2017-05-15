@@ -22,12 +22,12 @@ import com.fips.huashun.R;
 import com.fips.huashun.common.ACache;
 import com.fips.huashun.common.CacheConstans;
 import com.fips.huashun.common.Constants;
-import com.fips.huashun.db.dao.SectionDownloadDao;
+import com.fips.huashun.db.dao.MemberDao;
 import com.fips.huashun.modle.bean.CourseInfo;
 import com.fips.huashun.modle.bean.GridViewBean;
 import com.fips.huashun.modle.bean.HomeInfo;
 import com.fips.huashun.modle.bean.TopImgInfo;
-import com.fips.huashun.modle.dbbean.CourseSectionEntity;
+import com.fips.huashun.modle.dbbean.MemberEntity;
 import com.fips.huashun.net.HttpUtil;
 import com.fips.huashun.net.LoadDatahandler;
 import com.fips.huashun.net.LoadJsonHttpResponseHandler;
@@ -141,6 +141,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
           public void onStart() {
             super.onStart();
           }
+
           @Override
           public void onSuccess(JSONObject data) {
             super.onSuccess(data);
@@ -261,7 +262,6 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
 
       }
     });
-//        binner.setData(Arrays.asList(R.drawable.binner, R.drawable.login_bg, R.drawable.binner), null);
     binner.setData(Arrays.asList(R.drawable.binner, R.drawable.login_bg, R.drawable.binner), null);
     rootView.findViewById(R.id.tv_search).setOnClickListener(new View.OnClickListener() {
       @Override
@@ -337,17 +337,23 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
     super.onDestroyView();
 
   }
+
   @Override
   public void onClick(View v) {
     Intent intent = null;
     switch (v.getId()) {
       case R.id.iv_image_left:
         ToastUtil.getInstant().show("暂未开放！");
-        SectionDownloadDao downloadDao = new SectionDownloadDao(getActivity());
-        List<CourseSectionEntity> sectionEntities = downloadDao.queryAll();
-        for (CourseSectionEntity sectionEntity : sectionEntities) {
-          Log.i("test999",sectionEntity.toString());
+        MemberDao memberDao = new MemberDao(getActivity());
+        int count = memberDao.queryAllChooseCount();
+//        Log.i("tet", "选中的个数 ："+count);
+        List<MemberEntity> memberEntityList =
+            memberDao.queryAllChooseMembers();
+        for (MemberEntity memberEntity : memberEntityList) {
+          memberEntity.setIntroduce("0");
+          memberDao.upDataMember(memberEntity);
         }
+//
         return;
       case R.id.ll_message:
         if (ApplicationEx.getInstance().isLogined()) {

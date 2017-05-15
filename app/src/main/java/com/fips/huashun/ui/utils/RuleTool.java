@@ -1,4 +1,4 @@
-package com.kevin.interdebug;
+package com.fips.huashun.ui.utils;
 
 import android.content.Context;
 import android.util.Log;
@@ -29,12 +29,11 @@ public class RuleTool {
       signString.append("&" + s + "=" + map.get(s));
       str.append(s + "|");
     }
-    String s  = SPUtils.getString(context, "sk");
-
-    String md5 = Md5Utils.MD5(s);
+    String s  = "asd%#!123&";
+    String md5 = Md5Utils.encodeBy32BitMD5(s);
     signString.append("&" + md5.toLowerCase());
     String substring = signString.toString().substring(1);
-    signArray[0] = Md5Utils.MD5(substring).toLowerCase();
+    signArray[0] = Md5Utils.encodeBy32BitMD5(substring).toLowerCase();
     StringBuffer finStr = str.deleteCharAt(str.length() - 1);
     signArray[1] = finStr.toString();
     if (signArray != null && signArray.length > 0) {
