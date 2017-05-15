@@ -41,7 +41,6 @@ import rx.Observer;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
-
 /**
  * description: 课程下载管理界面
  * autour: Kevin
@@ -223,7 +222,6 @@ public class DownloadManageActivity extends BaseActivity implements OnChildItemC
       mSectionDownloadDao = new SectionDownloadDao(this);
     }
   }
-
   //收到了章节正在下载的事件
   public void onEventMainThread(SectionDownloadStateEvent event) {
     int state = event.getState();

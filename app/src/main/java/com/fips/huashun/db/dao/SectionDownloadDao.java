@@ -90,7 +90,7 @@ public class SectionDownloadDao {
     //查询所有的下载中的课程
     try {
       mlist = mCourseDownloadDao.queryBuilder().where().eq("state", 1).or().eq("state", 3).or()
-          .eq("state", -1).query();
+          .eq("state", -1).or().eq("state", -2).query();
     } catch (SQLException e) {
       e.printStackTrace();
     }

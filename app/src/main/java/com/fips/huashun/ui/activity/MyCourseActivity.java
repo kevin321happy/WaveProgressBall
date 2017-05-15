@@ -52,7 +52,6 @@ public class MyCourseActivity extends BaseActivity implements View.OnClickListen
     private List<CourseInfo> myCourseInfoList;
     // type 表示查询哪类课程 1 已完成课程，2 未完成课程
     private String type;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

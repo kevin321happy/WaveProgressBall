@@ -22,6 +22,7 @@ import com.fips.huashun.ui.adapter.AllCourseAdapter;
 import com.fips.huashun.ui.adapter.FilterLeftAdapter;
 import com.fips.huashun.ui.adapter.FilterOrderAdapter;
 import com.fips.huashun.ui.adapter.FilterRightAdapter;
+import com.fips.huashun.ui.utils.NavigationBar;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
@@ -68,6 +69,7 @@ public class AllCourseActivity extends BaseActivity implements OnClickListener {
   private TextView tv_dissmis;
   private FilterOrderAdapter filterOrderAdapter;
   private List<FilterData> items;
+  private NavigationBar mNavigationBar;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +87,18 @@ public class AllCourseActivity extends BaseActivity implements OnClickListener {
     gson = new Gson();
     backLl = (LinearLayout) findViewById(R.id.ll_back);
     ll_filter = (LinearLayout) findViewById(R.id.ll_filter);
+    mNavigationBar = (NavigationBar) findViewById(R.id.NavigationBar);
+    mNavigationBar.setTitle("所有课程");
+    mNavigationBar.setLeftImage(R.drawable.fanhui);
+    mNavigationBar.setListener(new NavigationBar.NavigationListener() {
+      @Override
+      public void onButtonClick(int button) {
+        if (button == NavigationBar.LEFT_VIEW) {
+          finish();
+        }
+      }
+    });
+
     findViewById(R.id.ll_filter01).setOnClickListener(this);
     findViewById(R.id.ll_filter02).setOnClickListener(this);
     tv_category = (TextView) findViewById(R.id.tv_category);
@@ -118,7 +132,7 @@ public class AllCourseActivity extends BaseActivity implements OnClickListener {
         startActivity(intent);
       }
     });
-    backLl.setOnClickListener(this);
+//    backLl.setOnClickListener(this);
 
     leftAdapter = new FilterLeftAdapter(this);
     rightAdapter = new FilterRightAdapter(this);

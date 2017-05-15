@@ -6,7 +6,14 @@ import java.io.Serializable;
  * Created by Administrator on 2016/4/7.
  */
 public class UserInfo implements Serializable
+
 {
+
+
+    private String qmct_token;//token值
+    private String ry_token;//融云的Token
+    private String company_id;//企业的Id
+
     // 用户魔豆
     private int bean_points;
     // 创建时间
@@ -60,6 +67,30 @@ public class UserInfo implements Serializable
     // 职务
     private String job;
     private String readstatus;
+
+    public String getCompany_id() {
+        return company_id;
+    }
+
+    public void setCompany_id(String company_id) {
+        this.company_id = company_id;
+    }
+
+    public String getQmct_token() {
+        return qmct_token;
+    }
+
+    public void setQmct_token(String qmct_token) {
+        this.qmct_token = qmct_token;
+    }
+
+    public String getRy_token() {
+        return ry_token;
+    }
+
+    public void setRy_token(String ry_token) {
+        this.ry_token = ry_token;
+    }
 
     public String getReadstatus() {
         return readstatus;

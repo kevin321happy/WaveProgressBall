@@ -22,7 +22,6 @@ import com.umeng.analytics.MobclickAgent;
 
 
 public abstract class BaseActivity extends FragmentActivity {
-
   /**
    * 保存上一次点击时间
    */

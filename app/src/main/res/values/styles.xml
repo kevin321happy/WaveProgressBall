@@ -415,6 +415,7 @@
     <item name="android:paddingTop">@dimen/space_10</item>
     <item name="android:clickable">true</item>
     <item name="android:focusable">true</item>
+    <item name="android:background">@drawable/enterprise_mycourse_shape_finish</item>
     <item name="android:layout_marginTop">@dimen/space_10</item>
     <item name="android:foreground">?android:attr/selectableItemBackground</item>
   </style>

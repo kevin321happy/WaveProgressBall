@@ -47,8 +47,7 @@
         android:layout_marginLeft="@dimen/space_10"
         android:layout_marginRight="@dimen/space_10"
         android:padding="@dimen/space_5"
-        android:background="@color/bg_hui"
-        android:src="@drawable/open" />
+        android:src="@drawable/arrow_right" />
     </LinearLayout>
   </LinearLayout>
 

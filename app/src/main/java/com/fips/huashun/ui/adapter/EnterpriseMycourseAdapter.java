@@ -101,7 +101,7 @@ public class EnterpriseMycourseAdapter extends BaseAdapter
         ViewHolder holder = null;
         if (convertView == null)
         {
-            convertView = View.inflate(icontext, R.layout.enterprise_mycourse_item, null);
+            convertView = View.inflate(icontext, R.layout.ent_mycourse_item, null);
             holder = new ViewHolder();
             holder.courseImg = (ImageView) convertView.findViewById(R.id.iv_enterprise_course_item_img);
             holder.courseNameTv = (TextView) convertView.findViewById(R.id.tv_enterprise_course_item_title);

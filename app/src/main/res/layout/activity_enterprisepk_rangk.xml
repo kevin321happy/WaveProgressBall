@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_marginLeft="@dimen/space_20"
             android:layout_height="@dimen/space_35"
-            android:layout_marginRight="@dimen/space_30"
+            android:layout_marginRight="@dimen/space_60"
             android:gravity="center"
             android:orientation="horizontal"
             android:background="@drawable/pk_rangk_title_shape">

@@ -1,6 +1,11 @@
 package com.fips.huashun.ui.adapter;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+import android.content.Context;
+import android.util.Log;
+>>>>>>> dev
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -9,8 +14,7 @@ import android.widget.CheckBox;
 import android.widget.TextView;
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.fips.huashun.R;
-import com.fips.huashun.modle.testbean.DepMember;
-import com.fips.huashun.ui.utils.CommonViewHolder;
+import com.fips.huashun.modle.dbbean.MemberEntity;
 import com.fips.huashun.ui.utils.ToastUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,15 +40,19 @@ import com.fips.huashun.R;
  */
 public class DepMemberAdapter extends BaseAdapter {
 
-
-  private List<DepMember> mData;
+  private List<MemberEntity> mData;
   private HashMap<Integer, Boolean> mSelected = new HashMap<>();
-  private List<DepMember> mDepMembers = new ArrayList<>();
+  private List<MemberEntity> mDepMembers = new ArrayList<>();
   private onMemberSelectedListener mOnMemberSelectedListener;
+  private Context mContext;
 
   public void setOnMemberSelectedListener(
       onMemberSelectedListener onMemberSelectedListener) {
     mOnMemberSelectedListener = onMemberSelectedListener;
+  }
+
+  public DepMemberAdapter(Context context) {
+    mContext = context;
   }
 
   @Override
@@ -61,29 +69,35 @@ public class DepMemberAdapter extends BaseAdapter {
   public long getItemId(int position) {
     return position;
   }
-
   @Override
   public View getView(final int position, View convertView, ViewGroup parent) {
-    DepMember depMember = mData.get(position);
-    View view = View.inflate(parent.getContext(), R.layout.dep_member_item, null);
-    CommonViewHolder cvh = CommonViewHolder
-        .createCVH(convertView, R.layout.dep_member_item, parent);
-    CheckBox cb_pde = (CheckBox) cvh.getView(R.id.cb_check_dep);
-    TextView tv_depname = (TextView) cvh.getView(R.id.tv_dep_member_name);
-    TextView tv_dep_station = (TextView) cvh.getView(R.id.tv_dep_member_station);
-    SimpleDraweeView iv_depicon = (SimpleDraweeView) cvh.getView(R.id.dep_member_icon);
+    MemberEntity depMember = mData.get(position);
+    Log.i("test0",depMember.toString());
+    ViewHolder holder;
+    if (convertView == null) {
+      convertView = View.inflate(mContext, R.layout.dep_member_item, null);
+      holder = new ViewHolder();
+      holder.cb_dep = (CheckBox) convertView.findViewById(R.id.cb_check_dep);
+      holder.tv_depname = (TextView) convertView.findViewById(R.id.tv_dep_member_name);
+      holder.tv_dep_station = (TextView) convertView.findViewById(R.id.tv_dep_member_station);
+      holder.iv_depicon = (SimpleDraweeView) convertView.findViewById(R.id.dep_member_icon);
+    convertView.setTag(holder);
+    }else {
+      holder = (ViewHolder) convertView.getTag();
+    }
     //绑定数据
-    tv_depname.setText(depMember.getDepname());
-    tv_dep_station.setText(depMember.getStation() + "");
-    iv_depicon.setImageURI(depMember.getIcon_path());
+    holder.tv_depname.setText(depMember.getMember_name() + "");
+    holder.tv_dep_station.setText(depMember.getJob_name() + "");
+    holder.iv_depicon.setImageURI(depMember.getHead_image() + "");
     //勾选的点击的监听
-    cb_pde.setOnClickListener(new OnClickListener() {
+    holder.cb_dep.setOnClickListener(new OnClickListener() {
       @Override
       public void onClick(View v) {
         if (mOnMemberSelectedListener == null) {
           return;
         }
         if (mSelected.get(position)) {
+
           mSelected.put(position, false);
           setSelected(mSelected);
           mDepMembers.remove(mData.get(position));
@@ -94,14 +108,10 @@ public class DepMemberAdapter extends BaseAdapter {
           mDepMembers.add(mData.get(position));
           ToastUtil.getInstant().show("我添加了部门的人员 ：" + mData.get(position).toString());
           mOnMemberSelectedListener.onMembersSelected(mDepMembers);
-//          ToastUtil.getInstant().show("我选中的部门人员的总数为 ："+mDepMembers.size());
         }
-//        if (mOnMemberSelectedListener != null) {
-//          mOnMemberSelectedListener.onMembersSelected(mDepMembers);
-//        }
       }
     });
-    return cvh.convertView;
+    return convertView;
   }
 
   public void setSelected(HashMap<Integer, Boolean> selected) {
@@ -112,20 +122,20 @@ public class DepMemberAdapter extends BaseAdapter {
     return mSelected;
   }
 
-  public void setData(List<DepMember> data) {
+  public void setData(List<MemberEntity> data) {
     mData = data;
     initCbStates(mData);
   }
 
-  private void initCbStates(List<DepMember> data) {
+  private void initCbStates(List<MemberEntity> data) {
     for (int i = 0; i < data.size(); i++) {
       mSelected.put(i, false);
-//      ToastUtil.getInstant().show("初始化了 ："+mDepMembers.size());
     }
   }
 
   public interface onMemberSelectedListener {
 
+<<<<<<< HEAD
     void onMembersSelected(List<DepMember> list);
 =======
 */
@@ -146,5 +156,15 @@ public class DepMemberAdapter extends Adapter{
   public int getItemCount() {
     return 0;
 >>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
+=======
+    void onMembersSelected(List<MemberEntity> list);
+  }
+
+  private class ViewHolder {
+    private CheckBox cb_dep;
+    private TextView tv_depname;
+    private TextView tv_dep_station;
+    private SimpleDraweeView iv_depicon;
+>>>>>>> dev
   }
 }

@@ -4,47 +4,13 @@
               android:layout_height="match_parent"
               android:fitsSystemWindows="true"
               android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/space_48"
-        android:orientation="horizontal"
-        android:background="@color/title_color"
-        android:gravity="center_vertical">
-        <LinearLayout
-            android:id="@+id/ll_back"
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content"
-            android:paddingLeft="@dimen/space_10"
-            android:paddingRight="@dimen/space_10"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/course_reslt_back"/>
-        </LinearLayout>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="@dimen/space_35"
-            android:layout_weight="1"
-            android:text="课程"
-            android:gravity="center"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_18"/>
-        <LinearLayout
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content"
-            android:paddingLeft="@dimen/space_10"
-            android:paddingRight="@dimen/space_10"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:src="@drawable/sousuo"/>
-        </LinearLayout>
-    </LinearLayout>
+    <com.fips.huashun.ui.utils.NavigationBar
+      android:id="@+id/NavigationBar"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content">
+
+    </com.fips.huashun.ui.utils.NavigationBar>
+
     <LinearLayout
         android:id="@+id/ll_filter"
         android:layout_width="match_parent"

@@ -61,18 +61,6 @@ android {
             signingConfig signingConfigs.config
         }
     }
-//    //友盟多渠道配置
-//    productFlavors {
-//        wandoujia {}
-//        xiaomi {}
-//        c360 {}
-//        huawei {}
-//        anzhi {}
-//        yingyongbao {}
-//    }
-//    productFlavors.all { flavor ->
-//        flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
-//    }
     useLibrary 'org.apache.http.legacy'
     productFlavors {
         c360 {
@@ -102,28 +90,25 @@ dependencies {
     compile project(':library')
     //必须添加
     // compile 'com.pingxx:pingpp-alipay:2.1.9'
+
     //使用支付宝时添加
+
     //可以单独使用，不需要依赖下方的扩展包
     compile files('libs/android-async-http-1.4.7.jar')
-    //标签显示
     compile project(':gsyVideoPlayer')
-    /*友盟统计*/
-    /*butterknife*/
-    //九宮格控件
-    // -------------------- 以上4个库是必须依赖的 ----------------------------
-    //权限检查
     compile project(':CommonRecycler')
-    //glide
-    //orm数据库
     // 支持 GIF 动图，需要添加
     compile(name: 'sliding_menu_lib', ext: 'aar')
-    //OkGo联网
-    //可以单独使用，不需要依赖下方的扩展包
-    //RxJava扩展支持，根据需要添加
-    //视频录制
+    //标签显示
+
     testCompile 'junit:junit:4.12'
+<<<<<<< HEAD
 =======
 >>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
+=======
+    //融云
+    compile project(':IMKit')
+>>>>>>> dev
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support:appcompat-v7:24.2.0'
     compile 'com.google.code.gson:gson:2.7'

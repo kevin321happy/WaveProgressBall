@@ -1,6 +1,7 @@
 package com.fips.huashun.common;
 
 import static com.fips.huashun.common.IPConstans.IP1;
+import static com.fips.huashun.common.IPConstans.PHP;
 
 import android.graphics.Typeface;
 
@@ -213,7 +214,7 @@ public class Constants {
   /**
    * 企业中 PK榜部门 学习
    */
-  public static final String PARTMENTSTUDYPKLIST_URL = URL + "/partmentStudyPkList";
+//  public static final String PARTMENTSTUDYPKLIST_URL = URL + "/partmentStudyPkList";
   /**
    * 企业中 PK榜部门 积分
    */
@@ -233,7 +234,7 @@ public class Constants {
   /**
    * 企业中 PK榜企业 学习
    */
-  public static final String ENSTUDYPKLIST_URL = URL + "/enStudyPkList";
+//  public static final String ENSTUDYPKLIST_URL = URL + "/enStudyPkList";
   /**
    * 企业中 PK榜企业 积分
    */
@@ -455,22 +456,27 @@ public class Constants {
    * 登录接口
    */
 <<<<<<< HEAD
+<<<<<<< HEAD
   public static final String LOGIN_URL =IP1+ "LoginCommon/login";
+=======
+  public static final String LOGIN_URL = IP1 + "LoginCommon/login";
+>>>>>>> dev
   /**
    * 忘记密码获取验证码
    */
-  public static final String FORGOTPWD_VERIFICATIONCODE_URL = IP1+"LoginCommon/yesbtainvalidate";
+  public static final String FORGOTPWD_VERIFICATIONCODE_URL = IP1 + "LoginCommon/yesbtainvalidate";
   /**
    * 注册获取验证码
    */
-  public static final String REGISTER_VERIFICATIONCODE_URL = IP1+"LoginCommon/notobtainvalidate";
+  public static final String REGISTER_VERIFICATIONCODE_URL = IP1 + "LoginCommon/notobtainvalidate";
   /**
    * 注册的URl
    */
-  public static final String REGISTER_URL = IP1+"LoginCommon/regist";
+  public static final String REGISTER_URL = IP1 + "LoginCommon/regist";
   /**
    * 忘记密码重置
    */
+<<<<<<< HEAD
   public static final String FORGOTPWD_URL = IP1+"LoginCommon/forgotPassword";
 =======
   public static final String LOGIN_URL = "http://admin.52qmct.com/Api/LoginCommon/login";
@@ -492,4 +498,20 @@ public class Constants {
   public static final String FORGOTPWD_URL = "http://admin.52qmct.com/Api/LoginCommon/forgotPassword";
 
 >>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
+=======
+  public static final String FORGOTPWD_URL = IP1 + "LoginCommon/forgotPassword";
+
+  /**
+   * 企业中 PK榜部门 学习
+   */
+  public static final String PARTMENTSTUDYPKLIST_URL = IP1 + "Course/partmentStudyPkList";
+  /**
+   * 企业中 PK榜企业 学习
+   */
+  public static final String ENSTUDYPKLIST_URL = IP1 + "Course/enStudyPkList";
+  /**
+   * 企业组织架构
+   */
+  public static final String GETORGANIZATIONLIST_URL = PHP + "organ/getOrganizationList";
+>>>>>>> dev
 }

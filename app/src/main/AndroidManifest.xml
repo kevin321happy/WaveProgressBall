@@ -237,6 +237,31 @@
         <category android:name="com.fips.huashun" />
       </intent-filter>
     </receiver>
+    <!-- 融云通知栏消息 -->
+    <receiver
+      android:exported="true"
+      android:name=".receiver.RongNotificationReceiver">
+      <intent-filter>
+        <action android:name="io.rong.push.intent.MESSAGE_ARRIVED" />
+        <action android:name="io.rong.push.intent.MI_MESSAGE_ARRIVED" />
+        <action android:name="io.rong.push.intent.MESSAGE_CLICKED" />
+        <action android:name="io.rong.push.intent.MI_MESSAGE_CLICKED" />
+      </intent-filter>
+    </receiver>
+    <!-- 融云IM -->
+    <provider
+      android:authorities="com.fips.huashun"
+      android:exported="false"
+      android:grantUriPermissions="true"
+      android:name="android.support.v4.content.FileProvider">
+      <meta-data
+        android:name="android.support.FILE_PROVIDER_PATHS"
+        android:resource="@xml/rc_file_path" />
+    </provider>
+    <!-- 高德地图 -->
+    <meta-data
+      android:name="com.amap.api.v2.apikey"
+      android:value="6928c2c1ba5c0905c8c072e782b5450e" />
 
     <activity
       android:name=".ui.activity.StartActivity"
@@ -525,10 +550,7 @@
     <service
       android:exported="false"
       android:name=".service.DownloadService" />
-    <!--
-ATTENTION: This was auto-generated to add Google Play services to your project for
- App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
+
     <meta-data
       android:name="com.google.android.gms.version"
       android:value="@integer/google_play_services_version" />
@@ -557,6 +579,7 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
     <!-- 企业组织架构界面 -->
     <activity android:name=".ui.activity.EntOrganizationActivity" />
     <activity android:name=".ui.activity.DownloadManageActivity" />
+<<<<<<< HEAD
     <activity android:name=".ui.activity.EntCommunicateActivity"></activity>
 =======
     
@@ -578,6 +601,41 @@ ATTENTION: This was auto-generated to add Google Play services to your project f
     <!--企业组织架构界面-->
     <activity android:name=".ui.activity.EntOrganizationActivity" />
 >>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
+=======
+    <activity android:name=".ui.activity.EntCommunicateActivity" />
+    <activity android:name=".db.TestViewActivity"></activity>
+    <!--会话界面-->
+    <activity
+      android:name=".ui.activity.ConversationActivity"
+      android:screenOrientation="portrait"
+      android:windowSoftInputMode="stateHidden|adjustResize">
+
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+
+        <category android:name="android.intent.category.DEFAULT" />
+
+        <data
+          android:host="com.fips.huashun"
+          android:pathPrefix="/conversation/"
+          android:scheme="rong" />
+      </intent-filter>
+    </activity>
+    <!--会话列表-->
+    <activity
+      android:name=".ui.activity.ConversationListActivity"
+      android:screenOrientation="portrait"
+      android:windowSoftInputMode="stateHidden|adjustResize">
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data
+          android:host="com.fips.huashun"
+          android:pathPrefix="/conversationlist"
+          android:scheme="rong" />
+      </intent-filter>
+    </activity>
+>>>>>>> dev
   </application>
 
 </manifest>

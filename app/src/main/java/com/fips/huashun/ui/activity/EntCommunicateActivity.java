@@ -1,5 +1,6 @@
 package com.fips.huashun.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -10,6 +11,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import com.fips.huashun.R;
+import com.fips.huashun.db.dao.DepartmentDao;
+import com.fips.huashun.modle.dbbean.DepartmentEntity;
+import java.util.List;
 
 public class EntCommunicateActivity extends BaseActivity {
 
@@ -50,9 +54,24 @@ public class EntCommunicateActivity extends BaseActivity {
         break;
       case R.id.iv_head_single_chat:
         //发起单聊
+        DepartmentDao departmentDao = new DepartmentDao(this);
+        List<DepartmentEntity> departmentEntities = departmentDao.queryAllDepartments();
+        for (DepartmentEntity departmentEntity : departmentEntities) {
+
+        }
+        startActivity(new Intent(this,EntOrganizationActivity.class));
         break;
       case R.id.iv_head_group_chat:
+        Intent intent = new Intent(this, EntOrganizationActivity.class);
+        intent.putExtra("type","1");
+        startActivity(intent);
+
         //发起群聊
+//        MemberDao memberDao = new MemberDao(this);
+//        List<MemberEntity> memberEntityList = memberDao.queryAllMembers();
+//        for (MemberEntity memberEntity : memberEntityList) {
+//
+//        }
         break;
     }
   }

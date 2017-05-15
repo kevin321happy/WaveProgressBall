@@ -42,6 +42,7 @@ import com.yanzhenjie.nohttp.NoHttp;
 import com.yanzhenjie.nohttp.OkHttpNetworkExecutor;
 import com.yanzhenjie.nohttp.cache.DBCacheStore;
 import com.yanzhenjie.nohttp.rest.RequestQueue;
+import io.rong.imkit.RongIM;
 import java.io.File;
 import mabeijianxi.camera.VCamera;
 import mabeijianxi.camera.util.DeviceUtils;
@@ -55,6 +56,7 @@ public class ApplicationEx extends Application {
   private SharePreferenceUtil mSPUtil;
   private static Handler handler;
   private static RequestQueue mRequestQueue;
+
   /**
    * 用户信息
    */
@@ -90,11 +92,22 @@ public class ApplicationEx extends Application {
     initUmeng();
     initJPush();
 <<<<<<< HEAD
+<<<<<<< HEAD
 //    initRecord();
 =======
     initRecord();
 >>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
+=======
+    initRongIM();
+    initRecord();
+
+>>>>>>> dev
     // initText();//加载字体
+  }
+
+  //初始化融云
+  private void initRongIM() {
+    RongIM.init(this);
   }
 
   //初始化视频录制配置
@@ -116,6 +129,7 @@ public class ApplicationEx extends Application {
     VCamera.setDebugMode(true);
     VCamera.initialize(this);
   }
+
   //初始化友盟(分享,統計)
   private void initUmeng() {
     mSPUtil = new SharePreferenceUtil(this, Config.SharePreferenceName);
@@ -309,6 +323,7 @@ public class ApplicationEx extends Application {
   public static ApplicationEx getInstance() {
     return mInstance;
   }
+
 
   /**
    * SharePreference
