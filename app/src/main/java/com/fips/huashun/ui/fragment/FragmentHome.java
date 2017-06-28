@@ -22,26 +22,19 @@ import com.fips.huashun.R;
 import com.fips.huashun.common.ACache;
 import com.fips.huashun.common.CacheConstans;
 import com.fips.huashun.common.Constants;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 import com.fips.huashun.db.dao.SectionDownloadDao;
-=======
->>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
-=======
+
 import com.fips.huashun.db.dao.MemberDao;
->>>>>>> dev
 import com.fips.huashun.modle.bean.CourseInfo;
 import com.fips.huashun.modle.bean.GridViewBean;
 import com.fips.huashun.modle.bean.HomeInfo;
 import com.fips.huashun.modle.bean.TopImgInfo;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import com.fips.huashun.modle.dbbean.CourseSectionEntity;
-=======
->>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
-=======
+
+
 import com.fips.huashun.modle.dbbean.MemberEntity;
->>>>>>> dev
+
 import com.fips.huashun.net.HttpUtil;
 import com.fips.huashun.net.LoadDatahandler;
 import com.fips.huashun.net.LoadJsonHttpResponseHandler;
@@ -358,16 +351,13 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
     switch (v.getId()) {
       case R.id.iv_image_left:
         ToastUtil.getInstant().show("暂未开放！");
-<<<<<<< HEAD
-<<<<<<< HEAD
+
         SectionDownloadDao downloadDao = new SectionDownloadDao(getActivity());
         List<CourseSectionEntity> sectionEntities = downloadDao.queryAll();
         for (CourseSectionEntity sectionEntity : sectionEntities) {
           Log.i("test999",sectionEntity.toString());
         }
-=======
->>>>>>> f8c163e9f9b16c6f8465981156b159495b4df8c8
-=======
+
         MemberDao memberDao = new MemberDao(getActivity());
         int count = memberDao.queryAllChooseCount();
 //        Log.i("tet", "选中的个数 ："+count);
@@ -378,7 +368,7 @@ public class FragmentHome extends Fragment implements View.OnClickListener {
           memberDao.upDataMember(memberEntity);
         }
 //
->>>>>>> dev
+
         return;
       case R.id.ll_message:
         if (ApplicationEx.getInstance().isLogined()) {
