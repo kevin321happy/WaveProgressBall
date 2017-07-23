@@ -2,7 +2,13 @@
   <component name="SexyEditor">
     <option name="configs">
       <list>
-        <BackgroundConfiguration />
+        <BackgroundConfiguration>
+          <option name="fileNames">
+            <array>
+              <option value="C:\Users\kevin321vip\Desktop\bg.jpg" />
+            </array>
+          </option>
+        </BackgroundConfiguration>
       </list>
     </option>
   </component>
