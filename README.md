@@ -12,7 +12,7 @@
 
 ![image](https://github.com/kevin321happy/WaveProgressBall/blob/master/app/gif/%E6%B0%B4%E6%B3%A2%E7%BA%B9%E6%8E%A7%E4%BB%B6%E6%B8%90%E5%8F%98.gif)
 
-一个测试的GIF
+这是一个测试的GIF
 
 ![image](https://github.com/kevin321happy/WaveProgressBall/blob/master/app/gif/test.gif)
 
