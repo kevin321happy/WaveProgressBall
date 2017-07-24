@@ -4,10 +4,12 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
@@ -29,6 +31,7 @@ public class WaveProgressBall extends View {
     private Paint mWavePaint;
     private Paint mTextPaint;
     private String mWaveColor = "#00C799";
+    private String mWaveColorEnd = "#EEAF55";
     private String mTextColor = "#ffffff";
     private float mWaveY;//上一次波浪中线的Y轴坐标
     private float mWaveMidY;//当前的Y轴坐标
@@ -150,6 +153,12 @@ public class WaveProgressBall extends View {
             mWaveY = mWaveMidY - (mWaveMidY - mWaveMidY) / 10;
         }
         mWavePaint.reset();
+        //设置颜色渐变的效果
+        Shader shader = new LinearGradient(100, 100, 100, 300, Color.parseColor(mWaveColorEnd),
+                Color.parseColor(mWaveColor), Shader.TileMode.CLAMP);
+
+        mWavePaint.setShader(shader);
+
         mWavePaint.setColor(Color.parseColor(mWaveColor));
         mWavePaint.setAntiAlias(true);
         mWavepath.moveTo(0 - mDistance, mWaveMidY);
