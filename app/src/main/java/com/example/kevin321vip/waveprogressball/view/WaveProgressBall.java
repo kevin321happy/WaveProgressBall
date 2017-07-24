@@ -36,7 +36,7 @@ public class WaveProgressBall extends View {
     private float mWaveY;//上一次波浪中线的Y轴坐标
     private float mWaveMidY;//当前的Y轴坐标
 
-    private float mWaveHeight = 30f;//波浪的高度
+    private float mWaveHeight = 40f;//波浪的高度
     private float mWaveHalfWidth = 100f;//波浪的宽度
 
     private int mMaxProgress = 100;
@@ -47,7 +47,7 @@ public class WaveProgressBall extends View {
     private int mHeight;
     private float mTexrSize = 16;
     private Path mWavepath;
-    private float mWaveSpeed = 10;
+    private float mWaveSpeed =1;
     private String mTextContent="0";//文字的内容
 
     private Handler mHandler = new Handler() {
@@ -163,7 +163,7 @@ public class WaveProgressBall extends View {
         mWavePaint.setAntiAlias(true);
         mWavepath.moveTo(0 - mDistance, mWaveMidY);
         //波浪的数量
-        int waveNum = mWidth / ((int) mWaveHalfWidth * 4) + 1;
+        int waveNum = mWidth / ((int) mWaveHalfWidth * 10) + 1;
         // mPath.quadTo(x1, y1, x2, y2) (x1,y1) 为控制点，(x2,y2)为结束点。
         int multiplier = 0;
         for (int i = 0; i < waveNum; i++) {
