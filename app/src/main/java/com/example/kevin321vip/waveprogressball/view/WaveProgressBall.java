@@ -2,6 +2,8 @@ package com.example.kevin321vip.waveprogressball.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.LinearGradient;
@@ -9,15 +11,20 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.SweepGradient;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+
+import com.example.kevin321vip.waveprogressball.R;
 
 /**
  * Created by kevin321vip on 2017/7/23.
@@ -26,8 +33,7 @@ import android.view.View;
 
 public class WaveProgressBall extends View {
 
-
-    private static final int DRAWING = 011;
+    private static final int DRAWING = 0X777;
     private Bitmap mBackGroundBitmap;
     private Paint mWavePaint;
     private Paint mTextPaint;
@@ -37,8 +43,8 @@ public class WaveProgressBall extends View {
     private float mWaveY;//上一次波浪中线的Y轴坐标
     private float mWaveMidY;//当前的Y轴坐标
 
-    private float mWaveHeight = 40f;//波浪的高度
-    private float mWaveHalfWidth = 100f;//波浪的宽度
+    private float mWaveHeight = 20f;//波浪的高度
+    private float mWaveHalfWidth = 80f;//波浪的宽度
 
     private int mMaxProgress = 100;
     private int mCurrentProgress = 0;
@@ -48,10 +54,16 @@ public class WaveProgressBall extends View {
     private int mHeight;
     private float mTexrSize = 16;
     private Path mWavepath;
-    private float mWaveSpeed =1;
-    private String mTextContent="0";//文字的内容
-    private boolean IS_FIRST=false;
+    private float mWaveSpeed = 50;
+    private String mTextContent = "0";//文字的内容
+    private boolean mAllowProgressInBothDirections = false;
 
+    private Paint mCirclepaint;
+    private int[] mColors1;
+    private int[] mColors2;
+    private RectF mOval;
+
+    private long mRefreshGap = 10;
     private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
@@ -59,27 +71,26 @@ public class WaveProgressBall extends View {
             switch (msg.what) {
                 case DRAWING:
                     invalidate();
-                    sendEmptyMessageDelayed(DRAWING, 10);
-                    break;
+                    sendEmptyMessageDelayed(DRAWING, mRefreshGap);
             }
         }
     };
-    private Paint mCirclepaint;
+
 
     public WaveProgressBall(Context context) {
         this(context, null);
     }
 
     public WaveProgressBall(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
 
     }
-
 
     public WaveProgressBall(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs,defStyleAttr);
+        super(context, attrs, defStyleAttr);
         init();
     }
+
 
     private void init() {
         //先获取背景
@@ -88,12 +99,25 @@ public class WaveProgressBall extends View {
         } else {
             mBackGroundBitmap = getBitmapFromDrawable(getBackground());
         }
+        // 如果手机版本在4.0以上,则开启硬件加速
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            setLayerType(View.LAYER_TYPE_HARDWARE, null);
+        }
 
+        mColors1 = new int[]{Color.parseColor(mWaveColorEnd), Color.parseColor("#FF95C700"), Color.parseColor("#FF8FC700"), Color.parseColor("#FF00C717"),
+                Color.parseColor("#FF00C75D"), Color.parseColor(mWaveColor)};
+        mColors2 = new int[]{Color.parseColor(mWaveColor), Color.parseColor("#FF00C75D"), Color.parseColor("#FF00C717"), Color.parseColor("#FF8FC700"),
+                Color.parseColor("#FF95C700"), Color.parseColor(mWaveColorEnd)};
         mWavepath = new Path();
         //波浪的画笔
         mWavePaint = new Paint();
         mWavePaint.setAntiAlias(true);
         mWavePaint.setStyle(Paint.Style.FILL);
+
+        //设置颜色渐变的效果
+        Shader shader = new LinearGradient(100, 100, 100, 300, mColors1, null, Shader.TileMode.CLAMP);
+        mWavePaint.setShader(shader);
+        mWavePaint.setColor(Color.parseColor(mWaveColor));
         //文字进度的画笔
         mTextPaint = new Paint();
         mTextPaint.setAntiAlias(true);
@@ -106,11 +130,11 @@ public class WaveProgressBall extends View {
         mCirclepaint.setStyle(Paint.Style.STROKE);
         //handle发送消息执行重绘的动作
         mHandler.sendEmptyMessageDelayed(DRAWING, 100);
-
     }
 
     /**
      * 测量的方法
+     *
      * @param widthMeasureSpec
      * @param heightMeasureSpec
      */
@@ -119,6 +143,12 @@ public class WaveProgressBall extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         mWidth = MeasureSpec.getSize(widthMeasureSpec);
         mWaveY = mHeight = MeasureSpec.getSize(heightMeasureSpec);
+        //RectF对象绘制圆弧时用到
+        mOval = new RectF();
+        mOval.left = 0 + 10;                              //左边
+        mOval.top = 0 + 10;                                   //上边
+        mOval.right = mWidth - 10;                             //右边
+        mOval.bottom = mHeight - 10;
     }
 
     /**
@@ -128,7 +158,6 @@ public class WaveProgressBall extends View {
      */
     @Override
     protected void onDraw(Canvas canvas) {
-
         if (mBackGroundBitmap != null) {
             canvas.drawBitmap(creatIma(), 0, 0, null);
         }
@@ -136,8 +165,6 @@ public class WaveProgressBall extends View {
 
     /**
      * 将波浪、背景和文字华仔画布上面
-     *
-     * @return
      */
 
     private Bitmap creatIma() {
@@ -152,26 +179,20 @@ public class WaveProgressBall extends View {
          * 得到一个同样大小的画布
          */
         Canvas canvas = new Canvas(bitmap);
+
+
         /**
          * 绘制波浪
          */
-//        float CurMidY = mHeight * (mMaxProgress - mCurrentProgress) / mMaxProgress;
         mWaveMidY = mHeight * (mMaxProgress - mCurrentProgress) / mMaxProgress;
-        if (mWaveY > mWaveMidY) {
-            mWaveY = mWaveMidY - (mWaveMidY - mWaveMidY) / 10;
+        if (mAllowProgressInBothDirections || mWaveY > mWaveMidY) {
+            mWaveY = mWaveY - (mWaveY - mWaveMidY) / 10;
         }
-        mWavePaint.reset();
-        //设置颜色渐变的效果
-        Shader shader = new LinearGradient(100, 100, 100, 300, Color.parseColor(mWaveColorEnd),
-                Color.parseColor(mWaveColor), Shader.TileMode.CLAMP);
-
-        mWavePaint.setShader(shader);
-
-        mWavePaint.setColor(Color.parseColor(mWaveColor));
-        mWavePaint.setAntiAlias(true);
+        //水波纹不停的波动
+        mWavepath.reset();
         mWavepath.moveTo(0 - mDistance, mWaveMidY);
         //波浪的数量
-        int waveNum = mWidth / ((int) mWaveHalfWidth * 10) + 1;
+        int waveNum = mWidth / ((int) mWaveHalfWidth * 2) + 1;
         // mPath.quadTo(x1, y1, x2, y2) (x1,y1) 为控制点，(x2,y2)为结束点。
         int multiplier = 0;
         for (int i = 0; i < waveNum; i++) {
@@ -205,11 +226,16 @@ public class WaveProgressBall extends View {
         /**
          * 绘制外环
          */
-      //  扫描渐变效果
-        shader = new SweepGradient(mWidth / 2, mHeight / 2, Color.parseColor(mWaveColor),
-                Color.parseColor(mWaveColorEnd));
+        //  扫描渐变效果
+        Shader shader = new SweepGradient(mWidth / 2, mHeight / 2, mColors2, null);
         mCirclepaint.setShader(shader);
-        canvas.drawCircle(mWidth / 2, mHeight / 2,mWidth/2-10,mCirclepaint);
+//        canvas.drawCircle(mWidth / 2, mHeight / 2,mWidth/2-10,mCirclepaint);
+        //绘制圆弧
+        float sweepAngle = (float) (mCurrentProgress * 360.0 / 100);
+        canvas.drawArc(mOval, 0, sweepAngle, false, mCirclepaint);    //绘制圆弧
+//        Bitmap resource = BitmapFactory.decodeResource(getResources(), R.drawable.bg_out_ring);
+//        BitmapShader bitmapShader = new BitmapShader(resource, Shader.TileMode.MIRROR, Shader.TileMode.MIRROR);
+//        mCirclepaint.setShader(bitmapShader);
         return bitmap;
     }
 
@@ -238,6 +264,7 @@ public class WaveProgressBall extends View {
 
     /**
      * 波浪的颜色
+     *
      * @param waveColor
      */
     public void setWaveColor(String waveColor) {
@@ -246,6 +273,7 @@ public class WaveProgressBall extends View {
 
     /**
      * 字体的颜色
+     *
      * @param textColor
      */
     public void setTextColor(String textColor) {
@@ -254,6 +282,7 @@ public class WaveProgressBall extends View {
 
     /**
      * 字体的大小
+     *
      * @param texrSize
      */
     public void setTexrSize(float texrSize) {
@@ -262,6 +291,7 @@ public class WaveProgressBall extends View {
 
     /**
      * 波浪的速度
+     *
      * @param waveSpeed
      */
     public void setWaveSpeed(float waveSpeed) {
@@ -270,6 +300,7 @@ public class WaveProgressBall extends View {
 
     /**
      * 当前显示的文字
+     *
      * @param textContent
      */
     public void setTextContent(String textContent) {
@@ -278,17 +309,19 @@ public class WaveProgressBall extends View {
 
     /**
      * 设置当前的状态
+     *
      * @param currentProgress
      * @param currentText
      */
     public void setCurrent(int currentProgress, String currentText) {
         this.mCurrentProgress = currentProgress;
         this.mTextContent = currentText;
-       invalidate();
+        invalidate();
     }
 
     /**
      * 设置波浪的宽高
+     *
      * @param mWaveHight
      * @param mWaveWidth
      */
@@ -299,9 +332,11 @@ public class WaveProgressBall extends View {
 
     /**
      * 设置最大值
+     *
      * @param maxProgress
      */
     public void setMaxProgress(int maxProgress) {
         this.mMaxProgress = maxProgress;
     }
+
 }
