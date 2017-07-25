@@ -10,7 +10,7 @@
         mWavePaint.setShader(shader);
 
 
-![image](https://github.com/kevin321happy/WaveProgressBall/blob/master/app/gif/%E6%B0%B4%E6%B3%A2%E7%BA%B9%E5%8F%8A%E5%A4%96%E7%8E%AF%E7%9A%84%E6%B8%90%E5%8F%98%E6%95%88%E6%9E%9C.gif)
+![image](https://github.com/kevin321happy/WaveProgressBall/blob/master/app/gif/%E6%B0%B4%E6%B3%A2%E7%BA%B9%E6%8E%A7%E4%BB%B6.gif)
 
 这是一个测试的GIF
 
