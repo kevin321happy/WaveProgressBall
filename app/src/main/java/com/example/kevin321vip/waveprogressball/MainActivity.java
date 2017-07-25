@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
                 case one:
                     if (progress <= 50) {
                         mWave_progress.setCurrent(progress, progress + "%");
-                        sendEmptyMessageDelayed(one, 100);
+                        sendEmptyMessageDelayed(one, 50);
                     }
                     break;
             }
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 //        waveProgressbar2.setCurrent(77, "788M/1024M");
 //        waveProgressbar2.setWaveColor("#5b9ef4");
 //        waveProgressbar2.setText("#FFFF00", 41);
-        mWave_progress.setWaveColor("#00C799");
+//        mWave_progress.setWaveColor("#00C799");
     }
 
     //点击开始
